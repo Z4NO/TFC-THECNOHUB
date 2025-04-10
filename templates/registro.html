@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - MentorHUB</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/register.css') }}">
+    <link rel="stylesheet" type="text/css" href="/static/styles/register.css">
+</head>
+
+<body>
+    <form class="form" method="POST">
+        <div class="form-title"><span>Crear cuenta en</span></div>
+        <div class="title-2"><span>MentorHUB</span></div>
+
+        <div class="input-container">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+        </div>
+
+        <div class="input-container">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+
+        <div class="input-container">
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
+        </div>
+
+        <div class="input-container">
+            <select name="preferencias" required>
+                <option value="" disabled selected>Selecciona tu preferencia</option>
+                <option value="deporte">Deporte</option>
+                <option value="general">General</option>
+                <option value="programacion">Programación</option>
+                <option value="juegos">Juegos de mesa</option>
+            </select>
+        </div>
+
+        <input type="hidden" name="rol" value="usuario">
+        <input type="hidden" name="reputacion" value="0">
+
+        <button type="submit" class="submit">
+            <span class="sign-text">Registrar</span>
+        </button>
+
+        <div class="signup-link">
+            ¿Ya tienes cuenta? <a href="login.html" class="up">Inicia sesión</a>
+        </div>
+    </form>
+</body>
+
+</html>
