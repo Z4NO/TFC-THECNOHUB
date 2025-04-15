@@ -35,17 +35,18 @@ class BaseManager:
             print(f"Error al añadir el usuario: {e}")
             return False
 
-    def _check_credentials(self,email, password):
+    def _check_credentials(self,email, password) -> bool:
         try:
-            # Buscar el usuario en la base de datos
-            user_ref = self.db.collection('usuario').where('email', '==', email).get()
-            if user_ref:
-                for user in user_ref:
-                    if user.to_dict().get('contrasena') == self.encripter._encript(password):
-                        return True
-                return True
+            user_ref = self.db.collection('usuario')
+            user_ref_query = user_ref.where('email', '==', email).stream()
+            # traemos la contrasena encriptada de la base de datos y la desencriptamos para compararla
+            for doc in user_ref_query:
+                user_data = doc.to_dict()
+                contraseña_desencriptada = self.encripter._decript(user_data['contrasena'])
+                break  
+            if contraseña_desencriptada == password:
+                return True 
             else:
-                print(self.encripter._encript(password))
                 return False
         except Exception as e:
             print(f"Error al verificar las credenciales: {e}")

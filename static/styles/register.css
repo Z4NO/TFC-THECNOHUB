@@ -1,86 +1,221 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+
+
+
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background: #010714;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
-.form {
-    padding: 2rem;
-    max-width: 350px;
-    background: linear-gradient(14deg, rgba(2, 0, 36, 0.8) 0%, rgba(24, 24, 65, 0.7) 66%, rgb(20, 76, 99) 100%);
-    border: 2px solid #fff;
-    box-shadow: rgba(0, 212, 255, 0.6) 0px 0px 50px -10px;
-    z-index: 1000;
-}
-
-.input-container {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.input-container input,
-.input-container select {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    font-family: monospace;
-    border: 2px solid #ffffff;
-    border-radius: 4px;
     box-sizing: border-box;
+    font-family: "Syne", sans-serif;
 }
 
-.submit {
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+
+.waveWrapperInner {
+    position: absolute;
     width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #c0c0c0;
-    color: white;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
+    overflow: hidden;
+    height: 101%;
+    bottom: -1px;
+    background-image: linear-gradient(to top, #010714 20%, #0a1b3d 80%);
 }
 
-.submit:hover {
-    box-shadow: 4px 5px 17px -4px #ffffff;
-    border-radius: 4px;
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
 }
 
-.form-title {
-    font-size: 1.25rem;
-    font-family: monospace;
-    text-align: center;
-    margin-bottom: 0.5rem;
+.waveTop {
+    background-size: 50% 100px;
 }
 
-.title-2 {
-    font-size: 2rem;
-    font-weight: 800;
-    text-align: center;
-    color: transparent;
-    -webkit-text-stroke: #fff 0.1rem;
-    text-shadow: 0px 0px 16px #CECECE;
-    margin-bottom: 1.5rem;
+.waveAnimation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
 }
 
-.signup-link {
-    font-size: 0.9rem;
-    text-align: center;
-    margin-top: 1rem;
+.waveMiddle {
+    background-size: 50% 120px;
 }
 
-.signup-link a {
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+
+.waveBottom {
+    background-size: 50% 100px;
+}
+
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}
+
+
+.container {
     color: #fff;
-    text-decoration: none;
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    padding: 30px 40px;
+    border-radius: 12px;
+    backdrop-filter: blur(9px);
 }
 
-.signup-link a:hover {
-    text-decoration: underline;
+.container h1 {
+    font-size: 39px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding-bottom: 26px;
+}
+
+.container .form-input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.form-input input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 4px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.form-input input::placeholder {
+    color: #fff;
+}
+
+.form-input i {
+    color: #6ee793;
+    position: absolute;
+    right: 10px;
+    top: 16px;
+    transform: translate(-50%);
+}
+
+.container .btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #6ee793;
+    color: #333;
+    font-weight: 550;
+    transition: all .4s ease-in-out;
+}
+
+.container .btn:hover {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.container .btn.prev {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.container .form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.container .form-buttons .btn {
+    flex: 1;
+    margin: 0 3px;
+}
+
+/* Estilos para la sección de intereses */
+.interests-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.interests-section h2 {
+    font-size: 1.5rem;
+    color: #e0b3ff;
+    margin-bottom: 20px;
+}
+
+.interests-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.interest-tag {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.interest-tag input[type="checkbox"] {
+    display: none;
+}
+
+.interest-tag span {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #e0b3ff;
+    border-radius: 20px;
+    background-color: rgba(224, 179, 255, 0.1);
+    color: #e0b3ff;
+    transition: all 0.3s ease;
+}
+
+.interest-tag input[type="checkbox"]:checked+span {
+    background-color: #e0b3ff;
+    color: #010714;
+    box-shadow: 0 0 10px #e0b3ff;
 }

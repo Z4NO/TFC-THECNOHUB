@@ -3,6 +3,7 @@ from flask import session
 import requests
 import secrets
 import urllib.parse
+from formularios.formularios import formularios as formularios
 import datetime
 from BaseManager import BaseManager
 from Encripter import Encripter
@@ -18,6 +19,7 @@ load_dotenv()
 app = Flask(__name__)
 # Generar una clave secreta para la app
 app.secret_key = secrets.token_hex(16)
+app.register_blueprint(formularios)
 
 
 # Datos de la app de Spotify
@@ -45,6 +47,7 @@ def index():
     if request.method == 'POST':
         email = request.form.get('email')
         contrasena = request.form.get('contrasena')
+        print(f"Email: {email}, Contrasena: {contrasena}")
 
         base_manager = BaseManager()
         if base_manager._check_credentials(email, contrasena):
@@ -62,7 +65,7 @@ def register():
         email = request.form.get('email')
         contrasena = request.form.get('contrasena')
         nombre = request.form.get('nombre')
-        preferencias = request.form.get('preferencias')
+        preferencias = request.form.getlist('preferencias')
         reputacion = 0
         rol = 'usuario'
 

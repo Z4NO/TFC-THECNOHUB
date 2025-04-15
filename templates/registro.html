@@ -2,50 +2,137 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Registro - MentorHUB</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/register.css') }}">
-    <link rel="stylesheet" type="text/css" href="/static/styles/register.css">
+  <meta charset="UTF-8">
+  <title>Registro - MentorHUB</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/register.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='styles/register.js') }}"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
 <body>
-    <form class="form" method="POST">
-        <div class="form-title"><span>Crear cuenta en</span></div>
-        <div class="title-2"><span>MentorHUB</span></div>
-
-        <div class="input-container">
-            <input type="text" name="nombre" placeholder="Nombre" required>
+  <form class="form" method="POST" autocomplete="off">
+    <div class="waveWrapper waveAnimation">
+      <div class="waveWrapperInner bgTop">
+        <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')">
         </div>
-
-        <div class="input-container">
-            <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="waveWrapperInner bgMiddle">
+        <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')">
         </div>
-
-        <div class="input-container">
-            <input type="password" name="contrasena" placeholder="Contraseña" required>
+      </div>
+      <div class="waveWrapperInner bgBottom">
+        <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')">
         </div>
-
-        <div class="input-container">
-            <select name="preferencias" required>
-                <option value="" disabled selected>Selecciona tu preferencia</option>
-                <option value="deporte">Deporte</option>
-                <option value="general">General</option>
-                <option value="programacion">Programación</option>
-                <option value="juegos">Juegos de mesa</option>
-            </select>
+      </div>
+    </div>
+    <div class="container" id="register-container">
+        <h1>Registro</h1>
+        <div class="form-input">
+          <input type="text" placeholder="Email"  name="email" id="email"  />
+          <i class="ri-mail-unread-fill"></i>
         </div>
-
-        <input type="hidden" name="rol" value="usuario">
-        <input type="hidden" name="reputacion" value="0">
-
-        <button type="submit" class="submit">
-            <span class="sign-text">Registrar</span>
-        </button>
-
-        <div class="signup-link">
-            ¿Ya tienes cuenta? <a href="login.html" class="up">Inicia sesión</a>
+  
+        <div class="form-input">
+          <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena"  />
+          <i class="ri-git-repository-private-fill"></i>
         </div>
-    </form>
+  
+        <div class="form-input">
+          <input type="password" placeholder="Confirma la contraseña" name="confirm" id="confirm"  />
+          <i class="ri-git-repository-private-line"></i>
+        </div>
+  
+        <div class="form-buttons">
+          <button type="button" class="btn" id="next-to-login">siguiente</button>
+        </div>
+    </div>
+  
+    <div class="container" id="login-container" style="display: none;">
+        <h1>Nombre</h1>
+        <div class="form-input">
+          <input type="text" placeholder="Nombre de usuario" id="nombre" name="nombre"  />
+          <i class="ri-user-6-fill"></i>
+        </div>
+  
+        <div class="form-input">
+          <input type="text" placeholder="Primer nombre" required />
+          <i class="ri-user-3-fill"></i>
+        </div>
+  
+        <div class="form-input">
+          <input type="text" placeholder="Apellido" required />
+          <i class="ri-user-3-fill"></i>
+        </div>
+  
+        <div class="form-buttons">
+          <button type="button" class="btn prev" id="prev-to-register">Anterior</button>
+          <button type="button" class="btn" id="next-to-final">Siguiente</button>
+        </div>
+    </div>
+  
+    <div class="container" id="final-container" style="display: none;">
+        <h1>Intereses</h1>
+        <!-- Nueva sección de intereses -->
+        <div class="interests-section">
+          <h2>Selecciona tus intereses</h2>
+          <div class="interests-tags" >
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="deporte" />
+              <span>Deporte</span>
+            </label>
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="programacion" />
+              <span>Programación</span>
+            </label>
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="estudios" />
+              <span>Estudios</span>
+            </label>
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="arte" />
+              <span>Arte</span>
+            </label>
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="musica" />
+              <span>Música</span>
+            </label>
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="viajes" />
+              <span>Viajes</span>
+            </label>
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="cine" />
+              <span>Cine</span>
+            </label>
+            
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="lectura" />
+              <span>Lectura</span>
+            </label>
+            
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="videojuegos" />
+              <span>Videojuegos</span>
+            </label>
+            
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="fotografia" />
+              <span>Fotografía</span>
+            </label>
+            
+            <label class="interest-tag">
+              <input type="checkbox" name="preferencias" value="naturaleza" />
+              <span>Naturaleza</span>
+            </label>          
+          </div>
+        </div>
+    
+        <div class="form-buttons">
+          <button type="button" class="btn prev" id="prev-to-login-final">Anterior</button>
+          <button type="submit" class="btn">Finalizar</button>
+        </div>
+    </div>
+  </form>
 </body>
 
 </html>
