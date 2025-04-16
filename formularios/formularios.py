@@ -14,10 +14,17 @@ from typing import Final
 
 formularios = Blueprint('formularios', __name__, url_prefix='/formularios')
 
+
 @formularios.route('/main', methods=['POST', 'GET'])
 def cargar_main():
     return render_template('main.html')
 
-@formularios.route('/especificar', methods=['POST', 'GET'])
-def cargar_especificar():
-    return render_template('especificar.html')
+
+# @formularios.route('/profile', methods=['POST', 'GET']) lo comento pero esto seria curioso usarlo para recuperar la contraseña en caso que se olvide
+# def cargar_profile():
+#     return render_template('profile.html')
+
+# Carga el profile
+@formularios.route('/main/profile', methods=['POST', 'GET'])
+def cargar_profile():
+    return render_template('profile.html')

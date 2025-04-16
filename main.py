@@ -42,6 +42,8 @@ Returns:
     Response: A redirect to the '/incorrect' page if the credentials are invalid.
     Response: Renders the 'index.html' template for GET requests.
 """
+
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
@@ -54,10 +56,12 @@ def index():
             session['email'] = email
             session['contrasena'] = contrasena
             print(f"Credenciales correctas para el usuario: {email}")
+            return redirect(url_for("formularios.cargar_main"))
         else:
             return redirect('/incorrect')
 
     return render_template('index.html')
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -71,19 +75,20 @@ def register():
 
         user = User(contrasena, email, nombre, preferencias, reputacion, rol)
         base_manager = BaseManager()
-        
+
         if base_manager._add_user(user):
             return redirect('/')
         else:
             return redirect('/incorrect')
-    
+
     return render_template('registro.html')
 
 # Ruta de credenciales incorrectas
+
+
 @app.route('/incorrect')
 def incorrect():
     return render_template("nocredentials.html")
-
 
 
 if __name__ == '__main__':

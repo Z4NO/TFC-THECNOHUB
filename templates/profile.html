@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Perfil - MentorHUB</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/editar_perfil.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='styles/editar_perfil.js') }}"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="waveWrapper waveAnimation">
+    <div class="waveWrapperInner bgTop">
+      <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+    </div>
+    <div class="waveWrapperInner bgMiddle">
+      <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+    </div>
+    <div class="waveWrapperInner bgBottom">
+      <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <h1>Editar Perfil</h1>
+
+    <!-- Cambiar Avatar -->
+    <div class="form-input">
+      <h2>Cambiar Avatar</h2>
+      <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="Avatar actual" class="avatar-img">
+      <input type="file" id="new_avatar" name="new_avatar" class="file-input">
+    </div>
+
+    <!-- Cambiar Colores Temáticos -->
+    <div class="form-input">
+      <h2>Colores Temáticos</h2>
+      <select name="theme" id="theme" class="theme-select">
+        <option value="light">Claro</option>
+        <option value="dark">Oscuro</option>
+        <option value="blue">Azul</option>
+        <option value="green">Verde</option>
+      </select>
+    </div>
+
+    <!-- Cambiar Fondo -->
+    <div class="form-input">
+      <h2>Cambiar Fondo</h2>
+      <select name="background" id="background" class="background-select">
+        <option value="default">Predeterminado</option>
+        <option value="gradient">Degradado</option>
+        <option value="waves">Olas</option>
+        <option value="stars">Estrellas</option>
+      </select>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" class="btn">Guardar Cambios</button>
+    </div>
+  </div>
+</body>
+
+</html>
