@@ -32,15 +32,31 @@
           <i class="ri-mail-unread-fill"></i>
         </div>
   
-        <div class="form-input">
-          <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena"  />
+        <div class="form-input tooltip-container">
+          <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" />
           <i class="ri-git-repository-private-fill"></i>
+          <!-- Tooltip -->
+          <div class="tooltip">
+            <p>La contraseña debe cumplir los siguientes requisitos:</p>
+            <ul>
+              <li>Al menos 11 caracteres</li>
+              <li>Una letra mayúscula</li>
+              <li>Letras minúsculas</li>
+              <li>Un número</li>
+              <li>Un carácter especial (@#$%^&+=)</li>
+            </ul>
+          </div>
         </div>
-  
-        <div class="form-input">
-          <input type="password" placeholder="Confirma la contraseña" name="confirm" id="confirm"  />
+        
+        <div class="form-input tooltip-container">
+          <input type="password" placeholder="Confirma la contraseña" name="confirm" id="confirm" />
           <i class="ri-git-repository-private-line"></i>
+          <!-- Tooltip -->
+          <div class="tooltip">
+            <p>Asegúrate de que esta contraseña coincide con la anterior.</p>
+          </div>
         </div>
+        
   
         <div class="form-buttons">
           <button type="button" class="btn" id="next-to-login">siguiente</button>

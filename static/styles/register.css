@@ -139,6 +139,41 @@ body {
     transform: translate(-50%);
 }
 
+.tooltip-container {
+    position: relative;
+  }
+  
+  .tooltip {
+    display: none;
+    position: absolute;
+    top: 40px; /* Ajusta la posición del tooltip */
+    left: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    z-index: 10;
+  }
+  
+  .tooltip ul {
+    margin: 5px 0;
+    padding: 0 15px;
+  }
+  
+  .tooltip li {
+    margin: 5px 0;
+  }
+  
+
+  .tooltip-container:hover .tooltip {
+    display: block;
+  }
+  
+
 .container .btn {
     width: 100%;
     height: 45px;
