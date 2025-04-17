@@ -89,6 +89,35 @@ body {
     animation: move_wave 15s linear infinite;
 }
 
+.home-button {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 80px; 
+    height: 80px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    cursor: pointer;
+    z-index: 1000; 
+  }
+  
+  .home-button i {
+    font-size: 40px; 
+    color: #0a1b3d 80%;
+  }
+  
+  .home-button:hover {
+    background-color: #0077cc;
+    transform: scale(1.1); 
+    transition: all 0.3s ease; 
+  }
+  
+
 
 .container {
     color: #fff;
