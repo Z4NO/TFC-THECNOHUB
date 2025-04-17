@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Registro - MentorHUB</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/register.css') }}">
+  
   <script type="text/javascript" src="{{ url_for('static', filename='styles/register.js') }}"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
@@ -35,7 +36,6 @@
         <div class="form-input tooltip-container">
           <input type="password" placeholder="Contraseña" name="contrasena" id="contrasena" />
           <i class="ri-git-repository-private-fill"></i>
-          <!-- Tooltip -->
           <div class="tooltip">
             <p>La contraseña debe cumplir los siguientes requisitos:</p>
             <ul>
@@ -51,7 +51,6 @@
         <div class="form-input tooltip-container">
           <input type="password" placeholder="Confirma la contraseña" name="confirm" id="confirm" />
           <i class="ri-git-repository-private-line"></i>
-          <!-- Tooltip -->
           <div class="tooltip">
             <p>Asegúrate de que esta contraseña coincide con la anterior.</p>
           </div>
