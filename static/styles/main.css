@@ -1,101 +1,166 @@
 .container {
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    display: flex;
-    scrollbar-width: none;
-  }
-  
-  .margenIzq,
-  .margenDerecha {
-    width: 15%;
-    height: 100%;
-  }
-  
-  .bloqueIzquierda {
-    width: 15%;
-    height: 100%;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .headerIzq {
-    color: white;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 10px;
-  }
-  
-  /* Botones de la izquierda */
-  .funcionalidadesIzq {
-    width: auto;
-    gap: 25px;
-    display: flex;
-    flex-direction: column;
-    background-color: black;
-    align-items: flex-start;
-  }
-  
-  .funcionalidadesbtn {
-    width: auto;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    transition: background-color 0.3s ease;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .funcionalidadesIzq button:hover,
-  .perfilIzquierda button:hover {
-    background-color: #191919;
-  }
-  
-  /* Botón Postear */
-  .postear {
-    background-color: whitesmoke !important;
-    width: 200px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    border-radius: 20px;
-    transition: background-color 0.5s ease;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    flex-direction: column;
-  }
-  
-  .postear:hover {
-    background-color: #5b5b5b !important;
-    color: white;
-  }
-  
- 
-  
-  /* Centro */
-  .bloqueMedio {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid white;
-    color: white;
-    text-align: center;
-  }
-  
-  /* Derecha */
-  .bloqueDerecha {
-    width: 15%;
-    height: 100%;
-    background-color: black;
-  }
-  
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  scrollbar-width: none;
+}
+
+.margenIzq,
+.margenDerecha {
+  width: 15%;
+  height: 100%;
+}
+
+.bloqueIzquierda {
+  width: 15%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: normal;
+  padding-left: 70px;
+  padding-right: 70px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.headerIzq {
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+/* Botones de la izquierda */
+.funcionalidadesIzq {
+  width: auto;
+  gap: 25px;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  align-items: flex-start;
+}
+
+
+/* From Uiverse.io by CristianMontoya98 */
+.funcionalidadesbtn {
+  width: 12em; /* más ancho */
+  height: 2.5em;
+  margin: 0.5em 0;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 20px; /* separación entre ícono y texto */
+  padding-left: 10px;
+}
+
+
+.funcionalidadesbtn:hover {
+  color: black;
+}
+
+.funcionalidadesbtn:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+}
+
+.funcionalidadesbtn:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.funcionalidadesIzq button:hover,
+.perfilIzquierda button:hover {
+  background-color: #191919;
+}
+
+/* Botón Postear */
+.postear {
+  font-size: 20px;
+  background: #212121;
+  color: white;
+  fill: rgb(155, 153, 153);
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  font-weight: 1000;
+}
+
+.postear span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.postear svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.postear:hover {
+  background: #000;
+}
+
+.postear:hover .svg-wrapper {
+  transform: scale(1.25);
+  transition: 0.5s linear;
+}
+
+.postear:hover svg {
+  transform: translateX(1.2em) scale(1.1);
+  fill: #fff;
+}
+
+.postear:hover span {
+  opacity: 0;
+  transition: 0.5s linear;
+}
+
+.postear:active {
+  transform: scale(0.95);
+}
+
+
+/* Centro */
+.bloqueMedio {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  color: white;
+  text-align: center;
+}
+
+/* Derecha */
+.bloqueDerecha {
+  width: 15%;
+  height: 100%;
+  background-color: black;
+}
