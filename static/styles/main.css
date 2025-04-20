@@ -1,0 +1,101 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    scrollbar-width: none;
+  }
+  
+  .margenIzq,
+  .margenDerecha {
+    width: 15%;
+    height: 100%;
+  }
+  
+  .bloqueIzquierda {
+    width: 15%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .headerIzq {
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 10px;
+  }
+  
+  /* Botones de la izquierda */
+  .funcionalidadesIzq {
+    width: auto;
+    gap: 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    align-items: flex-start;
+  }
+  
+  .funcionalidadesbtn {
+    width: auto;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .funcionalidadesIzq button:hover,
+  .perfilIzquierda button:hover {
+    background-color: #191919;
+  }
+  
+  /* Botón Postear */
+  .postear {
+    background-color: whitesmoke !important;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border-radius: 20px;
+    transition: background-color 0.5s ease;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    flex-direction: column;
+  }
+  
+  .postear:hover {
+    background-color: #5b5b5b !important;
+    color: white;
+  }
+  
+ 
+  
+  /* Centro */
+  .bloqueMedio {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Derecha */
+  .bloqueDerecha {
+    width: 15%;
+    height: 100%;
+    background-color: black;
+  }
+  

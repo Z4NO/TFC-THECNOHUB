@@ -3,15 +3,51 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Registro - MentorHUB</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main.css') }}">
+  <title>Home - MentorHUB</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
   <script type="text/javascript" src="{{ url_for('static', filename='styles/main.js') }}"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
-<body>
+<body class="container">
+
+  <!-- Relleno limpio izquierda -->
+  <div class="margenIzq"></div>
+
+  <div class="bloqueIzquierda">
+    <header>
+      <h2 class="headerIzq">LogoApp</h2>
+    </header>
+
+    <div class="funcionalidadesIzq">
+      <button class="funcionalidadesbtn">Inicio</button>
+      <button class="funcionalidadesbtn">Explorar</button>
+      <button class="funcionalidadesbtn">Notificaciones</button>
+      <button class="funcionalidadesbtn">Mensajes</button>
+      <button class="funcionalidadesbtn">Foros</button>
+      <button class="funcionalidadesbtn">Perfil</button>
+      <button class="funcionalidadesbtn">Ajustes</button>
+      <button class="postear">Postear</button>
+    </div>
+
+    <div class="perfilIzquierda">
+      <a href="{{ url_for('formularios.cargar_profile') }}" class="btn">
+        <button class="funcionalidadesbtn">Perfil</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="bloqueMedio">
+    <!-- Contenido central -->
+  </div>
+
+  <div class="bloqueDerecha">
+    Esto es la derecha
+  </div>
+
+  <!-- Relleno limpio derecha -->
+  <div class="margenDerecha"></div>
+
 </body>
-    <h1>PAGINA PRINCIPAL</h1>
-    <a href="{{ url_for('formularios.cargar_profile') }}" class="btn">Editar Perfil</a>
 
 </html>
