@@ -1,5 +1,6 @@
 from flask import Flask, redirect, request, jsonify,  render_template, url_for, Blueprint
 from flask import session
+from flask_login import *
 import requests
 import secrets
 import urllib.parse
@@ -16,6 +17,7 @@ formularios = Blueprint('formularios', __name__, url_prefix='/formularios')
 
 
 @formularios.route('/main', methods=['POST', 'GET'])
+@login_required
 def cargar_main():
     return render_template('main.html')
 
@@ -26,5 +28,6 @@ def cargar_main():
 
 # Carga el profile
 @formularios.route('/main/profile', methods=['POST', 'GET'])
+@login_required
 def cargar_profile():
     return render_template('profile.html')

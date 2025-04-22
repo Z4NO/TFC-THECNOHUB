@@ -22,3 +22,28 @@ class User:
         self.reputacion = reputacion
         self.rol = rol
 
+    @property
+    def is_authenticated(self):
+        return True
+    
+    @property
+    def is_active(self):
+        return True
+    
+    @property
+    def is_anonymous(self):
+        return False
+    
+    def get_id(self):
+        return self.email
+    
+
+    def get(user_id):
+        from BaseManager import BaseManager
+        basemanager = BaseManager()
+        usuario = basemanager._get_user_by_email(user_id)
+        if usuario:
+            return usuario
+        else:
+            return None
+
