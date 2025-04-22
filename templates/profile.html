@@ -4,60 +4,88 @@
 <head>
   <meta charset="UTF-8">
   <title>Editar Perfil - MentorHUB</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/editar_perfil.css') }}">
-  <script type="text/javascript" src="{{ url_for('static', filename='styles/editar_perfil.js') }}"></script>
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/profile.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='styles/profile.js') }}"></script>
+  <script src="/static/styles/profile.js"></script>
   <link rel="stylesheet" type="text/css" href="/static/styles/profile.css">
+
 </head>
 
 <body>
-  <div class="waveWrapper waveAnimation">
-    <div class="waveWrapperInner bgTop">
-      <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
-    </div>
-    <div class="waveWrapperInner bgMiddle">
-      <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
-    </div>
-    <div class="waveWrapperInner bgBottom">
-      <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
-    </div>
-  </div>
-  
-  <div class="container">
-    <h1>Editar Perfil</h1>
 
-    <!-- Cambiar Avatar -->
-    <div class="form-input">
-      <h2>Cambiar Avatar</h2>
-      <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="Avatar actual" class="avatar-img">
-      <input type="file" id="new_avatar" name="new_avatar" class="file-input">
-    </div>
+  <div class="masscontainer">
+    <div class="container">
+      <div class="header">
+        <h1>{{current_user.nombre}}</h1>
+        <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="Avatar" class="avatar-img">
+      </div>
 
-    <!-- Cambiar Colores Temáticos -->
-    <div class="form-input">
-      <h2>Colores Temáticos</h2>
-      <select name="theme" id="theme" class="theme-select">
-        <option value="light">Claro</option>
-        <option value="dark">Oscuro</option>
-        <option value="blue">Azul</option>
-        <option value="green">Verde</option>
-      </select>
-    </div>
+      <div class="nav-bar">
+        <div class="button-container">
+          <button class="button" data-action="perfil">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" stroke-width="0"
+              fill="currentColor" stroke="currentColor" class="icon">
+              <path
+                d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z">
+              </path>
+            </svg>
+            Perfil
+          </button>
+          <button class="button" data-action="actividad">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2" />
+            </svg>
+            Actividad
+          </button>
+          <button class="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492M5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0" />
+              <path
+                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115z" />
+            </svg>
+            Ajustes
+          </button>
+        </div>
+      </div>
+      <div class="contenedor-opcion">
+        <!-- Aquí se cargará el contenido dinámico -->
+      </div>
+      <!-- <div class="postear">
 
-    <!-- Cambiar Fondo -->
-    <div class="form-input">
-      <h2>Cambiar Fondo</h2>
-      <select name="background" id="background" class="background-select">
-        <option value="default">Predeterminado</option>
-        <option value="gradient">Degradado</option>
-        <option value="waves">Olas</option>
-        <option value="stars">Estrellas</option>
-      </select>
-    </div>
+      <div class="form-input">
+        <h2>Cambiar Avatar</h2>
+        <input type="file" id="new_avatar" name="new_avatar" class="file-input">
+      </div>
 
-    <div class="form-buttons">
-      <button type="submit" class="btn">Guardar Cambios</button>
+      <div class="form-input">
+        <h2>Colores Temáticos</h2>
+        <select name="theme" id="theme" class="theme-select">
+          <option value="light">Claro</option>
+          <option value="dark">Oscuro</option>
+          <option value="blue">Azul</option>
+          <option value="green">Verde</option>
+        </select>
+      </div>
+
+      <div class="form-input">
+        <h2>Cambiar Fondo</h2>
+        <select name="background" id="background" class="background-select">
+          <option value="default">Predeterminado</option>
+          <option value="gradient">Degradado</option>
+          <option value="waves">Olas</option>
+          <option value="stars">Estrellas</option>
+        </select>
+      </div>
+
+      <div class="form-buttons">
+        <button type="submit" class="btn">Guardar Cambios</button>
+      </div>
     </div>
+    -->
   </div>
 </body>
 
