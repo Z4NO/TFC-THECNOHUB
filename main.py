@@ -1,6 +1,7 @@
 import re
 from flask import Flask, redirect, request, jsonify,  render_template, url_for
 from flask import session
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 import requests
 import secrets
 import urllib.parse
@@ -21,6 +22,11 @@ load_dotenv()
 app = Flask(__name__)
 # Generar una clave secreta para la app
 app.secret_key = secrets.token_hex(16)
+
+#variables de entorno / configuracion de la app
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'index'
 app.register_blueprint(formularios)
 app.register_blueprint(perfil)
 
@@ -30,6 +36,12 @@ MASTER_KEY: Final[str] = os.getenv('MASTER_KEY')
 
 
 encripter = Encripter(MASTER_KEY.encode())
+
+
+# Rutas del login_namager
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 # Rutas de la app
 """
@@ -58,7 +70,9 @@ def index():
         if base_manager._check_credentials(email, contrasena):
             session['email'] = email
             session['contrasena'] = contrasena
-            print(f"Credenciales correctas para el usuario: {email}")
+            login_user(User.get(email))
+
+            
             return redirect(url_for("formularios.cargar_main"))
         else:
             return redirect('/incorrect')
@@ -90,6 +104,7 @@ def register():
 
 
 @app.route('/incorrect')
+@login_required
 def incorrect():
     return render_template("nocredentials.html")
 
