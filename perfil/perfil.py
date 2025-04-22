@@ -18,3 +18,4 @@ perfil = Blueprint('profile', __name__, url_prefix='/profile')
 @perfil.route('/main', methods=['POST', 'GET'])
 def cargar_profile():
     return render_template('profile.html')
+

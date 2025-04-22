@@ -6,6 +6,7 @@ import secrets
 import urllib.parse
 from formularios.formularios import formularios as formularios
 from perfil.perfil import perfil as perfil
+from mensajes.mensajes import mensajes as mensajes
 import datetime
 from BaseManager import BaseManager
 from Encripter import Encripter
@@ -23,6 +24,7 @@ app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 app.register_blueprint(formularios)
 app.register_blueprint(perfil)
+app.register_blueprint(mensajes)
 
 
 # Datos de la app de Spotify

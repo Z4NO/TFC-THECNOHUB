@@ -39,6 +39,7 @@ class BaseManager:
         except Exception as e:
             print(f"Error al añadir el usuario: {e}")
             return False
+        
 
     def _check_credentials(self, email, password) -> bool:
         try:
