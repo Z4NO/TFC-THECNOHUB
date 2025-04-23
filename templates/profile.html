@@ -16,9 +16,17 @@
   <div class="masscontainer">
     <div class="container">
       <div class="header">
-        <h1>{{current_user.nombre}}</h1>
-        <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="Avatar" class="avatar-img">
+        <img src="{{ url_for('static', filename='imgs/pa.webp') }}" alt="Avatar" class="avatar-img">
+        <div class="user-info">
+          <h1>{{ current_user.nombre }}</h1>
+          <p class="user-details">🧑‍💻 Miembro desde hace 2 días · 📅 Visitado 2 días, 2 consecutivos</p>
+        </div>
+        <div class="profile-buttons">
+          <button class="btn">Editar perfil</button>
+          <button class="btn">Perfil de red</button>
+        </div>
       </div>
+      
 
       <div class="nav-bar">
         <div class="button-container">
