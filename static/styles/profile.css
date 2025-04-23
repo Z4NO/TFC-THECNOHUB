@@ -151,52 +151,29 @@ body {
   color: #000;
 }
 
-/* Formularios dentro del contenedor */
-.contenedor-opcion form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
-.contenedor-opcion form label {
-  font-size: 1rem;
-  color: #6ee793;
-}
-
-.contenedor-opcion form input[type="text"],
-.contenedor-opcion form input[type="password"],
-.contenedor-opcion form select {
+.contenedor-opcion button {
+  display: block;
   width: 100%;
-  padding: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  background-color: rgba(110, 231, 147, 0.1);
+  color: #6ee793;
+  border: 2px solid #6ee793;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  font-weight: 600;
+  text-align: left;
+  transition: all 0.3s ease;
 }
 
-.contenedor-opcion form input:focus,
-.contenedor-opcion form select:focus {
-  border-color: #6ee793;
-  outline: none;
-}
-
-.contenedor-opcion form button {
-  padding: 10px 20px;
+.contenedor-opcion button:hover {
   background-color: #6ee793;
   color: #000;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  transform: scale(1.02);
 }
 
-.contenedor-opcion form button:hover {
-  background-color: #4caf50;
-}
+
 
 /* Animación de entrada */
 @keyframes fadeIn {

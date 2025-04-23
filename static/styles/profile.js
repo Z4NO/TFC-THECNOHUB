@@ -8,6 +8,9 @@ function cargarComponente(action) {
     case 'actividad':
       url = '/static/components/opciones-actividad.html';
       break;
+    case 'Ajustes':
+      url = '/static/components/opciones-ajustes.html';
+      break;
     default:
       contenedorOpcion.innerHTML = `<p>Selecciona una opción para ver su contenido.</p>`;
       return;
