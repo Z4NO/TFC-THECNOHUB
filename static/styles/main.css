@@ -1,6 +1,6 @@
 .container {
   width: 100vw;
-  height: 100vh;
+  height: auto;
   background-color: black;
   display: flex;
   scrollbar-width: none;
@@ -67,12 +67,12 @@
 
 
 .funcionalidadesbtn:hover {
-  color: black;
+  color: whitesmoke;
 }
 
 .funcionalidadesbtn:after {
   content: "";
-  background: white;
+  background: rgb(97, 95, 95);
   position: absolute;
   z-index: -1;
   left: -20%;
@@ -163,4 +163,31 @@
   width: 15%;
   height: 100%;
   background-color: black;
+}
+
+/* Marco de las recomendaciones */ 
+.recomendaciones{
+  width: 100%;
+  height: auto;
+  margin-left: 10%;
+  padding-right: 10%;
+  border: 1px solid white;
+  color:whitesmoke;
+}
+
+.titulo-recomendaciones{
+
+  color:white;
+  font-size: larger;
+  font-weight: bold;
+  align-items: center;
+  padding: 5px;
+}
+.descripcion-recomendaciones{
+  
+  color:whitesmoke;
+  font-size: small;
+  align-items: start;
+  padding: 5px;
+
 }
