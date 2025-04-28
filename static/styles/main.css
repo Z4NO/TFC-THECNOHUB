@@ -4,6 +4,7 @@
   background-color: black;
   display: flex;
   scrollbar-width: none;
+  overflow-x: hidden; /* <- Añadido para evitar scroll horizontal extra */
 }
 
 .margenIzq,
@@ -17,8 +18,7 @@
   height: 100%;
   background-color: black;
   display: flex;
-  align-items: normal;
-
+  align-items: flex-start; /* normal -> flex-start */
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -29,10 +29,8 @@
   justify-content: flex-end;
   align-items: flex-end;
   padding: 10px;
-  
 }
 
-/* Botones de la izquierda */
 .funcionalidadesIzq {
   width: auto;
   gap: 25px;
@@ -42,10 +40,8 @@
   align-items: flex-start;
 }
 
-
-/* From Uiverse.io by CristianMontoya98 */
 .funcionalidadesbtn {
-  width: 12em; /* más ancho */
+  width: 12em;
   height: 2.5em;
   margin: 0.5em 0;
   background: black;
@@ -61,10 +57,9 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 20px; /* separación entre ícono y texto */
+  gap: 20px;
   padding-left: 10px;
 }
-
 
 .funcionalidadesbtn:hover {
   color: whitesmoke;
@@ -85,7 +80,6 @@
 
 .funcionalidadesbtn:hover:after {
   transform: skewX(-45deg) scale(1, 1);
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
@@ -145,7 +139,6 @@
   transform: scale(0.95);
 }
 
-
 /* Centro */
 .bloqueMedio {
   width: 40%;
@@ -166,49 +159,69 @@
   font-family: sans-serif;
 }
 
-/* Marco de las recomendaciones */ 
-.recomendaciones{
-  width: 100%;
+/* Marco de las recomendaciones */
+.recomendaciones {
+  width: 80%; 
   height: auto;
-  margin-left: 10%;
-  padding-right: 10%;
+  margin: 0 auto;
+  padding-left: 10px;
   border: 1px solid rgb(114, 112, 112);
   border-radius: 10px;
-  color:whitesmoke;
+  color: whitesmoke;
   margin-bottom: 20px;
 }
 
-.titulo-recomendaciones{
-
-  color:white;
-  font-size: larger;
+.titulo-recomendaciones {
+  color: white;
+  font-size: large;
   font-weight: bold;
   align-items: center;
   padding: 10px;
-  font-family:sans-serif;
+  font-family: sans-serif;
 }
-.descripcion-recomendaciones{
-  
-  color:whitesmoke;
+
+.descripcion-recomendaciones {
+  color: whitesmoke;
   font-size: small;
-  align-items: start;
+  align-items: flex-start;
   padding: 10px;
-  font-family:sans-serif
+  font-family: sans-serif;
 }
-.descripcion-recomendaciones span{
+
+.descripcion-recomendaciones span {
   color: white;
-  display:grid;
+  display: grid;
   font-size: medium;
-  font-weight: solid;
+  font-weight: bold;
   padding: 10px;
 }
 
-.suscripcion-btn{
+.tendencias{
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+  background-color:transparent;
+  border:none;
+  padding-bottom:50px;
+}
+.tendencias-titulo{
+  color:white;
+}
+.tendencias-publicaciones{
+  color:rgb(114, 112, 112);
+}
+
+.tendencias:hover{
+  background-color: rgb(27, 26, 26);
+}
+
+.suscripcion-btn {
   height: 30px;
   background-color: rgb(127, 150, 234);
-  color:whitesmoke;
+  color: whitesmoke;
   font-weight: bold;
   border-radius: 10px;
   margin: 10px;
-  
 }
