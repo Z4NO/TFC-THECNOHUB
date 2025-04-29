@@ -15,7 +15,9 @@
   <div class="margenIzq"></div>
   <div class="bloqueIzquierda">
     <header>
-      <h2 class="headerIzq">LogoApp</h2>
+      <div class="headerIzq">  
+        <img src="imgs/logotipo.png"/>
+      </div>
     </header>
 
     <div class="funcionalidadesIzq">
@@ -71,7 +73,68 @@
 
   </div>
 
-  <div class="bloqueMedio"></div>
+  <div class="bloqueMedio">
+
+    <div class="posts">
+
+      <div class="post-bloque-usuario">
+
+        <div class="post-imgPerfil">
+          <img src="{{ url_for('static', filename='imgs/pa.webp') }}" />
+        </div>
+        <div class="post-nombre">
+          <span> BandoZb</span>
+        </div>
+        <div class="post-usuario">
+          <span> @Bando_002</span>
+        </div>
+
+      </div>
+      <div class="post-texto">
+        <span> Con la llegada de la nueva version de canva el mundo de la programacion para los desarrolladores esta en peligro
+          ¿Que opinas?
+        </span>
+      </div>
+
+      <div class="post-funcionalidades">
+        <!-- Agregar un icono para cada funcionalidad -->
+        <button> L</button>
+        <button> C</button>
+      </div>
+    </div>
+
+    <div class="posts">
+
+      <div class="post-bloque-usuario">
+
+        <div class="post-imgPerfil">
+          <img src="{{ url_for('static', filename='imgs/pa.webp') }}" />
+        </div>
+        <div class="post-nombre">
+          <span> Daniel Lozano</span>
+        </div>
+        <div class="post-usuario">
+          <span> @Z4NO</span>
+        </div>
+
+      </div>
+      <div class="post-texto">
+        <span> Aprender Python es el futuro, hay gente que no empieza por que piensa que es dificil pero, realmente lo es ?
+          Actualmente doy un curso de python desde 0 y totalmente GRATUITO, comenta PYTHON y tendras acceso a mi clase.
+          Recuerda, las excusas no te llevaran a nada.
+        </span>
+      </div>
+
+      <div class="post-funcionalidades">
+        <!-- Agregar un icono para cada funcionalidad -->
+        <button> L</button>
+        <button> C</button>
+      </div>
+    </div>
+
+  </div>
+
+
   <div class="bloqueDerecha">
 
     <div class="recomendaciones">
@@ -126,16 +189,16 @@
 
       <div class="descripcion-recomendaciones"> 
         <button class="posts-recomendados">
-          <div class="posts-usuario"> 
-            <div class="posts-usuario-usuario">
+          <div class="recomendaciones-posts-usuario"> 
+            <div class="recom-posts-usuario-usuario">
               <span>BandoZb</span>
             </div>
-            <div class="posts-usuario-nombre">
+            <div class="recom-posts-usuario-nombre">
               <span>@Bando_002</span>
             </div>
           </div>
           
-          <div class="posts-contenido">
+          <div class="recom-posts-contenido">
             <span>¿Quieres aprender python?
               Aqui muestro como aprenderlo desde 0 
               y gratuito
@@ -146,17 +209,18 @@
 
       <div class="descripcion-recomendaciones"> 
         <button class="posts-recomendados">
-          <div class="posts-usuario"> 
-            <div class="posts-usuario-usuario">
+          <div class="recom-posts-usuario"> 
+            <div class="recom-posts-usuario-usuario">
               <span>Wanan</span>
             </div>
-            <div class="posts-usuario-nombre">
+            <div class="recom-posts-usuario-nombre">
               <span>@LilWanan</span>
             </div>
           </div>
           
-          <div class="posts-contenido">
-            <span> Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado 
+          <div class="recom-posts-contenido">
+            <span> Lo de trabajar para gastarlo todo en 1 semana es loco,
+               no puedo hacer mas de 12 viajes al mes, estoy cansado. 
               #FrikingPagaMas #PonedAireEnFriking
             </span>
           </div>

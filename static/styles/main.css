@@ -31,6 +31,14 @@
   padding: 10px;
 }
 
+.headerIzq img{
+  border:1px white solid;
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+
+}
+
 .funcionalidadesIzq {
   width: auto;
   gap: 25px;
@@ -62,12 +70,12 @@
 }
 
 .funcionalidadesbtn:hover {
-  color: whitesmoke;
+  color: black;
 }
 
 .funcionalidadesbtn:after {
   content: "";
-  background: rgb(97, 95, 95);
+  background: rgb(110, 231, 147);
   position: absolute;
   z-index: -1;
   left: -20%;
@@ -142,15 +150,67 @@
 /* Centro */
 .bloqueMedio {
   width: 45%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border: 1px solid rgb(114, 112, 112);
-  color: white;
-  text-align: center;
   font-family: sans-serif !important;
 }
+
+.posts{
+  width: 100%;
+  height: auto;
+  color:white;
+  font-size: medium;
+  text-align: left;
+  border-bottom: 1px solid rgb(114, 112, 112);
+  padding: 10px; 
+}
+.post-bloque-usuario{
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.post-imgPerfil{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border:1px white solid;
+  object-fit: cover; 
+}
+.post-nombre{
+  color:white;
+  font-weight: bold;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.post-usuario{
+  color:rgb(114, 112, 112);
+  font-weight: bold;
+}
+
+.post-texto{
+  color:whitesmoke;
+  font-size: medium;
+  text-align: left;
+}
+
+.post-funcionalidades{
+  display: flex;
+  padding-top: 10px;
+  height: 20px;
+
+}
+.post-funcionalidades button{
+  width: auto;
+  min-width: 50px;
+  background-color: transparent;
+  color: white;
+  border:none;
+}
+.post-funcionalidades img{
+  object-fit: cover;
+}
+
+
 
 /* Derecha */
 .bloqueDerecha {
@@ -222,7 +282,7 @@
   justify-content: start; 
  
 }
-.posts-usuario{
+.recom-posts-usuario{
   width: 100%;
   font-size: small;
   display: flex;
@@ -231,34 +291,36 @@
   text-align: left;
 }
 
-.posts-usuario-usuario{
+.recom-posts-usuario-usuario{
   color:white;
   font-weight: bold;
   padding-right: 10px;
 }
 
-.posts-usuario-nombre{
+.recom-posts-usuario-nombre{
   color:rgb(114, 112, 112);
   font-weight: bold;
 
 }
 
-.posts-contenido{
+.recom-posts-contenido{
   color:whitesmoke;
   font-size: medium;
   text-align: left;
 
 }
-.posts-contenido img{
+.recom-posts-contenido img{
   border-radius: 10px;
 }
 
 
 .suscripcion-btn {
   height: 30px;
-  background-color: rgb(127, 150, 234);
-  color: whitesmoke;
+  background: rgb(118, 226, 151);
+  color: black;
   font-weight: bold;
   border-radius: 10px;
   margin: 10px;
 }
+
+
