@@ -3,13 +3,13 @@ function cargarComponente(action) {
   let url = '';
   switch (action) {
     case 'perfil':
-      url = '/static/templates/components/opciones-perfil.html';
+      url = '/static/profile_components/opciones-perfil.html';
       break;
     case 'actividad':
-      url = '/static/templates/components/opciones-actividad.html';
+      url = '/static/profile_components/opciones-actividad.html';
       break;
     case 'Ajustes':
-      url = '/static/templates/components/opciones-ajustes.html';
+      url = '/static/profile_components/opciones-ajustes.html';
       break;
     default:
       contenedorOpcion.innerHTML = `<p>Selecciona una opción para ver su contenido.</p>`;
