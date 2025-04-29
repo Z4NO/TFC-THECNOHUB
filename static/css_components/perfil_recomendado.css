@@ -1,0 +1,17 @@
+.perfil-recomendado {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    border-bottom: 1px solid rgb(114, 112, 112);
+    color: whitesmoke;
+}
+
+.perfil-recomendado .nombre {
+    font-weight: bold;
+    color: white;
+} 
+
+.perfil-recomendado .usuario {
+    font-weight: bold;
+    color: rgb(114, 112, 112);
+}

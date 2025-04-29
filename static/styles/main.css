@@ -269,27 +269,6 @@
   font-family: sans-serif;
 }
 
-.tendencias{
-  width: 100%;
-  height: 30px;
-  display: flex;
-  flex-direction: column; 
-  justify-content: flex-start;
-  background-color:transparent;
-  border:none;
-  padding-bottom:50px;
-}
-.tendencias-titulo{
-  color:white;
-}
-.tendencias-publicaciones{
-  color:rgb(114, 112, 112);
-}
-
-.tendencias:hover{
-  background-color: rgb(27, 26, 26);
-  
-}
 
 .posts-recomendados{
   width: 100%;
@@ -348,4 +327,9 @@
   background: rgb(80, 194, 114);
 }
 
-
+/* Perfil */
+.perfiles-recomendados {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}

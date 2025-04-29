@@ -73,14 +73,32 @@ def index():
             session['email'] = email
             session['contrasena'] = contrasena
             login_user(User.get(email))
-
             
-            return redirect(url_for("formularios.cargar_main"))
+            
+            return redirect('/index')
         else:
             return redirect('/incorrect')
 
+
+
     return render_template('index.html')
 
+@app.route('/index', methods=['POST', 'GET'])
+@login_required
+def index2():
+    perfiles = [
+        {'nombre': 'Perfil 1', 'usuario': '@perfil1'},
+        {'nombre': 'Perfil 2', 'usuario': '@perfil2'},
+        {'nombre': 'Perfil 3', 'usuario': '@perfil3'}
+    ]
+
+    tendencias = [
+        {'titulo': 'WananPagaCrunchyroll', 'publicaciones': '1'},
+        {'titulo': 'CurroGym', 'publicaciones': '124'},
+        {'titulo': 'ExplotanMedac', 'publicaciones': '234k'}
+    ]
+            
+    return render_template('main.html', perfiles=perfiles, tendencias=tendencias)
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
