@@ -9,7 +9,7 @@
 
 .margenIzq,
 .margenDerecha {
-  width: 10%;
+  width: 5%;
   height: 100%;
 }
 
@@ -141,7 +141,7 @@
 
 /* Centro */
 .bloqueMedio {
-  width: 40%;
+  width: 45%;
   height: auto;
   display: flex;
   align-items: center;
@@ -149,14 +149,15 @@
   border: 1px solid rgb(114, 112, 112);
   color: white;
   text-align: center;
+  font-family: sans-serif !important;
 }
 
 /* Derecha */
 .bloqueDerecha {
-  width: 20%;
+  width: 25%;
   height: 100%;
   background-color: black;
-  font-family: sans-serif;
+  font-family: sans-serif !important;
 }
 
 /* Marco de las recomendaciones */
@@ -188,14 +189,6 @@
   font-family: sans-serif;
 }
 
-.descripcion-recomendaciones span {
-  color: white;
-  display: grid;
-  font-size: medium;
-  font-weight: bold;
-  padding: 10px;
-}
-
 .tendencias{
   width: 100%;
   height: 30px;
@@ -215,7 +208,51 @@
 
 .tendencias:hover{
   background-color: rgb(27, 26, 26);
+  
 }
+
+.posts-recomendados{
+  width: 100%;
+  height: auto;
+  background-color: transparent;
+  border: 1px solid rgb(114, 112, 112);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: start; 
+ 
+}
+.posts-usuario{
+  width: 100%;
+  font-size: small;
+  display: flex;
+  padding-bottom: 5px;
+  border-bottom:1px solid rgb(130, 128, 128) !important;
+  text-align: left;
+}
+
+.posts-usuario-usuario{
+  color:white;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.posts-usuario-nombre{
+  color:rgb(114, 112, 112);
+  font-weight: bold;
+
+}
+
+.posts-contenido{
+  color:whitesmoke;
+  font-size: medium;
+  text-align: left;
+
+}
+.posts-contenido img{
+  border-radius: 10px;
+}
+
 
 .suscripcion-btn {
   height: 30px;
