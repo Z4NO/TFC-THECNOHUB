@@ -169,12 +169,23 @@
   display: flex;
   align-items: center;
 }
-.post-imgPerfil{
-  width: 25px;
-  height: 25px;
+.post-imgPerfil {
+  width: 45px;              /* Más grande para que sea más visible */
+  height: 45px;
   border-radius: 50%;
-  border:1px white solid;
-  object-fit: cover; 
+  overflow: hidden;         /* Oculta lo que se salga del círculo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  margin-right: 10px;       /* Separación del nombre */
+}
+
+.post-imgPerfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* Asegura que la imagen cubra bien el círculo */
+  border-radius: 50%;       /* Mantiene la forma redonda incluso si se hereda de otro lado */
 }
 .post-nombre{
   color:white;
