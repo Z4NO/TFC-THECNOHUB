@@ -74,6 +74,19 @@ body {
   gap: 20px; /* Añade espacio entre los botones */
 }
 
+.opciones-botones {
+  width: 391px;
+  margin-top: 32px;
+  display: flex;
+  background-color: rgba(50, 50, 50, 0.8); /* Tonos oscuros para combinar con el fondo negro */
+  height: 40px;
+  align-items: center;
+  justify-content: first baseline;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 5px 15px, rgba(50, 50, 50, 0.5) 5px 10px 15px;
+  gap: 20px; /* Añade espacio entre los botones */
+}
+
 .button-container button {
   outline: 0 !important;
   border: 0 !important;
@@ -101,6 +114,17 @@ body {
   transform: translateY(-3px);
 }
 
+.perfil-contenedor {
+  display: flex;
+  flex-direction: row; /* Mantiene los elementos en fila */
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 100vh; /* Fija la altura para evitar desplazamientos */
+  padding: 20px;
+  
+}
+
 /* Estilo general para el contenedor de opciones */
 .contenedor-opcion {
   margin: 20px 0 0; 
@@ -112,6 +136,39 @@ body {
   color: white;
   font-family: 'Roboto', sans-serif;
   animation: fadeIn 0.3s ease-in-out;
+}
+
+.contenedor-opcion-perfil {
+  width: 600px; /* Fijo para que no cambie con la pantalla */
+  height: 500px; /* Mantiene proporción */
+  background-color: rgba(50, 50, 50, 0.8); 
+  padding: 20px;
+
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  overflow-y: auto;
+  color: black;
+}
+
+
+/* Ajusta el tamaño del contenido dentro */
+.contenedor-opcion-perfil h2 {
+  font-size: 2rem;
+  color: #6ee793; /* Verde claro */
+  margin-bottom: 20px;
+  border-bottom: 3px solid #6ee793;
+  padding-bottom: 8px;
+}
+
+.contenedor-opcion-perfil p {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.contenedor-opcion-perfil {
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 /* Títulos dentro del contenedor */

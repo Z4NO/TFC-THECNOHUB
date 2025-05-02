@@ -16,7 +16,8 @@
   <div class="masscontainer">
     <div class="container">
       <div class="header">
-        <img src="{{ url_for('static', filename='imgs/pa.webp') }}" alt="Avatar" class="avatar-img">
+        <img src="{{ user.foto_perfil }}?t={{ timestamp }}" alt="Avatar">
+        
         <div class="user-info">
           <h1>{{ current_user.nombre }}</h1>
           <p class="user-details">🧑‍💻 Miembro desde hace 2 días · 📅 Visitado 2 días, 2 consecutivos</p>
@@ -29,7 +30,7 @@
       
 
       <div class="nav-bar">
-        <div class="button-container">
+        <div class="button-container">  
           <button class="button" data-action="perfil">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" stroke-width="0"
               fill="currentColor" stroke="currentColor" class="icon">
@@ -57,11 +58,28 @@
             </svg>
             Ajustes
           </button>
+          
         </div>
       </div>
-      <div class="contenedor-opcion">
-        <!-- Aquí se cargará el contenido dinámico -->
-      </div>
+      
+
+      <div class="perfil-contenedor">
+        <div class="contenedor-opcion">
+            <!-- Aquí se cargará contenido relacionado con el perfil general -->
+        </div>
+    
+        <div class="contenedor-opcion-perfil">
+            <!-- Aquí se cargará contenido relacionado con la edición de foto, actividad, ajustes, etc. -->
+            
+        </div>
+    </div>
+    
+        
+    
+    
+    
+      
+      
       <!-- <div class="postear">
 
       <div class="form-input">

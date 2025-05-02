@@ -21,7 +21,6 @@ class BaseManager:
             print(f"Error al iniciar la base de datos: {e}")
             self.db = None
 
-
     def _add_user(self, user: User):
         try:
             if self._email_exists(user.email):
@@ -40,8 +39,6 @@ class BaseManager:
         except Exception as e:
             print(f"Error al añadir el usuario: {e}")
             return False
-        
-
 
     def _check_credentials(self, email, password) -> bool:
         try:
@@ -61,7 +58,6 @@ class BaseManager:
             print(f"Error al verificar las credenciales: {e}")
             return False
 
-
     def _email_exists(self, email: str) -> bool:
         try:
             user_ref = self.db.collection('usuario')
@@ -73,7 +69,6 @@ class BaseManager:
         except Exception as e:
             print(f"Error al comprobar si el email existe: {e}")
             return False
-        
 
     def _get_user_by_email(self, email: str) -> User:
         try:
@@ -82,12 +77,14 @@ class BaseManager:
             for doc in user_ref_query:
                 user_data = doc.to_dict()
                 return User(
-                    contrasena=self.encripter._decript(user_data['contrasena']),
+                    contrasena=self.encripter._decript(
+                        user_data['contrasena']),
                     email=user_data['email'],
                     nombre=user_data['nombre'],
                     preferencias=user_data['preferencias'],
                     reputacion=user_data['reputacion'],
-                    rol=user_data['rol']
+                    rol=user_data['rol'],
+                    foto_perfil=user_data['foto_perfil']
                 )
             return None
         except Exception as e:

@@ -24,7 +24,7 @@ app = Flask(__name__)
 # Generar una clave secreta para la app
 app.secret_key = secrets.token_hex(16)
 
-#variables de entorno / configuracion de la app
+# variables de entorno / configuracion de la app
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'index'
@@ -44,6 +44,7 @@ encripter = Encripter(MASTER_KEY.encode())
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
+
 
 # Rutas de la app
 """
@@ -73,15 +74,13 @@ def index():
             session['email'] = email
             session['contrasena'] = contrasena
             login_user(User.get(email))
-            
-            
+
             return redirect('/index')
         else:
             return redirect('/incorrect')
 
-
-
     return render_template('index.html')
+
 
 @app.route('/index', methods=['POST', 'GET'])
 @login_required
@@ -97,8 +96,9 @@ def index2():
         {'titulo': 'CurroGym', 'publicaciones': '124'},
         {'titulo': 'ExplotanMedac', 'publicaciones': '234k'}
     ]
-            
+
     return render_template('main.html', perfiles=perfiles, tendencias=tendencias)
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():

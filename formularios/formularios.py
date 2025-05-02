@@ -30,4 +30,5 @@ def cargar_main():
 @formularios.route('/main/profile', methods=['POST', 'GET'])
 @login_required
 def cargar_profile():
-    return render_template('profile.html')
+    user = User.get(current_user.email)
+    return render_template('profile.html', user=user)

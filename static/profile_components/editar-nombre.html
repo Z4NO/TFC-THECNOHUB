@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Nombre</title>
+
+</head>
+<body>
+
+  <div class="masscontainer">
+    <div class="container">
+      <h2>Actualizar Foto de Perfil</h2>
+      <form action="{{ url_for('profile.upload_profile_pic') }}" method="post" enctype="multipart/form-data">
+          <input type="file" name="foto_perfil" accept="image/*">
+          <button type="submit" class="btn">Actualizar Foto</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
