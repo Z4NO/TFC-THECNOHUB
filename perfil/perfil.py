@@ -56,3 +56,16 @@ def upload_profile_pic():
     User.update_profile_pic(current_user.email, current_user.foto_perfil)
 
     return redirect(url_for('profile.cargar_profile'))
+
+
+@perfil.route('/actualizar-nombre', methods=['POST'])
+@login_required
+def actualizar_nombre():
+    nuevo_nombre = request.form.get('nombre')
+
+    if not nuevo_nombre:
+        return 'El nombre no puede estar vacio'
+
+    current_user.nombre = nuevo_nombre
+    User.update_name(current_user.email, nuevo_nombre)
+    return redirect(url_for('profile.cargar_profile'))

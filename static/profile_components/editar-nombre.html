@@ -9,11 +9,13 @@
 
   <div class="masscontainer">
     <div class="container">
-      <h2>Actualizar Foto de Perfil</h2>
-      <form action="{{ url_for('profile.upload_profile_pic') }}" method="post" enctype="multipart/form-data">
-          <input type="file" name="foto_perfil" accept="image/*">
-          <button type="submit" class="btn">Actualizar Foto</button>
-      </form>
+      <h2>Actualizar Nombre</h2>
+      <form action="/profile/actualizar-nombre" method="post">
+        <label for="nombre">Nuevo nombre:</label>
+        <input type="text" name="nombre" id="nombre" required>
+        <button type="submit" class="btn">Actualizar Nombre</button>
+    </form>
+    
     </div>
   </div>
 

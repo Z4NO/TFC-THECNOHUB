@@ -58,7 +58,23 @@ class User:
             print(f"Error: El usuario {user_id} no existe en Firestore.")
             return False
 
-        user_ref = query[0].reference  # Obtenemos la referencia correcta
-        user_ref.update({"foto_perfil": new_pic_url})  # Actualizamos el campo
+        user_ref = query[0].reference
+        user_ref.update({"foto_perfil": new_pic_url})
         print(f"Foto de perfil actualizada: {new_pic_url}")
+        return True
+
+    def update_name(user_id, new_name):
+        db = firestore.client()
+        query = db.collection("usuario").where(
+            "email", "==", user_id).limit(1).get()
+
+        if not query:
+            print(f"Error: El usuario {user_id} no existe en Firestore.")
+            return False
+
+        user_ref = query[0].reference  # Referencia del usuario en Firestore
+        # Actualizar el nombre en la base de datos
+        user_ref.update({"nombre": new_name})
+
+        print(f"Nombre actualizado: {new_name}")
         return True
