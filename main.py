@@ -97,7 +97,13 @@ def index2():
         {'titulo': 'ExplotanMedac', 'publicaciones': '234k'}
     ]
 
-    return render_template('main.html', perfiles=perfiles, tendencias=tendencias)
+    post_recomendados = [
+        {'Usuario': 'Bando002', 'Nickname': '@usuario1', 'Contenido': 'Contenido del post 1'},
+        {'Usuario': 'Dani', 'Nickname': '@usuario2', 'Contenido': 'Contenido del post 2'},
+        {'Usuario': 'Wanan', 'Nickname': '@LilWanan', 'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.#FrikingPagaMas #PonedAireEnFriking '}
+    ]
+
+    return render_template('main.html', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados)
 
 
 @app.route('/register', methods=['POST', 'GET'])

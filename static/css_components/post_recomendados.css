@@ -1,0 +1,52 @@
+.descripcion-recomendaciones {
+    color: whitesmoke;
+    font-size: small;
+    align-items: flex-start;
+    padding: 10px;
+    font-family: sans-serif;
+}
+
+.posts-recomendados {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    border: 1px solid rgb(114, 112, 112);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+}
+
+.recom-posts-usuario {
+    width: 100%;
+    font-size: small;
+    display: flex;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgb(130, 128, 128) !important;
+    text-align: left;
+}
+
+.recom-posts-usuario-usuario {
+    color: white;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.recom-posts-usuario-nombre {
+    color: rgb(114, 112, 112);
+    font-weight: bold;
+
+}
+
+.recom-posts-contenido {
+    color: whitesmoke;
+    font-size: medium;
+    text-align: left;
+    padding: 10px;
+
+}
+
+.recom-posts-contenido img {
+    border-radius: 10px;
+}
