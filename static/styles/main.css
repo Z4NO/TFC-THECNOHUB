@@ -151,7 +151,7 @@
 /* Centro */
 .bloqueMedio {
   width: 45%;
-  border: 1px solid rgb(114, 112, 112);
+  border: 1px solid rgb(118, 226, 151);
   font-family: sans-serif !important;
   overflow-y: auto;
 }
@@ -162,7 +162,7 @@
   color:white;
   font-size: medium;
   text-align: left;
-  border-bottom: 1px solid rgb(114, 112, 112);
+  border-bottom: 1px solid rgb(118, 226, 151);
   padding: 10px; 
 }
 .post-bloque-usuario{
@@ -246,7 +246,7 @@
   height: auto;
   margin: 0 auto;
   padding-left: 10px;
-  border: 1px solid rgb(114, 112, 112);
+  border: 1px solid rgb(118, 226, 151);
   border-radius: 10px;
   color: whitesmoke;
   margin-bottom: 20px;
