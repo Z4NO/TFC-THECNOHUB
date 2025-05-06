@@ -154,6 +154,7 @@
   border: 1px solid rgb(118, 226, 151);
   font-family: sans-serif !important;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .posts{
