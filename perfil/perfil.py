@@ -69,3 +69,17 @@ def actualizar_nombre():
     current_user.nombre = nuevo_nombre
     User.update_name(current_user.email, nuevo_nombre)
     return redirect(url_for('profile.cargar_profile'))
+
+
+@perfil.route('/actualizar-preferencias', methods=['POST'])
+@login_required
+def actualizar_preferencias():
+    preferencias = request.form.getlist("preferencias")
+
+    if not preferencias:
+        return "Las preferencias no pueden estar vacías", 400
+
+    current_user.preferencias = preferencias
+    User.update_preferences(current_user.email, preferencias)
+
+    return redirect(url_for('profile.cargar_profile'))

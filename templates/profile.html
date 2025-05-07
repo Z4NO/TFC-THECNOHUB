@@ -8,6 +8,7 @@
   <script type="text/javascript" src="{{ url_for('static', filename='styles/profile.js') }}"></script>
   <script src="/static/styles/profile.js"></script>
   <link rel="stylesheet" type="text/css" href="/static/styles/profile.css">
+  
 
 </head>
 
@@ -21,6 +22,8 @@
         <div class="user-info">
           <h1>{{ current_user.nombre }}</h1>
           <p class="user-details">🧑‍💻 Miembro desde hace 2 días · 📅 Visitado 2 días, 2 consecutivos</p>
+          
+          
         </div>
         <div class="profile-buttons">
           <button class="btn">Editar perfil</button>
@@ -47,6 +50,9 @@
               </button>
               <button class="button" data-action="nombre">
                 📊 Cambiar nombre
+              </button>
+              <button class="button" data-action="preferencias">
+                🚀 Cambiar Preferencias
               </button>
             </div>
           </div>  
@@ -84,25 +90,19 @@
       
 
       <div class="perfil-contenedor">
-        <div class="contenedor-opcion">
-            <!-- Aquí se cargará contenido relacionado con el perfil general -->
-        </div>
-
-
-        <div class="nav-bar">
-          <div class="button-container">
-            <!-- Botones de navegación -->
-            
-              
-              <button class="button" data-action="nombre">
-                📊 Actividad
-              </button>
-              <button class="button" data-action="ajustes">
-                ⚙️ Ajustes
-              </button>
-    
+          
+          <div class="preferencias-container">
+            <h2>Preferencias del Usuario</h2>
+            <ul>
+              {% for preferencia in current_user.preferencias %}
+                <li>{{ preferencia }}</li>
+              {% endfor %}
+            </ul>
           </div>
-        </div>
+      
+
+
+        
 
     
         <div class="contenedor-opcion-perfil">

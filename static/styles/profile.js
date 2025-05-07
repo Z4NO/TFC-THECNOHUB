@@ -15,7 +15,7 @@ function cargarComponente(action) {
     let url = '';
 
     // Determinar en qué contenedor cargar el contenido
-    if (action === 'foto' || action === 'nombre') {
+    if (action === 'foto' || action === 'nombre' || action=== 'preferencias') {
         contenedor = document.querySelector('.contenedor-opcion-perfil');
     } else {
         contenedor = document.querySelector('.contenedor-opcion');
@@ -28,6 +28,9 @@ function cargarComponente(action) {
             break;
         case 'foto':
             url = '/static/profile_components/actualizar_foto.html';
+            break;
+        case 'preferencias':
+            url = '/static/profile_components/actualizar_preferencias.html'
             break;
         case 'nombre':
             url = '/static/profile_components/editar-nombre.html';
