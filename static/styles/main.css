@@ -47,6 +47,9 @@
   background-color: black;
   align-items: flex-start;
 }
+.funcionalidadesIzq a{
+  text-decoration: none;
+}
 
 .funcionalidadesbtn {
   width: 12em;
@@ -151,9 +154,10 @@
 /* Centro */
 .bloqueMedio {
   width: 45%;
-  border: 1px solid rgb(114, 112, 112);
+  border: 1px solid rgb(118, 226, 151);
   font-family: sans-serif !important;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .posts{
@@ -162,7 +166,7 @@
   color:white;
   font-size: medium;
   text-align: left;
-  border-bottom: 1px solid rgb(114, 112, 112);
+  border-bottom: 1px solid rgb(118, 226, 151);
   padding: 10px; 
 }
 .post-bloque-usuario{
@@ -246,7 +250,7 @@
   height: auto;
   margin: 0 auto;
   padding-left: 10px;
-  border: 1px solid rgb(114, 112, 112);
+  border: 1px solid rgb(118, 226, 151);
   border-radius: 10px;
   color: whitesmoke;
   margin-bottom: 20px;
@@ -259,58 +263,6 @@
   align-items: center;
   padding: 10px;
   font-family: sans-serif;
-}
-
-.descripcion-recomendaciones {
-  color: whitesmoke;
-  font-size: small;
-  align-items: flex-start;
-  padding: 10px;
-  font-family: sans-serif;
-}
-
-
-.posts-recomendados{
-  width: 100%;
-  height: auto;
-  background-color: transparent;
-  border: 1px solid rgb(114, 112, 112);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column; 
-  justify-content: start; 
- 
-}
-.recom-posts-usuario{
-  width: 100%;
-  font-size: small;
-  display: flex;
-  padding-bottom: 5px;
-  border-bottom:1px solid rgb(130, 128, 128) !important;
-  text-align: left;
-}
-
-.recom-posts-usuario-usuario{
-  color:white;
-  font-weight: bold;
-  padding-right: 10px;
-}
-
-.recom-posts-usuario-nombre{
-  color:rgb(114, 112, 112);
-  font-weight: bold;
-
-}
-
-.recom-posts-contenido{
-  color:whitesmoke;
-  font-size: medium;
-  text-align: left;
-  padding:10px;
-
-}
-.recom-posts-contenido img{
-  border-radius: 10px;
 }
 
 

@@ -1,0 +1,65 @@
+.mensajes{
+
+  width: 100%;
+  height: 50px;
+  font-size: medium;
+  text-align: left;
+  border-bottom: 1px solid rgb(118, 226, 151);
+  padding: 5px;
+  display: flex;
+
+  color:white;
+  background-color: transparent;
+  
+}
+
+.mensajes:hover{
+  background-color: rgb(27, 26, 26);
+}
+
+#mensajes-titulo{
+  width: 100%;
+  height: 60px;
+  color:white;
+  font-size: x-large;
+  display: flex;
+  justify-content: center;  /* centra horizontalmente */
+  align-items: center;
+  
+}
+
+.mensajes-imgPerfil {
+  width: 25px;             
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;         
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+
+}
+
+.mensajes-imgPerfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       
+  border-radius: 50%;
+}
+
+.mensaje-usuario{
+  font-size: medium;
+}
+
+.mensaje-ultimaInteraccion{
+  font-size: small;
+  color:rgb(170, 170, 170);
+}
+
+.mensajes-texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;  
+  padding:2px;
+}

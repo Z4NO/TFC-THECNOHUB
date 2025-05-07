@@ -1,5 +1,6 @@
 from flask import Flask, redirect, request, jsonify,  render_template, url_for, Blueprint
 from flask import session
+from flask_login import login_required
 import requests
 import secrets
 import urllib.parse
@@ -15,16 +16,13 @@ from typing import Final
 mensajes = Blueprint('mensajes', __name__, url_prefix='/mensajes')
 
 
-@mensajes.route('/main', methods=['POST', 'GET'])
-def cargar_main():
-    return render_template('main.html')
-
 
 # @formularios.route('/profile', methods=['POST', 'GET']) lo comento pero esto seria curioso usarlo para recuperar la contraseña en caso que se olvide
 # def cargar_profile():
 #     return render_template('profile.html')
 
 # Carga el profile
-@mensajes.route('/main/profile', methods=['POST', 'GET'])
-def cargar_profile():
-    return render_template('profile.html')
+@mensajes.route('/main/mensajes', methods=['POST', 'GET'])
+@login_required
+def cargar_mensajes():
+    return render_template('main_mensajes.html')
