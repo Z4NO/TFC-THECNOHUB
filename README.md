@@ -14,8 +14,6 @@ Incluye funcionalidades como registro de usuarios, inicio de sesión, perfiles p
 - [Uso](#uso)
 - [Rutas Principales](#rutas-principales)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
-- [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
 
 ---
 
@@ -33,25 +31,28 @@ Incluye funcionalidades como registro de usuarios, inicio de sesión, perfiles p
 ## 🗂️ Estructura del Proyecto
 
 
-TFC-THECNOHUB/
-├── formularios/             # Módulo para formularios y rutas relacionadas
-├── perfil/                  # Módulo para gestión de perfiles
-├── mensajes/                # Módulo para mensajería
-├── static/                  # Archivos estáticos (CSS, JS, imágenes)
-│   ├── styles/              # Estilos CSS y scripts JS
-│   ├── css_components/      # Estilos específicos para componentes
-│   ├── profile_components/  # Componentes HTML dinámicos para perfiles
-├── templates/               # Plantillas HTML
-│   ├── components/          # Componentes reutilizables
-├── BaseManager.py           # Gestión de la base de datos
-├── Encripter.py             # Encriptación de contraseñas
-├── User.py                  # Modelo de usuario
-├── main.py                  # Archivo principal de la aplicación Flask
-├── requirements.txt         # Dependencias del proyecto
-├── .gitignore               # Archivos ignorados por Git
-├── README.md                # Documentación del proyecto
-└── LICENSE                  # Licencia del proyecto
+```plaintext
+## 🗂️ Estructura del Proyecto
 
+TFC-THECNOHUB/
+├── formularios/             -> Módulo para formularios y rutas relacionadas
+├── perfil/                  -> Módulo para gestión de perfiles
+├── mensajes/                -> Módulo para mensajería
+├── static/                  -> Archivos estáticos (CSS, JS, imágenes)
+│   ├── styles/              -> Estilos CSS y scripts JS
+│   ├── css_components/      -> Estilos específicos para componentes
+│   └── profile_components/  -> Componentes HTML dinámicos para perfiles
+├── templates/               -> Plantillas HTML
+│   └── components/          -> Componentes reutilizables
+├── BaseManager.py           -> Gestión de la base de datos
+├── Encripter.py             -> Encriptación de contraseñas
+├── User.py                  -> Modelo de usuario
+├── main.py                  -> Archivo principal de la aplicación Flask
+├── requirements.txt         -> Dependencias del proyecto
+├── .gitignore               -> Archivos ignorados por Git
+├── README.md                -> Documentación del proyecto
+└── LICENSE                  -> Licencia del proyecto
+```
 ## ✅ Requisitos Previos
 
 - Python 3.8 o superior
