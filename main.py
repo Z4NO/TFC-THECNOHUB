@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 from User import User
 import os
 from typing import Final
+from algoritmos import *
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
@@ -85,12 +86,13 @@ def index():
 @app.route('/index', methods=['POST', 'GET'])
 @login_required
 def index2():
+    perfiles_list = get_users_by_preferences(User.get(current_user.email))
+    print(f"Perfiles: {perfiles_list}")
     perfiles = [
-        {'nombre': 'Perfil 1', 'usuario': '@perfil1'},
-        {'nombre': 'Perfil 2', 'usuario': '@perfil2'},
-        {'nombre': 'Perfil 3', 'usuario': '@perfil3'}
     ]
-
+    #vamos a recorrer los perfiles y a añadirlos a la lista de perfiles
+    for perfil in perfiles_list if len(perfiles_list) >= 1 else []:
+        perfiles.append({'nombre': perfil.nombre, 'usuario': f"@{perfil.nickname}"})
     tendencias = [
         {'titulo': 'WananPagaCrunchyroll', 'publicaciones': '1'},
         {'titulo': 'CurroGym', 'publicaciones': '124'},
@@ -115,8 +117,9 @@ def register():
         preferencias = request.form.getlist('preferencias')
         reputacion = 0
         rol = 'usuario'
+        nickname = request.form.get('nickname')
 
-        user = User(contrasena, email, nombre, preferencias, reputacion, rol)
+        user = User(contrasena=contrasena, email=email, nickname=nickname,nombre=nombre, preferencias=preferencias, reputacion=reputacion, rol=rol)
         base_manager = BaseManager()
 
         if base_manager._add_user(user):

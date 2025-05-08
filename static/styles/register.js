@@ -45,6 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
       loginContainer.style.display = 'none';
       registerContainer.style.display = 'block';
     }
+
+    if(!document.getElementById('nickname').value.trim()){
+      alert('Por favor, rellena el campo de nickname');
+      return;
+    }
   });
 
   nextToFinal.addEventListener('click', function () {

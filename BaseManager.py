@@ -33,7 +33,9 @@ class BaseManager:
                 'nombre': user.nombre,
                 'preferencias': user.preferencias,
                 'reputacion': user.reputacion,
-                'rol': user.rol
+                'foto_perfil': user.foto_perfil,
+                'rol': user.rol,
+                'nickname': user.nickname,
             })
             return True
         except Exception as e:
@@ -84,9 +86,40 @@ class BaseManager:
                     preferencias=user_data['preferencias'],
                     reputacion=user_data['reputacion'],
                     rol=user_data['rol'],
-                    foto_perfil=user_data['foto_perfil']
+                    foto_perfil=user_data['foto_perfil'],
+                    nickname=user_data['nickname']
                 )
             return None
         except Exception as e:
             print(f"Error al obtener el usuario por email: {e}")
             return None
+
+    # Vamos a hacer una función la cual toma un número n de usuarios que quiere devolver y una QUERY por la cual filtrar los usuarios, además de un campo por el que filtrar, para facilitar los algoritmos de búsqueda.
+    def _get_users_by_algorithm(self, query,  field: str, limit: int = 3) -> list[User]:
+        try:
+            user_ref = self.db.collection('usuario')
+            
+            # Si query es una lista, usamos el operador 'in' para filtrar por múltiples valores
+            if isinstance(query, list):
+                user_ref_query = user_ref.where(field, 'in', [query]).limit(limit).stream()
+            else:
+                user_ref_query = user_ref.where(field, '==', query).limit(limit).stream()
+            
+            users = []
+            for doc in user_ref_query:
+                user_data = doc.to_dict()
+                users.append(User(
+                    contrasena=self.encripter._decript(
+                        user_data['contrasena']),
+                    email=user_data['email'],
+                    nombre=user_data['nombre'],
+                    preferencias=user_data['preferencias'],
+                    reputacion=user_data['reputacion'],
+                    rol=user_data['rol'],
+                    foto_perfil=user_data['foto_perfil'],
+                    nickname=user_data['nickname']
+                ))
+            return users
+        except Exception as e:
+            print(f"Error al obtener los usuarios por algoritmo: {e}")
+            return []

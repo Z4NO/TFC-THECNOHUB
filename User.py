@@ -11,6 +11,7 @@ class User:
         self,
         contrasena: str,
         email: str,
+        nickname: str,
         nombre: str,
         preferencias,
         reputacion,
@@ -24,6 +25,7 @@ class User:
         self.reputacion = reputacion
         self.rol = rol
         self.foto_perfil = foto_perfil
+        self.nickname = nickname
 
     @property
     def is_authenticated(self):
