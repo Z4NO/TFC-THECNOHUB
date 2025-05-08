@@ -36,6 +36,7 @@ class BaseManager:
                 'foto_perfil': user.foto_perfil,
                 'rol': user.rol,
                 'nickname': user.nickname,
+                'fecha_creacion': user.fecha_creacion
             })
             return True
         except Exception as e:
@@ -87,7 +88,8 @@ class BaseManager:
                     reputacion=user_data['reputacion'],
                     rol=user_data['rol'],
                     foto_perfil=user_data['foto_perfil'],
-                    nickname=user_data['nickname']
+                    nickname=user_data['nickname'],
+                    fecha_creacion=user_data['fecha_creacion']
                 )
             return None
         except Exception as e:
@@ -98,13 +100,15 @@ class BaseManager:
     def _get_users_by_algorithm(self, query,  field: str, limit: int = 3) -> list[User]:
         try:
             user_ref = self.db.collection('usuario')
-            
+
             # Si query es una lista, usamos el operador 'in' para filtrar por múltiples valores
             if isinstance(query, list):
-                user_ref_query = user_ref.where(field, 'in', [query]).limit(limit).stream()
+                user_ref_query = user_ref.where(
+                    field, 'in', [query]).limit(limit).stream()
             else:
-                user_ref_query = user_ref.where(field, '==', query).limit(limit).stream()
-            
+                user_ref_query = user_ref.where(
+                    field, '==', query).limit(limit).stream()
+
             users = []
             for doc in user_ref_query:
                 user_data = doc.to_dict()
@@ -117,7 +121,8 @@ class BaseManager:
                     reputacion=user_data['reputacion'],
                     rol=user_data['rol'],
                     foto_perfil=user_data['foto_perfil'],
-                    nickname=user_data['nickname']
+                    nickname=user_data['nickname'],
+                    fecha_creacion=user_data['fecha_creacion']
                 ))
             return users
         except Exception as e:

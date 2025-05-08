@@ -2,7 +2,7 @@ import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore import FieldFilter
-import datetime
+from datetime import datetime, timezone
 import os
 
 
@@ -16,7 +16,8 @@ class User:
         preferencias,
         reputacion,
         rol: str,
-        foto_perfil: str = ""
+        foto_perfil: str = "",
+        fecha_creacion: datetime = None
     ):
         self.contrasena = contrasena
         self.email = email
@@ -26,6 +27,7 @@ class User:
         self.rol = rol
         self.foto_perfil = foto_perfil
         self.nickname = nickname
+        self.fecha_creacion = fecha_creacion or datetime.datetime.now()
 
     @property
     def is_authenticated(self):
@@ -50,6 +52,11 @@ class User:
             return usuario
         else:
             return None
+
+    def antiguedad_cuenta(self):
+        hoy = datetime.now(timezone.utc)
+        diferencia = hoy - self.fecha_creacion
+        return diferencia.days
 
     def update_profile_pic(user_id, new_pic_url):
         db = firestore.client()

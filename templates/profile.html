@@ -21,7 +21,7 @@
         
         <div class="user-info">
           <h1>{{ current_user.nombre }}</h1>
-          <p class="user-details">🧑‍💻 Miembro desde hace 2 días · 📅 Visitado 2 días, 2 consecutivos</p>
+          <p class="user-details">🧑‍💻 Miembro desde hace {{dias_creacion}} días · 📅 Visitado 2 días, 2 consecutivos</p>
           
           
         </div>
@@ -81,7 +81,14 @@
               Ajustes
             </button>
           </div> 
-          
+          <div class="preferencias-container">
+            <h2>Preferencias del Usuario</h2>
+            <ul>
+              {% for preferencia in current_user.preferencias %}
+                <li>{{ preferencia }}</li>
+              {% endfor %}
+            </ul>
+          </div>
           <!-- Despues dentro de estos div ir metiendo botones -->
         </div>
       </div>
@@ -91,14 +98,7 @@
 
       <div class="perfil-contenedor">
           
-          <div class="preferencias-container">
-            <h2>Preferencias del Usuario</h2>
-            <ul>
-              {% for preferencia in current_user.preferencias %}
-                <li>{{ preferencia }}</li>
-              {% endfor %}
-            </ul>
-          </div>
+          
       
 
 

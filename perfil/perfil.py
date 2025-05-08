@@ -23,10 +23,9 @@ upload_folder = 'static/imgs/'
 @login_required
 def cargar_profile():
     user = User.get(current_user.email)
-    print(f"Ruta de la foto de perfil: {current_user.foto_perfil}")
-    print(user)
+    dias_creacion = user.antiguedad_cuenta() if user.fecha_creacion else 0
 
-    return render_template('profile.html', user=user)
+    return render_template('profile.html', user=user, dias_creacion=dias_creacion)
 
 
 @perfil.route('/actualizar-foto', methods=['GET'])
