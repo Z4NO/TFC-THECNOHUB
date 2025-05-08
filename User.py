@@ -17,7 +17,7 @@ class User:
         reputacion,
         rol: str,
         foto_perfil: str = "",
-        fecha_creacion: datetime = None
+        fecha_creacion: datetime = datetime.now(timezone.utc),
     ):
         self.contrasena = contrasena
         self.email = email
@@ -27,7 +27,7 @@ class User:
         self.rol = rol
         self.foto_perfil = foto_perfil
         self.nickname = nickname
-        self.fecha_creacion = fecha_creacion or datetime.datetime.now()
+        self.fecha_creacion = fecha_creacion
 
     @property
     def is_authenticated(self):
