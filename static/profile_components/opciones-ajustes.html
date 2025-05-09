@@ -1,7 +1,61 @@
-<h2>Opciones de Ajustes</h2>
-<p>Aqui puedes modificar los ajustes</p>
-<ul>
-    <li><button>Preferencias</button></li>
-    <li><a href="#opcion2">Opcion 2</a></li>
-    <li><a href="#opcion3">Opcion 3</a></li>
-</ul>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil de Usuario</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/profile.css') }}">
+</head>
+<body>
+
+  <div class="masscontainer">
+    <div class="profile-container">
+      <div class="header">
+        <img src="{{ current_user.foto_perfil }}" alt="Avatar" class="avatar-img">
+
+        <div class="user-info">
+          <h1>
+            {{ current_user.nombre }}
+            {% if current_user.suscripcion == "premium" %}
+              👑
+            {% endif %}
+          </h1>
+          <p class="user-details">🧑‍💻 Miembro desde {{ dias_creacion }} días</p>
+          <p class="user-details">📅 Fecha Creación: {{ current_user.fecha_creacion.strftime('%d/%m/%Y') }}</p>
+          <p class="user-details">⭐ Reputación: {{ current_user.reputacion }}</p>
+        </div>
+
+        <div class="profile-buttons">
+          <a href="{{ url_for('profile.logout') }}"><button class="btn">Cerrar Sesión</button></a>
+
+          <form action="{{ url_for('profile.actualizar_suscripcion') }}" method="POST">
+            <input type="hidden" name="suscripcion" value="premium">
+            <input type="hidden" name="dias_validos" value="30">
+            <button type="submit" class="btn">Hazte Premium</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="preferencias-container">
+        <h2>Preferencias del Usuario</h2>
+        <ul>
+          {% for preferencia in current_user.preferencias %}
+            <li>{{ preferencia }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="profile-details">
+        <h2>Detalles de la Cuenta</h2>
+        <p>Email: {{ current_user.email }}</p>
+        <p>Nickname: {{ current_user.nickname }}</p>
+        {% if current_user.suscripcion == "premium" %}
+          <p>✅ Premium hasta: {{ current_user.fecha_expiracion_premium.strftime('%d/%m/%Y') }}</p>
+        {% else %}
+          <p>Suscripción: Básico</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -2,7 +2,7 @@ import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore import FieldFilter
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import os
 
 
@@ -18,6 +18,8 @@ class User:
         rol: str,
         foto_perfil: str = "",
         fecha_creacion: datetime = datetime.now(timezone.utc),
+        suscripcion: str = "basico",
+        fecha_expiracion_premium: datetime = None
     ):
         self.contrasena = contrasena
         self.email = email
@@ -28,6 +30,8 @@ class User:
         self.foto_perfil = foto_perfil
         self.nickname = nickname
         self.fecha_creacion = fecha_creacion
+        self.suscripcion = suscripcion
+        self.fecha_expiracion_premium = fecha_expiracion_premium
 
     @property
     def is_authenticated(self):
@@ -102,4 +106,25 @@ class User:
         user_ref.update({"preferencias": preferencias})
 
         print(f"Preferencias actualizadas para {user_id}: {preferencias}")
+        return True
+
+    def update_subscription_with_expiration(user_id, new_status="premium", days_valid=30):
+        db = firestore.client()
+        query = db.collection("usuario").where(
+            "email", "==", user_id).limit(1).get()
+
+        if not query:
+            print(f"Error: El usuario {user_id} no existe en Firestore.")
+            return False
+
+        user_ref = query[0].reference
+        expiration_date = datetime.now() + timedelta(days=days_valid)
+
+        user_ref.update({
+            "suscripcion": new_status,
+            "fecha_expiracion_premium": expiration_date
+        })
+
+        print(
+            f"Suscripción actualizada para {user_id}: {new_status}, expira el {expiration_date}")
         return True

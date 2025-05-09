@@ -15,7 +15,7 @@ function cargarComponente(action) {
     let url = '';
 
     // Determinar en qué contenedor cargar el contenido
-    if (action === 'foto' || action === 'nombre' || action=== 'preferencias') {
+    if (action === 'foto' || action === 'nombre' || action=== 'preferencias' || action === 'Ajustes') {
         contenedor = document.querySelector('.contenedor-opcion-perfil');
     } else {
         contenedor = document.querySelector('.contenedor-opcion');

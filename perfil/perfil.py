@@ -34,6 +34,11 @@ def actualizar_foto():
     return render_template('actualizar-foto.html')
 
 
+@perfil.route('/')
+def index():
+    return render_template('index.html')
+
+
 @perfil.route('/upload_foto_perfil', methods=['POST'])
 @login_required
 def upload_profile_pic():
@@ -82,3 +87,29 @@ def actualizar_preferencias():
     User.update_preferences(current_user.email, preferencias)
 
     return redirect(url_for('profile.cargar_profile'))
+
+
+@perfil.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    session.clear()
+    return redirect(url_for('index'))
+
+
+@perfil.route('/actualizar-suscripcion', methods=['POST'])
+@login_required
+def actualizar_suscripcion():
+    nuevo_estado = request.form.get("suscripcion", "premium")
+    dias_validos = int(request.form.get("fecha_expiracion_premium", 30))
+
+    if not nuevo_estado:
+        return jsonify({"error": "El estado de la suscripción no puede estar vacío"}), 400
+
+    resultado = User.update_subscription_with_expiration(
+        current_user.email, nuevo_estado, dias_validos)
+
+    if resultado:
+        return redirect(url_for('profile.cargar_profile'))
+    else:
+        return jsonify({"error": "No se pudo actualizar la suscripción"}), 500

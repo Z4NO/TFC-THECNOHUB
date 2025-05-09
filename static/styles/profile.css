@@ -12,6 +12,7 @@ body {
 .nav-bar {
   display: flex;
   flex-direction: row; 
+  flex: none;
   justify-content: space-between; 
   align-items: center;
 }
@@ -245,10 +246,10 @@ li:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 90%; /* Se ajusta dinámicamente */
-  max-width: 1500px; /* Limita el tamaño máximo */
-  height: 85vh; /* Adaptado a la altura de la pantalla */
-  max-height: 800px;
+  width: 1500px ;/* Se ajusta dinámicamente */
+
+  height: 800px; /* Adaptado a la altura de la pantalla */
+  overflow: hidden;
   background-color: rgba(50, 50, 50, 0.8);
   padding: 30px; /* Más espacio interno */
   margin: 20px auto; /* Centrado con margen */

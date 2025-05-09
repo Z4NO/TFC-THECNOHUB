@@ -36,7 +36,9 @@ class BaseManager:
                 'foto_perfil': user.foto_perfil,
                 'rol': user.rol,
                 'nickname': user.nickname,
-                'fecha_creacion': user.fecha_creacion
+                'fecha_creacion': user.fecha_creacion,
+                'suscripcion': user.suscripcion,
+                'fecha_expiracion_premium': user.fecha_expiracion_premium
             })
             return True
         except Exception as e:
@@ -89,7 +91,9 @@ class BaseManager:
                     rol=user_data['rol'],
                     foto_perfil=user_data['foto_perfil'],
                     nickname=user_data['nickname'],
-                    fecha_creacion=user_data['fecha_creacion']
+                    fecha_creacion=user_data['fecha_creacion'],
+                    suscripcion=user_data['suscripcion'],
+                    fecha_expiracion_premium=user_data['fecha_expiracion_premium']
                 )
             return None
         except Exception as e:
@@ -122,7 +126,9 @@ class BaseManager:
                     rol=user_data['rol'],
                     foto_perfil=user_data['foto_perfil'],
                     nickname=user_data['nickname'],
-                    fecha_creacion=user_data['fecha_creacion']
+                    fecha_creacion=user_data['fecha_creacion'],
+                    suscripcion=user_data['suscripcion'],
+                    fecha_expiracion_premium=user_data['fecha_expiracion_premium']
                 ))
             return users
         except Exception as e:
