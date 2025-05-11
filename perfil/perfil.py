@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, jsonify,  render_template, url_for, Blueprint
+from flask import Flask, redirect, request, jsonify,  render_template, url_for, Blueprint, send_from_directory
 from flask import session
 from flask_login import login_user, login_required, logout_user, current_user
 import requests
@@ -113,3 +113,9 @@ def actualizar_suscripcion():
         return redirect(url_for('profile.cargar_profile'))
     else:
         return jsonify({"error": "No se pudo actualizar la suscripción"}), 500
+
+
+@perfil.route('/opciones-ajustes', methods=['GET'])
+@login_required
+def opciones_ajustes():
+    return render_template("opciones-ajustes.html")

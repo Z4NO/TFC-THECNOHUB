@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil de Usuario</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/profile.css') }}">
+</head>
+<body>
+
+  <div class="masscontainer">
+    <div class="profile-container">
+      <div class="header2">
+
+        <div class="user-info">
+          <h1>
+            {{ current_user.nombre }}
+            {% if current_user.suscripcion == "premium" %}
+            <svg class="verificado-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+              <path fill="#1D9BF0" d="M12 0C5.4 0 .1 5.4.1 12s5.3 12 11.9 12c6.5 0 11.9-5.3 11.9-12S18.5 0 12 0zm5.3 9.3l-6.1 6.1c-.2.2-.5.3-.8.3s-.6-.1-.8-.3l-3.4-3.4c-.5-.5-.5-1.3 0-1.8s1.3-.5 1.8 0l2.6 2.6 5.3-5.3c.5-.5 1.3-.5 1.8 0s.5 1.3 0 1.8z"/>
+            </svg>
+            {% endif %}
+          </h1>
+          <p class="user-info-highlight">🧑‍💻 Miembro desde {{ dias_creacion }} días</p>
+          <p class="user-info-highlight">📅 Fecha Creación: {{ current_user.fecha_creacion.strftime('%d/%m/%Y') }}</p>
+          <p class="user-info-highlight">⭐ Reputación: {{ current_user.reputacion }}</p>
+        </div>
+      </div>
+
+      <div class="preferencias-container">
+        <h2>Preferencias del Usuario</h2>
+        <ul>
+          {% for preferencia in current_user.preferencias %}
+            <li>{{ preferencia }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="profile-details">
+        <h2>Detalles de la Cuenta</h2>
+        <p class="user-info-highlight">Email: {{ current_user.email }}</p>
+        <p class="user-info-highlight">Nickname: {{ current_user.nickname }}</p>
+        {% if current_user.suscripcion == "premium" %}
+          <p class="user-info-highlight">✅ Premium hasta: {{ current_user.fecha_expiracion_premium.strftime('%d/%m/%Y') }}</p>
+        {% else %}
+          <p class="user-info-highlight">Suscripción: Básico</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

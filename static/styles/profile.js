@@ -39,7 +39,7 @@ function cargarComponente(action) {
             url = '/static/profile_components/opciones-actividad.html';
             break;
         case 'Ajustes':
-            url = '/static/profile_components/opciones-ajustes.html';
+            url = '/profile/opciones-ajustes';
             break;
         default:
             contenedor.innerHTML = `<p>Selecciona una opción para ver su contenido.</p>`;
@@ -66,5 +66,5 @@ function cargarComponente(action) {
 
 // Carga inicial al abrir la página
 window.addEventListener('load', function () {
-  cargarComponente('perfil'); 
+  cargarComponente('Ajustes'); 
 });
