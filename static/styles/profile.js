@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const botones = document.querySelectorAll(".button-container .button");
-    const contenedorOpciones = document.querySelector(".contenedor-opcion-perfil");
+    const contenedorOpciones = document.getElementById("contenedor-dinamico");
 
     botones.forEach(button => {
         button.addEventListener("click", function () {

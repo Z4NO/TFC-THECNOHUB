@@ -14,7 +14,6 @@
 
 <body>
 
-  <div class="masscontainer">
     <div class="container">
       <div class="header">
         <img src="{{ user.foto_perfil }}?t={{ timestamp }}" alt="Avatar" style="width: 100px; height: 100 px; border-radius: 50%;">
@@ -28,7 +27,11 @@
           </h1>
           
           <p class="user-details">🧑‍💻 Miembro desde hace {{dias_creacion}} días · 📅 Visitado 2 días, 2 consecutivos</p>
-          <p class="user-details">Fecha Expiración Premium: {{ current_user.fecha_expiracion_premium.strftime('%d/%m/%Y') }}</p>
+          <!--tenemos que comprobar el usuario s premiun y si es así cargamos el <p> -->
+          {% if current_user.fecha_expiracion_premium %}
+            <p class="user-details">Fecha Expiración Premium: {{ current_user.fecha_expiracion_premium.strftime('%d/%m/%Y') }}</p>
+          {% else %}
+          {% endif %}
 
           
           
@@ -46,7 +49,7 @@
       </div>
       
 
-      <div class="nav-bar">
+      <div class="layout-perfil">
         <div class="button-container">
           <div class="dropdown">
             <button class="dropbtn">
@@ -110,67 +113,12 @@
           </div> -->
           <!-- Despues dentro de estos div ir metiendo botones -->
         </div>
-        <div class="contenedor-opcion-perfil">
+        <div id="contenedor-dinamico" class="contenedor-opcion-perfil">
             <!-- Aquí se cargará contenido relacionado con la edición de foto, actividad, ajustes, etc. -->
             
             
         </div>
       </div>
-
-      
-      
-
-      
-          
-          
-      
-
-
-        
-
-    
-        
-    
-    
-        
-    
-    
-    
-      
-      
-      <!-- <div class="postear">
-
-      <div class="form-input">
-        <h2>Cambiar Avatar</h2>
-        <input type="file" id="new_avatar" name="new_avatar" class="file-input">
-      </div>
-
-      <div class="form-input">
-        <h2>Colores Temáticos</h2>
-        <select name="theme" id="theme" class="theme-select">
-          <option value="light">Claro</option>
-          <option value="dark">Oscuro</option>
-          <option value="blue">Azul</option>
-          <option value="green">Verde</option>
-        </select>
-      </div>
-
-      <div class="form-input">
-        <h2>Cambiar Fondo</h2>
-        <select name="background" id="background" class="background-select">
-          <option value="default">Predeterminado</option>
-          <option value="gradient">Degradado</option>
-          <option value="waves">Olas</option>
-          <option value="stars">Estrellas</option>
-        </select>
-      </div>
-
-      <div class="form-buttons">
-        <button type="submit" class="btn">Guardar Cambios</button>
-      </div>
-    </div>
-    -->
-  </div>
 </body>
 
 </html>

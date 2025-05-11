@@ -4,10 +4,6 @@ body {
   padding: 0;
 }
 
-.masscontainer{
-  padding-left: 32px;
-  padding-top: 22px;
-}
 
 .nav-bar {
   display: flex;
@@ -18,8 +14,8 @@ body {
 }
 
 .profile-container {
-    max-height: 750px; 
-    overflow: auto; 
+  height: 100%;
+  overflow: auto; 
 }
 
 
@@ -94,19 +90,34 @@ body {
 }
 
 
+.layout-perfil {
+  display: flex;
+  gap: 40px;
+  padding-left: 32px; /* igual que .masscontainer */
+  padding-top: 22px;  /* igual que .masscontainer */
+  padding-right: 40px;
+  padding-bottom: 40px;
+  align-items: flex-start;
+}
+
+
 .button-container {
+  position: sticky;
+  top: 20px;
+  left: 0;
   width: 391px;
-  margin-top: 32px;
   display: flex;
   flex-direction: column;
-  background-color: rgba(50, 50, 50, 0.8); /* Tonos oscuros para combinar con el fondo negro */
+  background-color: rgba(50, 50, 50, 0.8);
   padding: 5px;
   align-items: center;
   justify-content: space-around;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.7) 0px 5px 15px, rgba(50, 50, 50, 0.5) 5px 10px 15px;
-  gap: 10px; /* Añade espacio entre los botones */
+  gap: 10px;
+  z-index: 5;
 }
+
 
 .opciones-botones {
   width: 391px;
@@ -266,21 +277,28 @@ li:hover {
 }
 
 .contenedor-opcion-perfil {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1500px ;/* Se ajusta dinámicamente */
-
-  height: 800px; /* Adaptado a la altura de la pantalla */
-  overflow: hidden;
-  background-color: black;
-  padding: 30px; /* Más espacio interno */
-  margin: 20px auto; /* Centrado con margen */
+  margin-top: 15px;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 700px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.4);
-  box-sizing: border-box; /* Mantiene proporciones correctas */
+  background-color: black;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  animation: fadeIn 0.4s ease-in-out;
 }
+
+/* Ocultar scroll en Chrome/Safari */
+.contenedor-opcion-perfil::-webkit-scrollbar {
+  display: none;
+}
+
 
 
 /* Ajusta el tamaño del contenido dentro */

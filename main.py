@@ -93,6 +93,7 @@ def index2():
     #vamos a recorrer los perfiles y a añadirlos a la lista de perfiles
     for perfil in perfiles_list if len(perfiles_list) >= 1 else []:
         perfiles.append({'nombre': perfil.nombre, 'usuario': f"@{perfil.nickname}"})
+        
     tendencias = [
         {'titulo': 'WananPagaCrunchyroll', 'publicaciones': '1'},
         {'titulo': 'CurroGym', 'publicaciones': '124'},
