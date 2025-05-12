@@ -85,6 +85,16 @@ body {
   font-size: 0.95em;
 }
 
+.btnpreferencias {
+  background-color: #6ee793;
+  border: 1px solid #6ee793;
+  border-radius: 5px;
+  margin-top: 30px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.95em;
+}
+
 .btn:hover {
   background-color: #f1f2f3;
 }
@@ -99,6 +109,7 @@ body {
   padding-bottom: 40px;
   align-items: flex-start;
 }
+
 
 
 .button-container {
@@ -157,6 +168,15 @@ body {
 
 .button-container button:hover {
   transform: translateY(-3px);
+}
+
+.container2 {
+  position: fixed;
+  top: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }
 
 
@@ -324,7 +344,7 @@ li:hover {
 .contenedor-actualizar-nombre {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -480,6 +500,39 @@ li:hover {
 .dropdown:hover .dropdown-content {
   display: flex;
 }
+
+.titulo-recomendaciones {
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  align-items: center;
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.suscripcion-btn {
+  height: 30px;
+  background: rgb(118, 226, 151);
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.suscripcion-btn:hover{
+  background: rgb(80, 194, 114);
+}
+
+.recomendaciones {
+  width: 80%; 
+  height: auto;
+  margin: 30px auto; /* Espacio superior e inferior */
+  padding: 40px; 
+  border: 1px solid rgb(118, 226, 151);
+  border-radius: 10px;
+  color: whitesmoke;
+}
+
 
 
 
