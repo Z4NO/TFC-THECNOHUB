@@ -6,6 +6,8 @@ from User import User
 from Encripter import Encripter
 import os
 
+from formularios.formularios import ForoModel, MensajeForo
+
 
 class BaseManager:
     def __init__(self):
@@ -133,4 +135,91 @@ class BaseManager:
             return users
         except Exception as e:
             print(f"Error al obtener los usuarios por algoritmo: {e}")
+            return []
+
+
+# Foro
+
+    def _add_forum(self, user: User, foro: ForoModel):
+        try:
+
+            # Crear un nuevo documento en la colección 'foro'
+            self.db.collection('foro').add({
+                'Descripcion': foro.descripcion,
+                'Dueño': user.email,
+                'Tútulo': foro.titulo,
+                'categorias': foro.categorias,
+                'fecha_creacion': foro.fecha_creacion,
+                'fecha_finalizacion': foro.fecha_finalizacion,
+                'fecha_modificado': foro.fecha_modificado,
+                'mensajes_foro': foro.mensajes
+            })
+            return True
+        except Exception as e:
+            print(f"Error al añadir el usuario: {e}")
+            return False
+
+    def _get_forum_by_preferences(self, categorias: list) -> list[ForoModel]:
+        try:
+            foro_ref = self.db.collection('foro')
+            foro_ref_query = foro_ref.where(
+                'categorias', 'array_contains', categorias).stream()
+
+            foros = []
+            for doc in foro_ref_query:
+                foro_data = doc.to_dict()
+
+                mensajes_foro = []
+                if 'mensajes_foro' in foro_data:
+                    for mensaje in foro_data['mensajes_foro']:
+                        mensajes_foro.append(MensajeForo(
+                            dueño=mensaje['Dueño'],
+                            mensaje=mensaje['mensaje']
+                        ))
+
+                foros.append(ForoModel(
+                    descripcion=foro_data['Descripcion'],
+                    dueño=foro_data['Dueño'],
+                    titulo=foro_data['Titulo'],
+                    categorias=foro_data['categorias'],
+                    fecha_creacion=foro_data['fecha_creacion'],
+                    fecha_finalizacion=foro_data['fecha_finalizacion'],
+                    fecha_modificado=foro_data['fecha_modificado'],
+                    mensajes=mensajes_foro
+                ))
+
+            return foros
+
+        except Exception as e:
+            print(f"Error al obtener los foros por preferencias: {e}")
+            return []
+
+    def _get_forums_by_owner(self, email_dueño: str) -> list[ForoModel]:
+        try:
+            foro_ref = self.db.collection('foro')
+            foro_ref_query = foro_ref.where(
+                'Dueño', '==', email_dueño).stream()
+
+            foros = []
+            for doc in foro_ref_query:
+                foro_data = doc.to_dict()
+
+                mensajes_foro = [MensajeForo(
+                    m['Dueño'], m['mensaje']) for m in foro_data.get('mensajes_foro', [])]
+
+                foros.append(ForoModel(
+                    descripcion=foro_data['Descripcion'],
+                    dueño=foro_data['Dueño'],
+                    titulo=foro_data['Titulo'],
+                    categorias=foro_data['categorias'],
+                    fecha_creacion=foro_data['fecha_creacion'],
+                    fecha_finalizacion=foro_data.get('fecha_finalizacion'),
+                    fecha_modificado=foro_data.get('fecha_modificado'),
+                    mensajes=mensajes_foro
+                ))
+
+            return foros
+
+        except Exception as e:
+            print(f"Error al obtener los foros por dueño: {e}")
             return []

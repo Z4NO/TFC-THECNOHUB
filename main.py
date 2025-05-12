@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 import requests
 import secrets
 import urllib.parse
-from formularios.formularios import formularios as formularios
+from formularios.formularios import foro as foro
 from perfil.perfil import perfil as perfil
 from mensajes.mensajes import mensajes as mensajes
 import datetime
@@ -29,7 +29,7 @@ app.secret_key = secrets.token_hex(16)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'index'
-app.register_blueprint(formularios)
+app.register_blueprint(foro)
 app.register_blueprint(perfil)
 app.register_blueprint(mensajes)
 
@@ -90,10 +90,11 @@ def index2():
     print(f"Perfiles: {perfiles_list}")
     perfiles = [
     ]
-    #vamos a recorrer los perfiles y a añadirlos a la lista de perfiles
+    # vamos a recorrer los perfiles y a añadirlos a la lista de perfiles
     for perfil in perfiles_list if len(perfiles_list) >= 1 else []:
-        perfiles.append({'nombre': perfil.nombre, 'usuario': f"@{perfil.nickname}"})
-        
+        perfiles.append(
+            {'nombre': perfil.nombre, 'usuario': f"@{perfil.nickname}"})
+
     tendencias = [
         {'titulo': 'WananPagaCrunchyroll', 'publicaciones': '1'},
         {'titulo': 'CurroGym', 'publicaciones': '124'},
@@ -101,9 +102,12 @@ def index2():
     ]
 
     post_recomendados = [
-        {'Usuario': 'Bando002', 'Nickname': '@usuario1', 'Contenido': 'Contenido del post 1'},
-        {'Usuario': 'Dani', 'Nickname': '@usuario2', 'Contenido': 'Contenido del post 2'},
-        {'Usuario': 'Wanan', 'Nickname': '@LilWanan', 'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.#FrikingPagaMas #PonedAireEnFriking '}
+        {'Usuario': 'Bando002', 'Nickname': '@usuario1',
+            'Contenido': 'Contenido del post 1'},
+        {'Usuario': 'Dani', 'Nickname': '@usuario2',
+            'Contenido': 'Contenido del post 2'},
+        {'Usuario': 'Wanan', 'Nickname': '@LilWanan',
+            'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.#FrikingPagaMas #PonedAireEnFriking '}
     ]
 
     return render_template('main.html', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados)
@@ -120,7 +124,8 @@ def register():
         rol = 'usuario'
         nickname = request.form.get('nickname')
 
-        user = User(contrasena=contrasena, email=email, nickname=nickname,nombre=nombre, preferencias=preferencias, reputacion=reputacion, rol=rol)
+        user = User(contrasena=contrasena, email=email, nickname=nickname,
+                    nombre=nombre, preferencias=preferencias, reputacion=reputacion, rol=rol)
         base_manager = BaseManager()
 
         if base_manager._add_user(user):

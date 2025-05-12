@@ -4,8 +4,7 @@ from flask_login import *
 import requests
 import secrets
 import urllib.parse
-import datetime
-from BaseManager import BaseManager
+from datetime import datetime, timezone
 from Encripter import Encripter
 from dotenv import load_dotenv
 from User import User
@@ -13,22 +12,61 @@ import os
 from typing import Final
 
 
-formularios = Blueprint('formularios', __name__, url_prefix='/formularios')
+foro = Blueprint('foro', __name__, url_prefix='/foro')
 
 
-@formularios.route('/main', methods=['POST', 'GET'])
-@login_required
-def cargar_main():
-    return render_template('main.html')
+class ForoModel:
+    def __init__(
+        self,
+        descripcion: str,
+        dueño: str,
+        titulo: str,
+        categorias: list,
+        fecha_creacion: datetime = datetime.now(timezone.utc),
+        fecha_finalización: datetime = None,
+        fecha_modificado: datetime = None
+    ):
+        self.descripcion = descripcion
+        self.dueño = dueño
+        self.titulo = titulo
+        self.categorias = categorias
+        self.fecha_creacion = fecha_creacion
+        self.fecha_finalizacion = fecha_finalización
+        self.fecha_modificado = fecha_modificado
+        self.mensajes = []
+
+    def agregar_Mensaje(self, dueño: str, mensaje: str):
+        nuevo_mensaje = MensajeForo(dueño, mensaje)
+        self.mensajes.append(nuevo_mensaje)
+
+    def get(categorias):
+        from BaseManager import BaseManager
+        basemanager = BaseManager()
+        foro = basemanager._get_forum_by_preferences(categorias)
+        if foro:
+            return foro
+        else:
+            return None
 
 
-# @formularios.route('/profile', methods=['POST', 'GET']) lo comento pero esto seria curioso usarlo para recuperar la contraseña en caso que se olvide
-# def cargar_profile():
-#     return render_template('profile.html')
+class MensajeForo:
+    def __init__(
+            self,
+            dueño: str,
+            mensaje: str
+    ):
+        self.dueño = dueño
+        self.mensaje = mensaje
 
-# Carga el profile
-@formularios.route('/main/profile', methods=['POST', 'GET'])
-@login_required
-def cargar_profile():
-    user = User.get(current_user.email)
-    return render_template('profile.html', user=user)
+# carga foro con el html que todavia no esta creado y le pasa el current_user.preferencias
+
+
+@foro.route('/main', methods=['POST', 'GET'])
+def cargar_foro():
+    foro = ForoModel.get(categorias=User.get(current_user.preferencias))
+    return render_template('foro.html', foro=foro)
+
+
+# @foro.route('/')
+# def index():
+#     return render_template('index.html')
