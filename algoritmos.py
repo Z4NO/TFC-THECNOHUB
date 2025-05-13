@@ -16,12 +16,14 @@ from typing import Final
 basemanager = BaseManager()
 
 
-#Vamos a hacer que te devuelva los usuarios los cuales tengan los mismos gustos / preferencias que el usuario que ha iniciado sesion, 
+# Vamos a hacer que te devuelva los usuarios los cuales tengan los mismos gustos / preferencias que el usuario que ha iniciado sesion,
 # para ello vamos a utilizar el metodo de la base de datos que nos devuelve los usuarios por preferencias además del de filftrar por el campo que queramos(algoritmo de busqueda).,
 
 def get_users_by_preferences(user: User) -> list:
     # Obtenemos las preferencias del usuario que ha iniciado sesion
     user_preferences = user.preferencias
+    print(user.preferencias)
     # Obtenemos los usuarios que tienen las mismas preferencias que el usuario que ha iniciado sesion
-    users = basemanager._get_users_by_algorithm(user_preferences, 'preferencias')
-    return users 
+    users = basemanager._get_users_by_algorithm(
+        user_preferences, 'preferencias')
+    return users

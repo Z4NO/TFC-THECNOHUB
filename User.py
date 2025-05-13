@@ -31,7 +31,7 @@ class User:
         self.nickname = nickname
         self.fecha_creacion = fecha_creacion
         self.suscripcion = suscripcion
-        self.fecha_expiracion_premium = fecha_expiracion_premium
+        self.fecha_expiracion_premium = fecha_expiracion_premium if fecha_expiracion_premium else None
 
     @property
     def is_authenticated(self):

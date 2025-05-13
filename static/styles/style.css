@@ -2,8 +2,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background: #010714;
-  color: white;
+  background-color: #000000;
+  /* Fondo negro */
+  color: #6ee793;
+  /* Texto verde */
   overflow: hidden;
 }
 
@@ -40,7 +42,7 @@ body {
   overflow: hidden;
   height: 101%;
   bottom: -1px;
-  background-image: linear-gradient(to top, #010714 20%, #0a1b3d 80%);
+  background-image: linear-gradient(to top, #010714 20%, #588365 80%);
 }
 
 .bgTop {
@@ -98,10 +100,12 @@ body {
   position: relative;
   z-index: 1000;
   font-size: 50px;
-  color: white;
+  color: #6ee793;
+  /* Título verde */
   text-align: center;
   margin-top: 10%;
 }
+
 
 
 
@@ -114,11 +118,9 @@ body {
   display: block;
   padding: 2.2rem;
   max-width: 350px;
-  background: linear-gradient(14deg, rgba(2, 0, 36, 0.8) 0%, rgba(24, 24, 65, 0.7) 66%,
-      rgb(20, 76, 99) 100%), radial-gradient(circle, rgba(2, 0, 36, 0.5) 0%,
-      rgba(32, 15, 53, 0.2) 65%, rgba(14, 29, 28, 0.9) 100%);
-  border: 2px solid #fff;
-  -webkit-box-shadow: rgba(0, 212, 255) 0px 0px 50px -15px;
+  background: linear-gradient(14deg, rgba(1, 7, 20, 0.8) 0%, rgba(10, 27, 61, 0.7) 66%, rgb(20, 76, 99) 100%), radial-gradient(circle, rgba(1, 7, 20, 0.5) 0%, rgba(32, 15, 53, 0.2) 65%, rgba(14, 29, 28, 0.9) 100%);
+  border: 2px solid #6ee793;
+  /* Borde verde */
   box-shadow: rgba(0, 212, 255) 0px 0px 50px -15px;
   overflow: hidden;
   z-index: 1000;
@@ -155,7 +157,7 @@ body {
 .input-mail:focus::placeholder {
   opacity: 0;
   transition: opacity .9s;
-  
+
 }
 
 .input-pwd:focus::placeholder {
@@ -167,8 +169,10 @@ body {
   position: relative;
   display: block;
   padding: 8px;
-  background-color: #c0c0c0;
-  color: #ffffff;
+  background-color: #6ee793;
+  /* Fondo verde */
+  color: #000000;
+  /* Texto negro */
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -179,13 +183,13 @@ body {
 }
 
 .submit:hover {
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
   border-radius: 3.9px;
   box-shadow: 4px 5px 17px -4px #ffffff;
   cursor: pointer;
 }
+
+
 
 .submit:hover::before {
   -webkit-animation: sh02 0.5s 0s linear;
@@ -272,8 +276,9 @@ body {
   font-size: 2.1rem;
   font-weight: 800;
   font-family: Arial, Helvetica, sans-serif;
+  color: #6ee793;
   text-align: center;
-  -webkit-text-stroke: #fff 0.1rem;
+  -webkit-text-stroke: #6ee793 0.1rem;
   letter-spacing: 0.2rem;
   color: transparent;
   position: relative;

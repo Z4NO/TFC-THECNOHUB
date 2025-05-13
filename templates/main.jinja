@@ -8,9 +8,11 @@
   <script type="text/javascript" src="{{ url_for('static', filename='styles/main.js') }}"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="/static/styles/main.css">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_components/perfil_recomendado.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='css_components/perfil_recomendado.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_components/main_tendencias.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css_components/post_recomendados.css') }}">
+  <link rel="stylesheet" type="text/css"
+    href="{{ url_for('static', filename='css_components/post_recomendados.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main_mensajes.css') }}">
   <script type="text/javascript" src="{{ url_for('static', filename='styles/mensajes.js') }}"></script>
 </head>
@@ -26,13 +28,14 @@
     </header>
 
     <div class="funcionalidadesIzq">
-      <button class="funcionalidadesbtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-house-door-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
-        </svg>
-        Inicio</button>
+      <a href="{{url_for('index') }}">
+        <button class="funcionalidadesbtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+            class="bi bi-house-door-fill" viewBox="0 0 16 16">
+            <path
+              d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+          </svg>
+          Inicio</button></a>
       <button class="funcionalidadesbtn">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search"
           viewBox="0 0 16 16">
@@ -54,15 +57,15 @@
             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
         </svg>
         Mensajes
-        </button>
+      </button>
       <a href="{{url_for('foro.cargar_foro') }}">
         <button class="funcionalidadesbtn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bricks"
-          viewBox="0 0 16 16">
-          <path
-            d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5zM3 4v2h4.5V4zm5.5 0v2H13V4zM3 10v2h4.5v-2zm5.5 0v2H13v-2zM1 1v2h3.5V1zm4.5 0v2h5V1zm6 0v2H15V1zM1 7v2h3.5V7zm4.5 0v2h5V7zm6 0v2H15V7zM1 13v2h3.5v-2zm4.5 0v2h5v-2zm6 0v2H15v-2z" />
-        </svg>
-        Foros</button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-bricks"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5zM3 4v2h4.5V4zm5.5 0v2H13V4zM3 10v2h4.5v-2zm5.5 0v2H13v-2zM1 1v2h3.5V1zm4.5 0v2h5V1zm6 0v2H15V1zM1 7v2h3.5V7zm4.5 0v2h5V7zm6 0v2H15V7zM1 13v2h3.5v-2zm4.5 0v2h5v-2zm6 0v2H15v-2z" />
+          </svg>
+          Foros</button>
       </a>
       <a href="{{ url_for('profile.cargar_profile') }}">
         <button class="funcionalidadesbtn">
@@ -108,24 +111,33 @@
           <img src="{{ url_for('static', filename='imgs/pa.webp') }}" />
         </div>
         <div class="post-nombre">
-          <span> BandoZb</span>
+          <span> Bando_002</span>
         </div>
         <div class="post-usuario">
-          <span> @Bando_002</span>
+          <span> @BandoZb</span>
         </div>
 
       </div>
       <div class="post-texto">
-        <span> Con la llegada de la nueva version de canva el mundo de la programacion para los desarrolladores esta en
-          peligro
-          ¿Que opinas?
+        <span> Lo de que Juanan me haya pagado el Crunchyroll ??? YA ERA HORA
         </span>
       </div>
 
       <div class="post-funcionalidades">
         <!-- Agregar un icono para cada funcionalidad -->
-        <button id="boton-like"> L</button>
-        <button id="boton-comentario"> C</button>
+        <button id="boton-like">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+          </svg>
+        </button>
+        <button id="boton-comentario">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -154,8 +166,19 @@
 
       <div class="post-funcionalidades">
         <!-- Agregar un icono para cada funcionalidad -->
-        <button id="boton-like"> L</button>
-        <button id="boton-comentario"> C</button>
+        <button id="boton-like">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+          </svg>
+        </button>
+        <button id="boton-comentario">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill"
+            viewBox="0 0 16 16">
+            <path
+              d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -168,7 +191,7 @@
       </div>
       <div class="descripcion-recomendaciones perfil-recomendado">
         {% for perfil in perfiles %}
-          {% include 'components/perfil_recomendado.jinja' %}
+        {% include 'components/perfil_recomendado.jinja' %}
         {% endfor %}
       </div>
     </div>
@@ -179,9 +202,9 @@
       </div>
       <div class="descripcion-recomendaciones">
         {% for tendencia in tendencias %}
-          {% set titulo = tendencia.titulo %}
-          {% set publicaciones = tendencia.publicaciones %}
-          {% include 'components/main_tendencias.jinja' %}
+        {% set titulo = tendencia.titulo %}
+        {% set publicaciones = tendencia.publicaciones %}
+        {% include 'components/main_tendencias.jinja' %}
         {% endfor %}
       </div>
     </div>
@@ -193,10 +216,10 @@
 
       <div class="descripcion-recomendaciones">
         {% for post in post_recomendados %}
-          {% set Usuario = post.Usuario %}
-          {% set Nickname = post.Nickname %}
-          {% set Contenido = post.Contenido %}
-          {% include 'components/post_recomendados.jinja' %}
+        {% set Usuario = post.Usuario %}
+        {% set Nickname = post.Nickname %}
+        {% set Contenido = post.Contenido %}
+        {% include 'components/post_recomendados.jinja' %}
         {% endfor %}
       </div>
     </div>

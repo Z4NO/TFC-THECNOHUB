@@ -7,15 +7,15 @@ body {
 
 .nav-bar {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   flex: none;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
 }
 
 .profile-container {
   height: 100%;
-  overflow: auto; 
+  overflow: auto;
 }
 
 
@@ -40,13 +40,21 @@ body {
 
 .avatar-img {
   width: 80px;
+  min-width: 80px;
+  max-width: 80px;
+
   height: 80px;
+  min-height: 80px;
+  max-height: 80px;
+
   border-radius: 10px;
   margin-right: 20px;
+
 }
 
 .user-info {
   flex-grow: 1;
+  padding-left: 15px;
 }
 
 .user-info h1 {
@@ -56,12 +64,18 @@ body {
 }
 
 .user-info-highlight {
-    color: #FF5733; /* Color del texto */
-    font-weight: bold; /* Texto en negrita */
-    font-size: 16px; /* Tamaño de letra */
-    background-color: #F0F0F0; /* Fondo detrás del texto */
-    padding: 5px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
+  color: #FF5733;
+  /* Color del texto */
+  font-weight: bold;
+  /* Texto en negrita */
+  font-size: 16px;
+  /* Tamaño de letra */
+  background-color: #F0F0F0;
+  /* Fondo detrás del texto */
+  padding: 5px;
+  /* Espaciado interno */
+  border-radius: 5px;
+  /* Bordes redondeados */
 }
 
 .user-details {
@@ -103,8 +117,10 @@ body {
 .layout-perfil {
   display: flex;
   gap: 40px;
-  padding-left: 32px; /* igual que .masscontainer */
-  padding-top: 22px;  /* igual que .masscontainer */
+  padding-left: 32px;
+  /* igual que .masscontainer */
+  padding-top: 22px;
+  /* igual que .masscontainer */
   padding-right: 40px;
   padding-bottom: 40px;
   align-items: flex-start;
@@ -134,22 +150,24 @@ body {
   width: 391px;
   margin-top: 32px;
   display: flex;
-  background-color: rgba(50, 50, 50, 0.8); /* Tonos oscuros para combinar con el fondo negro */
+  background-color: rgba(50, 50, 50, 0.8);
+  /* Tonos oscuros para combinar con el fondo negro */
   height: 40px;
   align-items: center;
   justify-content: first baseline;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.7) 0px 5px 15px, rgba(50, 50, 50, 0.5) 5px 10px 15px;
-  gap: 20px; /* Añade espacio entre los botones */
+  gap: 20px;
+  /* Añade espacio entre los botones */
 }
 
 .button-container button {
   outline: 0 !important;
   border: 0 !important;
-  width: auto; 
-  padding: 0 10px; 
+  width: auto;
+  padding: 0 10px;
   height: 40px;
-  border-radius: 20px; 
+  border-radius: 20px;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -157,11 +175,11 @@ body {
   color: #fff;
   transition: all ease-in-out 0.3s;
   cursor: pointer;
-  gap: 5px; 
+  gap: 5px;
 }
 
 .button-container button svg {
-  flex-shrink: 0; 
+  flex-shrink: 0;
   width: 16px;
   height: 16px;
 }
@@ -205,20 +223,20 @@ body {
 }
 
 .preferencias-container h3 {
-  display: block; 
+  display: block;
   margin-bottom: 5px;
 }
 
 ul {
-  list-style: none; 
+  list-style: none;
   padding: 0;
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   gap: 15px;
 }
 
 li {
-  background: rgba(50, 50, 50, 0.8); 
+  background: rgba(50, 50, 50, 0.8);
   color: #fff;
   padding: 15px;
   border-radius: 10px;
@@ -230,8 +248,8 @@ li {
 }
 
 li:hover {
-  transform: scale(1.05); 
-  background: #6ee793; 
+  transform: scale(1.05);
+  background: #6ee793;
   color: black;
 }
 
@@ -284,11 +302,18 @@ li:hover {
 
 
 /* Estilo general para el contenedor de opciones */
+
+.contenedor-dinamico {
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+}
+
 .contenedor-opcion {
-  margin: 20px 0 0; 
+  margin: 20px 0 0;
   padding: 20px;
-  width: 350px; 
-  background-color: rgba(50, 50, 50, 0.8); 
+  width: 350px;
+  background-color: rgba(50, 50, 50, 0.8);
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.7) 0px 5px 15px, rgba(50, 50, 50, 0.5) 5px 10px 15px;
   color: white;
@@ -304,8 +329,10 @@ li:hover {
   max-height: 700px;
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE y Edge */
   padding: 30px;
   border-radius: 12px;
   background-color: black;
@@ -324,7 +351,8 @@ li:hover {
 /* Ajusta el tamaño del contenido dentro */
 .contenedor-opcion-perfil h2 {
   font-size: 2rem;
-  color: #6ee793; /* Verde claro */
+  color: #6ee793;
+  /* Verde claro */
   margin-bottom: 20px;
   border-bottom: 3px solid #6ee793;
   padding-bottom: 8px;
@@ -352,7 +380,7 @@ li:hover {
   background-color: black;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0px 6px 12px rgba(0,0,0,0.4);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
   text-align: center;
 }
 
@@ -396,7 +424,7 @@ li:hover {
 
 .contenedor-opcion h2 {
   font-size: 1.8rem;
-  color: #6ee793; 
+  color: #6ee793;
   margin-bottom: 15px;
   border-bottom: 2px solid #6ee793;
   padding-bottom: 5px;
@@ -477,7 +505,8 @@ li:hover {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   z-index: 10;
-  flex-direction: column; /* Mantiene los botones en lista vertical */
+  flex-direction: column;
+  /* Mantiene los botones en lista vertical */
 }
 
 .dropdown-content .dropdown-btn {
@@ -503,10 +532,10 @@ li:hover {
 
 .titulo-recomendaciones {
   color: white;
-  font-size: large;
+  font-size: x-large;
   font-weight: bold;
   align-items: center;
-  padding: 10px;
+
   font-family: sans-serif;
 }
 
@@ -516,18 +545,19 @@ li:hover {
   color: black;
   font-weight: bold;
   border-radius: 10px;
-  margin: 10px;
+
 }
 
-.suscripcion-btn:hover{
+.suscripcion-btn:hover {
   background: rgb(80, 194, 114);
 }
 
 .recomendaciones {
-  width: 80%; 
+  width: 80%;
   height: auto;
-  margin: 30px auto; /* Espacio superior e inferior */
-  padding: 40px; 
+  margin: 30px auto;
+  /* Espacio superior e inferior */
+  padding: 40px;
   border: 1px solid rgb(118, 226, 151);
   border-radius: 10px;
   color: whitesmoke;
@@ -543,6 +573,7 @@ li:hover {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
