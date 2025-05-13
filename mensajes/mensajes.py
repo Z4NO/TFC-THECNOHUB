@@ -25,4 +25,4 @@ mensajes = Blueprint('mensajes', __name__, url_prefix='/mensajes')
 @mensajes.route('/main/mensajes', methods=['POST', 'GET'])
 @login_required
 def cargar_mensajes():
-    return render_template('main_mensajes.html')
+    return render_template('main_mensajes.jinja')

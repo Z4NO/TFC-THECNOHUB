@@ -1,122 +1,330 @@
+/* =====================================
+   BASE GLOBAL & ESTRUCTURA
+===================================== */
+
 html, body {
-  height: 100%;
+  height: 60%;
   margin: 0;
+  font-family: sans-serif;
+  background-color: black;
+  color: white;
   overflow: hidden;
 }
 
-.container {
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  font-family: sans-serif;
+.contenedor-mensajes {
   display: flex;
   flex-direction: column;
+  height: 45%;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
 }
 
+/* =====================================
+   TITULO CABECERA
+===================================== */
+
 .mensajes-titulo {
-  width: 100%;
-  height: 10%;
   color: rgb(118, 226, 151);
-  font-size: x-large;
-  padding-left: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 2rem;
+  padding: 1rem 0;
+  text-align: center;
   letter-spacing: 2px;
   transition: all 0.3s ease;
 }
+
 .mensajes-titulo:hover {
-  letter-spacing: 6px; 
-  transform: scale(1.1); 
+  letter-spacing: 6px;
+  transform: scale(1.05);
 }
+
+/* =====================================
+   LAYOUT PRINCIPAL (Sidebar + Chat)
+===================================== */
 
 .usuario-chat-container {
   display: flex;
-  width: 100%;
-  height: 90%;
+  flex: 1;
+  gap: 1rem;
+  overflow-x: hidden; /* No scroll horizontal */
 }
 
+/* =====================================
+   SIDEBAR USUARIOS
+===================================== */
+
 .container-usuarios {
-  width: 15%;
-  height: 100%;
+  width: 250px;
+  min-width: 200px;
+  background: black;
   overflow-y: auto;
+  overflow-x: hidden;
+  border-right: 1px solid rgb(118, 226, 151);
+  padding: 1rem 0.5rem;
+  box-sizing: border-box;
 }
 
-.container-usuarios::-webkit-scrollbar {
-  width: 6px;
-}
-
-.container-usuarios::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.container-usuarios::-webkit-scrollbar-thumb {
-  background-color: rgb(118, 226, 151);
-  border-radius: 10px;
-  border: 1px solid black;
-}
-
-.container-usuarios {
-  scrollbar-width: thin;
-  scrollbar-color: rgb(118, 226, 151) black;
-}
-
-.chat {
-  width: 85%;
-  height: 100%;
-  border: 1px solid rgb(118, 226, 151);
-  overflow: hidden;
-}
-
-.mensajes {
-  width: 100%;
-  height: 50px;
-  font-size: medium;
-  text-align: left;
-  padding: 5px;
+/* Barra de búsqueda */
+.barra-busqueda {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.barra-busqueda input {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(118, 226, 151);
+  border-radius: 20px;
+  background: #1a1a1a;
   color: white;
-  background-color: black;
-  border: none;
-  cursor: pointer;
+  font-size: 0.9rem;
+  box-sizing: border-box;
 }
 
-.mensajes:hover {
-  background-color: rgb(27, 26, 26);
-}
-
-.mensajes-imgPerfil {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  overflow: hidden;
+.btn-funcionalidad {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgb(118, 226, 151);
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-funcionalidad:hover {
+  background: #1cff92;
+  transform: scale(1.05);
+}
+
+.btn-funcionalidad i {
+  font-size: 1.2rem;
+}
+
+/* Botones de usuario */
+.mensajes {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: black;
+  color: rgb(118, 226, 151);
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.mensajes:hover {
+  background-color: #1a1a1a;
+}
+
+.mensajes-imgPerfil {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
   border: 1px solid white;
+  flex-shrink: 0;
 }
 
 .mensajes-imgPerfil img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
 
 .mensajes-texto {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 15px;
-  padding: 2px;
+  margin-left: 1rem;
+  flex: 1;
+  overflow: hidden;
 }
 
 .mensaje-usuario {
-  font-size: medium;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mensaje-ultimaInteraccion {
-  font-size: small;
+  font-size: 0.85rem;
   color: rgb(170, 170, 170);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* =====================================
+   CHAT MENSAJES
+===================================== */
+
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(118, 226, 151);
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.chat-mensajes {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mensaje-contenedor {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  max-width: 70%;
+}
+
+.mensaje-contenedor.enviado {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.mensaje-burbuja {
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  border: 1px solid rgb(118, 226, 151);
+  background-color: #1e1e1e;
+}
+
+.mensaje-contenedor.enviado .mensaje-burbuja {
+  background-color: rgb(118, 226, 151);
+  color: black;
+}
+
+.mensaje-fecha {
+  font-size: 0.7rem;
+  color: rgb(170, 170, 170);
+  align-self: flex-end;
+}
+
+.mensaje-imgPerfil {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgb(118, 226, 151);
+}
+
+.mensaje-imgPerfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================
+   CHAT INPUT & FOOTER
+===================================== */
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgb(118, 226, 151);
+  background: black;
+}
+
+.chat-input textarea {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background: #1e1e1e;
+  border: 1px solid rgb(118, 226, 151);
+  color: white;
+  resize: none;
+  min-height: 40px;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.chat-input button {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  background-color: rgb(118, 226, 151);
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-fecha {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  color: rgb(170, 170, 170);
+  border-top: 1px solid rgb(118, 226, 151);
+  text-align: center;
+}
+
+/* =====================================
+   CUSTOM SCROLLBARS (Global)
+===================================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(118, 226, 151);
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(118, 226, 151) black;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
+
+@media (max-width: 768px) {
+  .usuario-chat-container {
+    flex-direction: column;
+  }
+
+  .container-usuarios {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid rgb(118, 226, 151);
+  }
+
+  .chat {
+    flex: 1;
+  }
+
+  .chat-mensajes {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-mensajes {
+    padding: 0 0.5rem;
+  }
+
+  .mensajes-titulo {
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+  }
 }

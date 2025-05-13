@@ -110,7 +110,7 @@ def index2():
             'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.#FrikingPagaMas #PonedAireEnFriking '}
     ]
 
-    return render_template('main.html', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados)
+    return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados)
 
 
 @app.route('/register', methods=['POST', 'GET'])
