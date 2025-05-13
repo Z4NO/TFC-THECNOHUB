@@ -36,7 +36,7 @@ def handle_disconnect():
 def handle_mensaje(data):
     print(f'💬 Mensaje recibido: {data}')
     # Aquí puedes procesar el mensaje y enviar una respuesta si es necesario
-    socketio.emit('respuesta', {'msg': data['msg']}, namespace='/main/mensajes', skip_sid=request.sid)
+    socketio.emit('respuesta', {'msg': data['msg']}, namespace='/main/mensajes')
 
 @socketio.on('respuesta', namespace='/main/mensajes')
 def handle_respuesta(data):

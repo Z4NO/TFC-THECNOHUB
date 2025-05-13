@@ -14,7 +14,7 @@ function cargarComponente(ruta) {
       );
 
       // 2) Recibo y renderizo respuestas
-      socket.on('respuesta', data => {
+      socket.on('send_mensaje', data => {
         const texto = data.msg;
         const cont = medio.querySelector('.chat-mensajes');
         const div = document.createElement('div');
@@ -24,7 +24,7 @@ function cargarComponente(ruta) {
             <img src="" alt="Perfil"/>
           </div>
           <div class="mensaje-burbuja">
-            <p>${data.msg}</p>
+            <p>${data.response}</p>
             <span class="mensaje-fecha">
               ${new Date().toLocaleTimeString()}
             </span>

@@ -14,7 +14,6 @@ from Encripter import Encripter
 from dotenv import load_dotenv
 from User import User
 import os
-from extension import socketio
 from typing import Final
 from algoritmos import *
 
@@ -34,8 +33,6 @@ app.register_blueprint(foro)
 app.register_blueprint(perfil)
 app.register_blueprint(mensajes)
 
-#configuramos el socketio
-socketio.init_app(app, cors_allowed_origins="*")
 
 # Datos de la app de Spotify
 MASTER_KEY: Final[str] = os.getenv('MASTER_KEY')
@@ -148,4 +145,4 @@ def incorrect():
 
 
 if __name__ == '__main__':
-    socketio.run(app, debug=True)
+    app.run(host='0.0.0.0', debug=True)

@@ -1,11 +1,9 @@
-import json
 from flask import Flask, redirect, request, jsonify,  render_template, url_for, Blueprint
 from flask import session
-from flask_login import login_required, current_user
+from flask_login import login_required
 from dotenv import load_dotenv
 from User import User
 from extension import socketio 
-from flask import request
 
 
 mensajes = Blueprint('mensajes', __name__, url_prefix='/mensajes')
@@ -26,17 +24,17 @@ def cargar_mensajes():
 
 @socketio.on('connect', namespace='/main/mensajes')
 def handle_connect():
-    print(F'➡️ Cliente conectado al namespace /mensajes{User.get(current_user.email).nickname}')
+    print('➡️ Cliente conectado al namespace /mensajes')
 
 @socketio.on('disconnect', namespace='/main/mensajes')
 def handle_disconnect():
     print('❌ Cliente desconectado del namespace /mensajes')
 
-@socketio.on('send_mensaje', namespace='/main/mensajes')
+@socketio.on('mensaje', namespace='/main/mensajes')
 def handle_mensaje(data):
     print(f'💬 Mensaje recibido: {data}')
     # Aquí puedes procesar el mensaje y enviar una respuesta si es necesario
-    socketio.emit('respuesta', {'msg': data['msg']}, namespace='/main/mensajes', skip_sid=request.sid)
+    socketio.emit('mensaje', {'response': 'Mensaje recibido'}, namespace='/main/mensajes')
 
 @socketio.on('respuesta', namespace='/main/mensajes')
 def handle_respuesta(data):
