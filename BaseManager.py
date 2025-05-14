@@ -6,6 +6,7 @@ from User import User
 from Encripter import Encripter
 import os
 import traceback
+from md import md as MD
 
 from formularios.formularios import ForoModel, MensajeForo
 
@@ -101,6 +102,24 @@ class BaseManager:
             return None
         except Exception as e:
             print(f"Error al obtener el usuario por email: {e}")
+            return None
+
+    #Esrte método es para obtener el md de de un usuario , basado en 2 emails , para encontrar el md de un usuario en concreto con el otro
+    def _get_private_md(self, lista_users: list[str]) -> MD:
+        try:
+            user_ref = self.db.collection('md')
+            user_ref_query = user_ref.where(
+            filter=FieldFilter("users", 'array_contains_any', lista_users)).stream()
+            for doc in user_ref_query:
+                user_data = doc.to_dict()
+                return MD(
+                    id=user_data['id'],
+                    usuario1=user_data['users'][0],
+                    usuario2=user_data['users'][1]
+                )
+            return None
+        except Exception as e:
+            print(f"Error al obtener el md por email: {e}")
             return None
 
     # Vamos a hacer una función la cual toma un número n de usuarios que quiere devolver y una QUERY por la cual filtrar los usuarios, además de un campo por el que filtrar, para facilitar los algoritmos de búsqueda.
