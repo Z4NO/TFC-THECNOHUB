@@ -2,25 +2,18 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: #000000;
-  /* Fondo negro */
+  background-color: #000;
   color: #6ee793;
-  /* Texto verde */
   overflow: hidden;
 }
-
-
-
 
 @keyframes move_wave {
   0% {
     transform: translateX(0) translateZ(0) scaleY(1)
   }
-
   50% {
     transform: translateX(-25%) translateZ(0) scaleY(0.55)
   }
-
   100% {
     transform: translateX(-50%) translateZ(0) scaleY(1)
   }
@@ -42,7 +35,7 @@ body {
   overflow: hidden;
   height: 101%;
   bottom: -1px;
-  background-image: linear-gradient(to top, #010714 20%, #588365 80%);
+  background-image: linear-gradient(to top, #000 20% ,#123623 80%);
 }
 
 .bgTop {
@@ -75,9 +68,6 @@ body {
 
 .waveAnimation .waveTop {
   animation: move-wave 3s;
-  -webkit-animation: move-wave 3s;
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
 }
 
 .waveMiddle {
@@ -101,13 +91,18 @@ body {
   z-index: 1000;
   font-size: 50px;
   color: #6ee793;
-  /* Título verde */
+  text-shadow:
+    -1px -1px 0 black,
+     1px -1px 0 black,
+    -1px  1px 0 black,
+     1px  1px 0 black,
+    -2px  0px 0 black,
+     2px  0px 0 black,
+     0px -2px 0 black,
+     0px  2px 0 black;
   text-align: center;
   margin-top: 10%;
 }
-
-
-
 
 .form {
   align-items: center;
@@ -118,15 +113,12 @@ body {
   display: block;
   padding: 2.2rem;
   max-width: 350px;
-  background: linear-gradient(14deg, rgba(1, 7, 20, 0.8) 0%, rgba(10, 27, 61, 0.7) 66%, rgb(20, 76, 99) 100%), radial-gradient(circle, rgba(1, 7, 20, 0.5) 0%, rgba(32, 15, 53, 0.2) 65%, rgba(14, 29, 28, 0.9) 100%);
+  background: linear-gradient(14deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), radial-gradient(circle, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9));
   border: 2px solid #6ee793;
-  /* Borde verde */
-  box-shadow: rgba(0, 212, 255) 0px 0px 50px -15px;
+  box-shadow: 0 0 30px -10px #6ee793;
   overflow: hidden;
   z-index: 1000;
 }
-
-/*------input and submit section-------*/
 
 .input-container {
   position: relative;
@@ -144,22 +136,17 @@ body {
 
 .input-container input {
   background-color: #fff;
+  color: black;
   padding: 10px;
   font-size: 1rem;
   line-height: 1.25rem;
   width: 100%;
   box-sizing: border-box;
   border-radius: 4px;
-  border: 2px solid #ffffff;
   margin-bottom: 12px;
 }
 
-.input-mail:focus::placeholder {
-  opacity: 0;
-  transition: opacity .9s;
-
-}
-
+.input-mail:focus::placeholder,
 .input-pwd:focus::placeholder {
   opacity: 0;
   transition: opacity .9s;
@@ -169,10 +156,8 @@ body {
   position: relative;
   display: block;
   padding: 8px;
-  background-color: #6ee793;
-  /* Fondo verde */
-  color: #000000;
-  /* Texto negro */
+  background-color: #5bc17a;
+  color: #000;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
   font-size: 0.875rem;
   line-height: 1.25rem;
@@ -189,12 +174,8 @@ body {
   cursor: pointer;
 }
 
-
-
 .submit:hover::before {
-  -webkit-animation: sh02 0.5s 0s linear;
-  -moz-animation: sh02 0.5s 0s linear;
-  animation: sh02 .5s 0s linear;
+  animation: sh02 0.5s 0s linear;
 }
 
 .submit::before {
@@ -208,10 +189,6 @@ body {
   opacity: 0;
   background: #fff;
   box-shadow: 0 0 50px 30px #fff;
-  -webkit-transform: skewX(-20deg);
-  -moz-transform: skewX(-20deg);
-  -ms-transform: skewX(-20deg);
-  -o-transform: skewX(-20deg);
   transform: skewX(-20deg);
 }
 
@@ -220,29 +197,24 @@ body {
     opacity: 0;
     left: 0%;
   }
-
   50% {
     opacity: 1;
   }
-
   to {
     opacity: 0;
     left: 100%;
   }
 }
 
-/*--------signup section---------*/
-
 .signup-link {
   color: #c0c0c0;
   font-size: 0.875rem;
-  line-height: 1.25rem;
   text-align: center;
   font-family: monospace;
 }
 
 .signup-link a {
-  color: #fff;
+  color: #6ee793;
   text-decoration: none;
 }
 
@@ -250,20 +222,13 @@ body {
   text-decoration: underline;
 }
 
-
-/*--------header section-----------*/
-
 .form-title {
   font-size: 1.25rem;
-  line-height: 1.75rem;
   font-family: monospace;
   font-weight: 600;
   text-align: center;
   color: #fff;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
-  animation-duration: 1.5s;
-  overflow: hidden;
-  transition: .12s;
 }
 
 .form-title span {
@@ -282,7 +247,7 @@ body {
   letter-spacing: 0.2rem;
   color: transparent;
   position: relative;
-  text-shadow: 0px 0px 16px #CECECE;
+  text-shadow: 0px 0px 16px #6ee793;
 }
 
 .title-2 span::before,
@@ -291,47 +256,10 @@ body {
 }
 
 @keyframes flickering {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  41.99% {
-    opacity: 1;
-  }
-
-  42% {
-    opacity: 0;
-  }
-
-  43% {
-    opacity: 0;
-  }
-
-  43.01% {
-    opacity: 1;
-  }
-
-  47.99% {
-    opacity: 1;
-  }
-
-  48% {
-    opacity: 0;
-  }
-
-  49% {
-    opacity: 0;
-  }
-
-  49.01% {
-    opacity: 1;
-  }
+  0%, 100% { opacity: 1; }
+  42%, 48% { opacity: 0; }
+  43.01%, 49.01% { opacity: 1; }
 }
-
-/*---------shooting stars-----------*/
-
 
 .bg-stars {
   position: absolute;
@@ -345,12 +273,9 @@ body {
 }
 
 @keyframes animateBg {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(1.2);
   }
@@ -364,7 +289,10 @@ body {
   height: 4px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.1),
+    0 0 0 8px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.1);
   animation: animate 3s linear infinite;
 }
 
@@ -383,45 +311,16 @@ body {
     transform: rotate(315deg) translateX(0);
     opacity: 1;
   }
-
   70% {
     opacity: 1;
   }
-
   100% {
     transform: rotate(315deg) translateX(-1000px);
     opacity: 0;
   }
 }
 
-.star:nth-child(1) {
-  top: 0;
-  right: 0;
-  left: initial;
-  animation-delay: 0s;
-  animation-duration: 1s;
-}
-
-.star:nth-child(2) {
-  top: 0;
-  right: 100px;
-  left: initial;
-  animation-delay: 0.2s;
-  animation-duration: 3s;
-}
-
-.star:nth-child(3) {
-  top: 0;
-  right: 220px;
-  left: initial;
-  animation-delay: 2.75s;
-  animation-duration: 2.75s;
-}
-
-.star:nth-child(4) {
-  top: 0;
-  right: -220px;
-  left: initial;
-  animation-delay: 1.6s;
-  animation-duration: 1.6s;
-}
+.star:nth-child(1) { right: 0; animation-delay: 0s; animation-duration: 1s; }
+.star:nth-child(2) { right: 100px; animation-delay: 0.2s; animation-duration: 3s; }
+.star:nth-child(3) { right: 220px; animation-delay: 2.75s; animation-duration: 2.75s; }
+.star:nth-child(4) { right: -220px; animation-delay: 1.6s; animation-duration: 1.6s; }
