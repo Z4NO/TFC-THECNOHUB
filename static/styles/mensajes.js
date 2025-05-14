@@ -3,8 +3,6 @@ let socket = null;
 let currentRoom = null;
 
 
-
-
 // Inicializa Socket.IO y handler de mensajes entrantes
 function initSocket() {
   if (!socket) {

@@ -49,7 +49,7 @@ body {
     overflow: hidden;
     height: 101%;
     bottom: -1px;
-    background-image: linear-gradient(to top, #010714 20%, #0a1b3d 80%);
+    background-image: linear-gradient(to top, #000 20% ,#123623 80%);
 }
 
 .wave {
@@ -112,7 +112,7 @@ body {
   }
   
   .home-button:hover {
-    background-color: #0077cc;
+    background-color: #70d18d;
     transform: scale(1.1); 
     transition: all 0.3s ease; 
   }
@@ -219,13 +219,13 @@ body {
 }
 
 .container .btn:hover {
-    background-color: #6c757d;
+    background-color: #70d18d;
     color: #fff;
 }
 
 .container .btn.prev {
-    background-color: #6c757d;
-    color: #fff;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .container .form-buttons {
@@ -247,7 +247,7 @@ body {
 
 .interests-section h2 {
     font-size: 1.5rem;
-    color: #e0b3ff;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
@@ -271,15 +271,15 @@ body {
 .interest-tag span {
     display: inline-block;
     padding: 10px 20px;
-    border: 2px solid #e0b3ff;
+    border: 2px solid #0fbe26;
     border-radius: 20px;
     background-color: rgba(224, 179, 255, 0.1);
-    color: #e0b3ff;
+    color: #ffffff;
     transition: all 0.3s ease;
 }
 
 .interest-tag input[type="checkbox"]:checked+span {
-    background-color: #e0b3ff;
+    background-color: #6ee793;
     color: #010714;
-    box-shadow: 0 0 10px #e0b3ff;
+    box-shadow: 0 0 10px #6ee793;
 }
