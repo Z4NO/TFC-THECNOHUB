@@ -91,12 +91,14 @@ def index():
 @login_required
 def index2():
     perfiles_list = get_users_by_preferences(User.get(current_user.email))
+    foros_lista = basemanager._get_forums()
     
-    basemanager._add_message_to_forum(
-        mensaje="Hola, soy un mensaje de prueba",
-        id_foro="YXvJM25AVet9Jfp4ymeg",
-        user=User.get(current_user.email)
-    )
+
+
+    foros = [] 
+    for foro in foros_lista if len(perfiles_list) >= 1 else []:
+        foros.append(
+            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion})
 
     perfiles = [
     ]
@@ -120,7 +122,7 @@ def index2():
             'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.#FrikingPagaMas #PonedAireEnFriking '}
     ]
 
-    return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados)
+    return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros)
 
 
 @app.route('/register', methods=['POST', 'GET'])

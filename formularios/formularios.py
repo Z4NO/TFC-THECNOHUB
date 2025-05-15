@@ -9,7 +9,7 @@ from Encripter import Encripter
 from dotenv import load_dotenv
 from User import User
 import os
-from typing import Final
+from typing import List, Optional
 
 
 foro = Blueprint('foro', __name__, url_prefix='/foro')
@@ -21,20 +21,24 @@ class ForoModel:
         descripcion: str,
         dueño: str,
         titulo: str,
-        categorias: list,
+        categorias: List[str],
         fecha_creacion: datetime = datetime.now(timezone.utc),
-        fecha_finalización: datetime = None,
-        fecha_modificado: datetime = None
+        fecha_finalizacion: Optional[datetime] = None,
+        fecha_modificado: Optional[datetime] = None,
+        dueñonombre: Optional[str] = None,
+        dueño_nickname: Optional[str] = None,
+        mensajes: Optional[List[dict]] = None
     ):
         self.descripcion = descripcion
         self.dueño = dueño
         self.titulo = titulo
         self.categorias = categorias
         self.fecha_creacion = fecha_creacion
-        self.fecha_finalizacion = fecha_finalización
+        self.fecha_finalizacion = fecha_finalizacion
         self.fecha_modificado = fecha_modificado
-        self.mensajes = []
-
+        self.dueñonombre = dueñonombre
+        self.dueño_nickname = dueño_nickname
+        self.mensajes = mensajes if mensajes is not None else []
 
 
 

@@ -104,6 +104,13 @@
 
   <div class="bloqueMedio" id="bloqueMedio">
 
+    {% for foro in foros %}
+      {% set dueñonombre = foro.dueñonombre %}
+      {% set dueño_nickname = foro.dueño_nickname %}
+      {% set Descripcion = foro.Descripcion %}
+      {% include 'components/post.jinja' %}
+    {% endfor %}
+
     <div class="posts">
 
       <div class="post-bloque-usuario">

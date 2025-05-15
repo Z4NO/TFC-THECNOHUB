@@ -170,27 +170,37 @@ class BaseManager:
 
     def _get_forums(self) -> list[ForoModel]:
         try:
-            # Obtener todos los documentos de la colección 'foro'
+            
             foro_ref = self.db.collection('foro')
             foro_ref_query = foro_ref.stream()
             foros = []
             for doc in foro_ref_query:
                 foro_data = doc.to_dict()
+
+                
+                mensajes_ref = doc.reference.collection('mensajes')
+                mensajes_docs = mensajes_ref.stream()
+                mensajes = [mensaje_doc.to_dict() for mensaje_doc in mensajes_docs]
+
+                # Crear una instancia de ForoModel con los datos obtenidos
                 modelo_foro = ForoModel(
-                    mensajes=foro_data['mensajes_foro'],
+                    mensajes=mensajes,
                     descripcion=foro_data['Descripcion'],
                     dueño=foro_data['Dueño'],
                     titulo=foro_data['Tútulo'],
                     categorias=foro_data['categorias'],
                     fecha_creacion=foro_data['fecha_creacion'],
                     fecha_finalizacion=foro_data['fecha_finalizacion'],
-                    fecha_modificado=foro_data['fecha_modificado']
+                    fecha_modificado=foro_data['fecha_modificado'],
+                    dueño_nickname=foro_data['dueño_nickname'],
+                    dueñonombre=foro_data['dueñonombre'],
                 )
                 foros.append(modelo_foro)
             return foros
         except Exception as e:
-            print(f"Error al obtener el foro: {e}")
+            print(f"Error al obtener los foros: {e}")
             return None
+
 
 
 
@@ -236,6 +246,8 @@ class BaseManager:
                 'fecha_creacion': foro.fecha_creacion,
                 'fecha_finalizacion': foro.fecha_finalizacion,
                 'fecha_modificado': foro.fecha_modificado,
+                'dueñonombre': user.nombre,
+                'dueño_nickname': user.nickname,
                 #'mensajes_foro': mensajes_foro_ref,
             })
         except Exception as e:
@@ -243,6 +255,16 @@ class BaseManager:
             return False
         
     def _add_message_to_forum(self, id_foro: str, mensaje: str, user: User):
+
+        #Ejemplo añadir un mensaje a un foro:
+        """
+        basemanager._add_message_to_forum(
+            mensaje="Hola, soy un mensaje de prueba",
+            id_foro="YXvJM25AVet9Jfp4ymeg",
+            user=User.get(current_user.email)
+        )
+        """
+
         try:
             # Referencia al documento del foro
             foro_ref = self.db.collection('foro').document(id_foro)
