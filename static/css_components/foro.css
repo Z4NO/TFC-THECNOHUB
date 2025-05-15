@@ -1,0 +1,79 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.containerForo {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  overflow-x: hidden;
+  font-family: sans-serif !important;
+}
+
+.banner {
+  height: 30%;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid rgb(118, 226, 151);
+}
+
+.bannerServidor {
+  height: 100%;
+  width: 100%;
+}
+
+.bannerServidor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bannerContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0 2rem;
+}
+
+.bannerPerfil {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: transparent;
+  
+  overflow: hidden; 
+  flex-shrink: 0;
+}
+
+.bannerPerfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.bannerTitulo {
+  font-size: 3rem;
+  color: white;
+  flex: 1;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.bannerTitulo:hover {
+  transform: scale(1.05);
+}
+
+.publicaciones {
+  height: 70%;
+  width: 100%;
+}
