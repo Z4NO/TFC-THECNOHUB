@@ -27,3 +27,4 @@ def get_users_by_preferences(user: User) -> list:
     users = basemanager._get_users_by_algorithm(
         user_preferences, 'preferencias', user.email)
     return users
+

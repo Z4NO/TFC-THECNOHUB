@@ -18,7 +18,6 @@ foro = Blueprint('foro', __name__, url_prefix='/foro')
 class ForoModel:
     def __init__(
         self,
-        id_colecion_mensajes: str,
         descripcion: str,
         dueño: str,
         titulo: str,
@@ -27,7 +26,6 @@ class ForoModel:
         fecha_finalización: datetime = None,
         fecha_modificado: datetime = None
     ):
-        self.id_colecion_mensajes = id_colecion_mensajes
         self.descripcion = descripcion
         self.dueño = dueño
         self.titulo = titulo
@@ -37,15 +35,6 @@ class ForoModel:
         self.fecha_modificado = fecha_modificado
         self.mensajes = []
 
-
-    def get(categorias):
-        from BaseManager import BaseManager
-        basemanager = BaseManager()
-        foro = basemanager._get_forum_by_preferences(categorias)
-        if foro:
-            return foro
-        else:
-            return None
 
 
 

@@ -11,7 +11,7 @@ from md import md as MD
 from firebase_admin import credentials, firestore
 import random
 
-from formularios.formularios import ForoModel, MensajeForo
+from formularios.formularios import ForoModel
 
 
 class BaseManager:
@@ -167,6 +167,34 @@ class BaseManager:
 
 
     # Foro
+
+    def _get_forums(self) -> list[ForoModel]:
+        try:
+            # Obtener todos los documentos de la colección 'foro'
+            foro_ref = self.db.collection('foro')
+            foro_ref_query = foro_ref.stream()
+            foros = []
+            for doc in foro_ref_query:
+                foro_data = doc.to_dict()
+                modelo_foro = ForoModel(
+                    mensajes=foro_data['mensajes_foro'],
+                    descripcion=foro_data['Descripcion'],
+                    dueño=foro_data['Dueño'],
+                    titulo=foro_data['Tútulo'],
+                    categorias=foro_data['categorias'],
+                    fecha_creacion=foro_data['fecha_creacion'],
+                    fecha_finalizacion=foro_data['fecha_finalizacion'],
+                    fecha_modificado=foro_data['fecha_modificado']
+                )
+                foros.append(modelo_foro)
+            return foros
+        except Exception as e:
+            print(f"Error al obtener el foro: {e}")
+            return None
+
+
+
+
     def _add_forum(self, user: User, foro: ForoModel):
         try:
             # Para JUANAN
@@ -174,6 +202,7 @@ class BaseManager:
             # y dentro de la coleccion mensajes_foros vamos a meter los mensajes que se vayan añadiendo al foro
             # por lo que primeor creamos el documento de mensajes_foros y luego lo añadimos al documento de foro
 
+            """
             mensajes_foro_ref = self.db.collection('mensajes_foros').document(f'{foro.id_colecion_mensajes + random.randint(3, 100000)}')
 
             mensajes_foro_ref.set({
@@ -181,7 +210,23 @@ class BaseManager:
                 'id_foro': foro.id_colecion_mensajes,
                 'mensaje': ""
             })
+            """
 
+            #Ejemplo de comoañadir un foro a la base de datos :
+            """
+            basemanager._add_forum(
+                user=User.get(current_user.email),
+                foro=ForoModel(
+                    descripcion='Foro de prueba',
+                    dueño=current_user.email,
+                    titulo='Foro de prueba',
+                    categorias=['programacion', 'python', 'flask'],
+                    fecha_creacion=datetime.datetime.now(datetime.timezone.utc),
+                    fecha_finalización=datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=7),
+                    fecha_modificado=None
+                )
+            )
+            """
             # Crear un nuevo documento en la colección 'foro'
             self.db.collection('foro').add({
                 'Descripcion': foro.descripcion,
@@ -191,21 +236,30 @@ class BaseManager:
                 'fecha_creacion': foro.fecha_creacion,
                 'fecha_finalizacion': foro.fecha_finalizacion,
                 'fecha_modificado': foro.fecha_modificado,
-                'mensajes_foro': mensajes_foro_ref,
+                #'mensajes_foro': mensajes_foro_ref,
             })
         except Exception as e:
             print(f"Error al añadir el usuario: {e}")
             return False
         
-    def _add_message_to_forum(self, foro: ForoModel, mensaje: str, user: User):
+    def _add_message_to_forum(self, id_foro: str, mensaje: str, user: User):
         try:
-            # Añadir el mensaje al foro
-            mensajes_foro_ref = self.db.collection('mensajes_foros').document(f'{foro.id_colecion_mensajes + random.randint(3, 100000)}')
-            mensajes_foro_ref.set({
-                'mensaje': mensaje,
-                'id_foro': foro.id_colecion_mensajes,
-                'dueño': user.email
+            # Referencia al documento del foro
+            foro_ref = self.db.collection('foro').document(id_foro)
+
+            # Verificar si el documento del foro existe
+            if not foro_ref.get().exists:
+                raise ValueError(f"No se encontró un foro con el ID: {id_foro}")
+
+            # Agregar el mensaje a la subcolección 'mensajes' dentro del documento del foro
+            foro_ref.collection('mensajes').add({
+                'autor': user.email,
+                'contenido': mensaje,
+                'fecha': firestore.SERVER_TIMESTAMP
             })
+
+            return True
         except Exception as e:
             print(f"Error al añadir el mensaje al foro: {e}")
             return False
+

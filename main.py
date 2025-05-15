@@ -17,6 +17,7 @@ import os
 from extension import socketio
 from typing import Final
 from algoritmos import *
+from formularios.formularios import ForoModel
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
@@ -90,7 +91,13 @@ def index():
 @login_required
 def index2():
     perfiles_list = get_users_by_preferences(User.get(current_user.email))
-    print(f"Perfiles: {perfiles_list}")
+    
+    basemanager._add_message_to_forum(
+        mensaje="Hola, soy un mensaje de prueba",
+        id_foro="YXvJM25AVet9Jfp4ymeg",
+        user=User.get(current_user.email)
+    )
+
     perfiles = [
     ]
     # vamos a recorrer los perfiles y a añadirlos a la lista de perfiles
