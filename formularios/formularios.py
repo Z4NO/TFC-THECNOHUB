@@ -18,6 +18,7 @@ foro = Blueprint('foro', __name__, url_prefix='/foro')
 class ForoModel:
     def __init__(
         self,
+        id_colecion_mensajes: str,
         descripcion: str,
         dueño: str,
         titulo: str,
@@ -26,6 +27,7 @@ class ForoModel:
         fecha_finalización: datetime = None,
         fecha_modificado: datetime = None
     ):
+        self.id_colecion_mensajes = id_colecion_mensajes
         self.descripcion = descripcion
         self.dueño = dueño
         self.titulo = titulo
@@ -35,9 +37,6 @@ class ForoModel:
         self.fecha_modificado = fecha_modificado
         self.mensajes = []
 
-    def agregar_Mensaje(self, dueño: str, mensaje: str):
-        nuevo_mensaje = MensajeForo(dueño, mensaje)
-        self.mensajes.append(nuevo_mensaje)
 
     def get(categorias):
         from BaseManager import BaseManager
@@ -49,14 +48,7 @@ class ForoModel:
             return None
 
 
-class MensajeForo:
-    def __init__(
-            self,
-            dueño: str,
-            mensaje: str
-    ):
-        self.dueño = dueño
-        self.mensaje = mensaje
+
 
 # carga foro con el html que todavia no esta creado y le pasa el current_user.preferencias
 

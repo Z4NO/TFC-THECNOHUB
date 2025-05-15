@@ -1,3 +1,4 @@
+from typing import Final
 import firebase_admin
 from firebase_admin import credentials, firestore
 from google.cloud.firestore import FieldFilter
@@ -7,6 +8,8 @@ from Encripter import Encripter
 import os
 import traceback
 from md import md as MD
+from firebase_admin import credentials, firestore
+import random
 
 from formularios.formularios import ForoModel, MensajeForo
 
@@ -16,11 +19,11 @@ class BaseManager:
         try:
             self.cred = credentials.Certificate(os.path.join(os.path.dirname(
                 __file__), "tfgforo-firebase-adminsdk-fbsvc-61fd334c13.json"))
-            self.encripter = Encripter(os.getenv('MASTER_KEY').encode())
+            MASTER_KEY: Final[str] = os.getenv('MASTER_KEY')
+            self.encripter = Encripter(MASTER_KEY.encode())
             if not firebase_admin._apps:
                 firebase_admin.initialize_app(self.cred)
             self.db = firestore.client()
-            self.encripter = Encripter(os.getenv('MASTER_KEY').encode())
         except Exception as e:
             print(f"Error al iniciar la base de datos: {e}")
             self.db = None
@@ -123,7 +126,7 @@ class BaseManager:
             return None
 
     # Vamos a hacer una función la cual toma un número n de usuarios que quiere devolver y una QUERY por la cual filtrar los usuarios, además de un campo por el que filtrar, para facilitar los algoritmos de búsqueda.
-    def _get_users_by_algorithm(self, query,  field: str, limit: int = 3) -> list[User]:
+    def _get_users_by_algorithm(self, query,  field: str, current_user_email: str, limit: int = 3) -> list[User]:
         try:
             user_ref = self.db.collection('usuario')
 
@@ -131,10 +134,10 @@ class BaseManager:
 
             if isinstance(query, list):
                 user_ref_query = user_ref.where(filter=FieldFilter(
-                    field, 'array_contains_any', query))
+                    field, 'array_contains_any', query)).limit(limit)
             else:
                 user_ref_query = user_ref.where(
-                    field, '==', query).limit(limit).stream()
+                    field, '==', query).limit(limit).where("email", "!=", current_user_email).stream()
 
             docs = user_ref_query.stream()
             users = []
@@ -162,11 +165,22 @@ class BaseManager:
             return []
 
 
-# Foro
 
-
+    # Foro
     def _add_forum(self, user: User, foro: ForoModel):
         try:
+            # Para JUANAN
+            # mensajes_foros es una  coleccion , la cuál vamos a meter dentro de un documeno de la coleccion foro
+            # y dentro de la coleccion mensajes_foros vamos a meter los mensajes que se vayan añadiendo al foro
+            # por lo que primeor creamos el documento de mensajes_foros y luego lo añadimos al documento de foro
+
+            mensajes_foro_ref = self.db.collection('mensajes_foros').document(f'{foro.id_colecion_mensajes + random.randint(3, 100000)}')
+
+            mensajes_foro_ref.set({
+                'dueño': user.email,
+                'id_foro': foro.id_colecion_mensajes,
+                'mensaje': ""
+            })
 
             # Crear un nuevo documento en la colección 'foro'
             self.db.collection('foro').add({
@@ -177,9 +191,21 @@ class BaseManager:
                 'fecha_creacion': foro.fecha_creacion,
                 'fecha_finalizacion': foro.fecha_finalizacion,
                 'fecha_modificado': foro.fecha_modificado,
-                'mensajes_foro': foro.mensajes
+                'mensajes_foro': mensajes_foro_ref,
             })
-            return True
         except Exception as e:
             print(f"Error al añadir el usuario: {e}")
+            return False
+        
+    def _add_message_to_forum(self, foro: ForoModel, mensaje: str, user: User):
+        try:
+            # Añadir el mensaje al foro
+            mensajes_foro_ref = self.db.collection('mensajes_foros').document(f'{foro.id_colecion_mensajes + random.randint(3, 100000)}')
+            mensajes_foro_ref.set({
+                'mensaje': mensaje,
+                'id_foro': foro.id_colecion_mensajes,
+                'dueño': user.email
+            })
+        except Exception as e:
+            print(f"Error al añadir el mensaje al foro: {e}")
             return False

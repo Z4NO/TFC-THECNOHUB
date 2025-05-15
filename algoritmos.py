@@ -25,5 +25,5 @@ def get_users_by_preferences(user: User) -> list:
     print(user.preferencias)
     # Obtenemos los usuarios que tienen las mismas preferencias que el usuario que ha iniciado sesion
     users = basemanager._get_users_by_algorithm(
-        user_preferences, 'preferencias')
+        user_preferences, 'preferencias', user.email)
     return users
