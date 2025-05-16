@@ -247,6 +247,16 @@
   color: white;
   border: none;
 }
+.post-funcionalidades span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 15px;
+  color: rgb(114, 112, 112);
+  font-weight: 100;
+  font-size: 15px;
+  text-align: center;
+}
 
 .post-funcionalidades img {
   object-fit: cover;

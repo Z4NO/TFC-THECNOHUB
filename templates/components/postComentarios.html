@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="postComentarios.css" />
+  <title>Tech</title>
+</head>
+<body>
+  <div class="container-comentario">
+    <div class="posts-comentario">
+
+      <div class="post-bloque-usuario-comentario">
+        <div class="post-imgPerfil-comentario">
+          <img src="{{ url_for('static', filename='imgs/pa.webp') }}" />
+        </div>
+        <div class="post-nombre-comentario">
+          <span> Daniel Lozano</span>
+        </div>
+        <div class="post-usuario-comentario">
+          <span> @Z4NO</span>
+        </div>
+      </div>
+
+      <div class="post-texto-comentario">
+        <span>
+          Aprender Python es el futuro, hay gente que no empieza por que piensa que es dificil pero, ¿realmente lo es?
+          Actualmente doy un curso de Python desde 0 y totalmente GRATUITO. Comenta PYTHON y tendrás acceso a mi clase.
+          Recuerda, las excusas no te llevarán a nada.
+        </span>
+      </div>
+
+      <div class="post-funcionalidades-comentario">
+        <button id="boton-like">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+          </svg>
+        </button>
+        <span>25</span>
+        <button id="boton-comentario">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-chat-fill" viewBox="0 0 16 16">
+            <path
+              d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
+          </svg>
+        </button>
+        <span>12</span>
+        <button id="btnPostear">
+          COMENTAR
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Respuestas son post normales -->
+
+    
+  </div>
+</body>
+</html>

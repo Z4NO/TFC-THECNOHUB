@@ -1,0 +1,123 @@
+html, body {
+  margin: 0;
+}
+
+.container-comentario {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+}
+
+.posts-comentario {
+  flex: 1;
+  width: 100%;
+  color: white;
+  font-size: medium;
+  text-align: left;
+  padding: 10px;
+  font-family: sans-serif !important;
+  background-color: black;
+  overflow: hidden;
+}
+
+.post-bloque-usuario-comentario {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.post-imgPerfil-comentario {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+}
+
+.post-imgPerfil-comentario img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.post-nombre-comentario {
+  color: white;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.post-usuario-comentario {
+  color: rgb(114, 112, 112);
+  font-weight: bold;
+}
+
+.post-texto-comentario {
+  color: whitesmoke;
+  font-size: medium;
+  text-align: left;
+  padding: 15px;
+  word-wrap: break-word;
+}
+
+.post-funcionalidades-comentario {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-top: 1px solid rgb(114, 112, 112);
+  border-bottom: 1px solid rgb(114, 112, 112);
+}
+
+.post-funcionalidades-comentario span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 15px;
+  color: rgb(114, 112, 112);
+  font-weight: 100;
+  font-size: 15px;
+  text-align: center;
+}
+
+#boton-like:hover {
+  color: rgb(214, 110, 110);
+}
+
+#boton-comentario:hover {
+  color: rgb(112, 112, 208);
+}
+
+.post-funcionalidades-comentario button {
+  min-width: 50px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#btnPostear {
+  background: rgb(118, 226, 151);
+  color: black;
+  font-weight: bold;
+  border-radius: 15px;
+  padding: 7px 15px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+#btnPostear:hover {
+  background: rgb(80, 194, 114);
+}
+
+.post-funcionalidades-comentario img {
+  object-fit: cover;
+}
