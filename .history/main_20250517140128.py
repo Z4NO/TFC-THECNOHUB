@@ -98,7 +98,7 @@ def index2():
     foros = [] 
     for foro in foros_lista if len(perfiles_list) >= 1 else []:
         foros.append(
-            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'foro': foro})
+            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios})
 
     perfiles = [
     ]

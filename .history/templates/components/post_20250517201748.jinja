@@ -30,7 +30,7 @@
             </svg>
         </button>
         <span id="likes">{{foro.Likes}}</span>
-        <button id="boton-comentario" onclick="cargarPostBloqueMedio('/foro/main')">
+        <button id="boton-comentario">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chat-fill" viewBox="0 0 16 16">
                 <path
@@ -41,20 +41,18 @@
     </div>
 </div>
 <script>
-    function cargarPostBloqueMedio(ruta) {
+    function cargarPostBloqueMedio(ruta, foro) {
         fetch(ruta)
             .then(r => r.text())
             .then(html => {
             const medio = document.getElementById('bloqueMedio');
             medio.innerHTML = html;
-            setTimeout(() => {
-                medio.style.height = '100%';
-                medio.style.overflowY = 'auto';
-            }, 100);
+
             
             })
             .catch(console.error);
-    }
+        }
+
     function funcionLike() {
         const btn = document.getElementById("boton-like")
         const numLikes = document.getElementById("likes")

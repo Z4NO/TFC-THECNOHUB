@@ -50,11 +50,10 @@ class ForoModel:
 # carga foro con el html que todavia no esta creado y le pasa el current_user.preferencias
 
 
-@foro.route('/main', methods=['POST', 'GET'])
-@login_required
+@foro.route('/foros', methods=['POST', 'GET'])
 def cargar_foro():
-    
-    return render_template('foro.jinja')
+    foro = ForoModel.get(categorias=User.get(current_user.preferencias))
+    return render_template('foro.html', foro=foro)
 
 
 # @foro.route('/')

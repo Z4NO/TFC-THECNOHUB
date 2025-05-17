@@ -54,7 +54,7 @@ class ForoModel:
 @login_required
 def cargar_foro():
     
-    return render_template('foro.jinja')
+    return render_template('main_mensajes.jinja')
 
 
 # @foro.route('/')

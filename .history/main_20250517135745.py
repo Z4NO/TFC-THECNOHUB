@@ -98,7 +98,7 @@ def index2():
     foros = [] 
     for foro in foros_lista if len(perfiles_list) >= 1 else []:
         foros.append(
-            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'foro': foro})
+            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios})
 
     perfiles = [
     ]
@@ -119,7 +119,7 @@ def index2():
         {'Usuario': 'Dani', 'Nickname': '@usuario2',
             'Contenido': 'Contenido del post 2'},
         {'Usuario': 'Wanan', 'Nickname': '@LilWanan',
-            'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.\n#FrikingPagaMas #PonedAireEnFriking '}
+            'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.#FrikingPagaMas #PonedAireEnFriking '}
     ]
 
     return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros)

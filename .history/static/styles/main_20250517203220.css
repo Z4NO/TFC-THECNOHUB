@@ -312,3 +312,10 @@
   flex-direction: column;
   gap: 5px;
 }
+
+.posts, .post {
+  width: 100%;
+  box-sizing: border-box;
+  height: auto; /* o elimina height si estaba fija */
+  max-width: 100%;
+}

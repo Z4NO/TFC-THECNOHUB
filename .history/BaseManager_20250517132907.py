@@ -250,8 +250,6 @@ class BaseManager:
                 'fecha_modificado': foro.fecha_modificado,
                 'dueñonombre': user.nombre,
                 'dueño_nickname': user.nickname,
-                'likes': foro.likes,
-                'comentarios': foro.comentarios,
                 #'mensajes_foro': mensajes_foro_ref,
             })
         except Exception as e:

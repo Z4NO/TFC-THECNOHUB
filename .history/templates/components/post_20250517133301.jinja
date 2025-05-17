@@ -29,8 +29,8 @@
                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
             </svg>
         </button>
-        <span id="likes">{{foro.Likes}}</span>
-        <button id="boton-comentario" onclick="cargarPostBloqueMedio('/foro/main')">
+        <span>{{foro.Likes}}</span>
+        <button id="boton-comentario">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chat-fill" viewBox="0 0 16 16">
                 <path
@@ -41,30 +41,17 @@
     </div>
 </div>
 <script>
-    function cargarPostBloqueMedio(ruta) {
-        fetch(ruta)
-            .then(r => r.text())
-            .then(html => {
-            const medio = document.getElementById('bloqueMedio');
-            medio.innerHTML = html;
-            setTimeout(() => {
-                medio.style.height = '100%';
-                medio.style.overflowY = 'auto';
-            }, 100);
-            
-            })
-            .catch(console.error);
+    function funcionClick() {
+        // Aquí irá la lógica para mandar al back de python
+        alert("Hola");
     }
     function funcionLike() {
         const btn = document.getElementById("boton-like")
-        const numLikes = document.getElementById("likes")
+        const btnComents = document.getElementById("boton-comentario")
         if(btn.style.color == "red"){
             btn.style.color = "white"
-            numLikes.innerHTML = parseInt(numLikes.innerHTML) - 1
         }else{
             btn.style.color = "red"
-            numLikes.innerHTML = parseInt(numLikes.innerHTML) + 1
         }
-
     }
 </script>

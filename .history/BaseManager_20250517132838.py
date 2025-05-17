@@ -194,8 +194,7 @@ class BaseManager:
                     fecha_modificado=foro_data['fecha_modificado'],
                     dueño_nickname=foro_data['dueño_nickname'],
                     dueñonombre=foro_data['dueñonombre'],
-                    likes=foro_data['likes'],
-                    comentarios=foro_data['comentarios'],
+                    likes=foro_data['likes', 0],
                 )
                 foros.append(modelo_foro)
             return foros
@@ -250,8 +249,6 @@ class BaseManager:
                 'fecha_modificado': foro.fecha_modificado,
                 'dueñonombre': user.nombre,
                 'dueño_nickname': user.nickname,
-                'likes': foro.likes,
-                'comentarios': foro.comentarios,
                 #'mensajes_foro': mensajes_foro_ref,
             })
         except Exception as e:

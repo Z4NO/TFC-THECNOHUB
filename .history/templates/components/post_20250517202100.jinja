@@ -47,10 +47,7 @@
             .then(html => {
             const medio = document.getElementById('bloqueMedio');
             medio.innerHTML = html;
-            setTimeout(() => {
-                medio.style.height = '100%';
-                medio.style.overflowY = 'auto';
-            }, 100);
+
             
             })
             .catch(console.error);

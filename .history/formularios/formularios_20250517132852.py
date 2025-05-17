@@ -23,16 +23,12 @@ class ForoModel:
         titulo: str,
         categorias: List[str],
         fecha_creacion: datetime = datetime.now(timezone.utc),
-        likes: int = 0,
-        comentarios: int = 0,
         fecha_finalizacion: Optional[datetime] = None,
         fecha_modificado: Optional[datetime] = None,
         dueñonombre: Optional[str] = None,
         dueño_nickname: Optional[str] = None,
         mensajes: Optional[List[dict]] = None
     ):
-        self.likes = likes
-        self.comentarios = comentarios
         self.descripcion = descripcion
         self.dueño = dueño
         self.titulo = titulo
@@ -51,10 +47,9 @@ class ForoModel:
 
 
 @foro.route('/main', methods=['POST', 'GET'])
-@login_required
 def cargar_foro():
-    
-    return render_template('foro.jinja')
+    foro = ForoModel.get(categorias=User.get(current_user.preferencias))
+    return render_template('foro.html', foro=foro)
 
 
 # @foro.route('/')
