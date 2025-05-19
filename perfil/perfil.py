@@ -50,7 +50,7 @@ def upload_profile_pic():
     if file.filename == '':
         return "Nombre archivo vacio", 400
 
-    filename = "image.png"
+    filename = f"{current_user.email}.png"
     file_path = os.path.join(upload_folder, filename)
     print(f"Guardando imagen en: {file_path}")
     file.save(file_path)

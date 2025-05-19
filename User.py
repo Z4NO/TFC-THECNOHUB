@@ -16,7 +16,7 @@ class User:
         preferencias,
         reputacion,
         rol: str,
-        foto_perfil: str = "",
+        foto_perfil: str = "static/imgs/pa.webp",
         fecha_creacion: datetime = datetime.now(timezone.utc),
         suscripcion: str = "basico",
         fecha_expiracion_premium: datetime = None
