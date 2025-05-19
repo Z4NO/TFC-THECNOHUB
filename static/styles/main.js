@@ -46,26 +46,27 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 resultadoContainer.innerHTML = "";
 
-                
-                fetch('/funciones', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ funcion: 'funcion1', parametros: searchInput.value })
-                })
-                .then(response => response.json())
-                .then(result => {
-                    resultadoContainer.innerHTML = "";
-                    // Puedes mostrar el resultado devuelto por la función aquí
-                    resultadoContainer.textContent = JSON.stringify(result);
-                })
-                .catch(error => {
-                    resultadoContainer.innerHTML = "<p>Error al llamar a la función.</p>";
-                    console.error("Error en la llamada a la función:", error);
+                if (data.usuarios.length > 0) {
+                    data.usuarios.forEach(user => {
+                        let userElement = document.createElement("p");
+                        userElement.textContent = `Usuario: ${user.nickname}`;
+                        resultadoContainer.appendChild(userElement);
+                    });
+                } else {
+                    resultadoContainer.innerHTML += "<p>No se encontraron usuarios.</p>";
+                }
+
+                if (data.foros.length > 0) {
+                data.foros.forEach(foro => {
+                    let foroElement = document.createElement("p");
+                    foroElement.textContent = `Foro creado por: ${foro.dueño_nickname}`;
+                    resultadoContainer.appendChild(foroElement);
                 });
-            })
-            .catch(error => console.error("Error en la búsqueda:", error));
+            } else {
+                resultadoContainer.innerHTML += "<p>No se encontraron foros.</p>";
+            }
+        })
+        .catch(error => console.error("Error en la búsqueda:", error));
     }
 
   

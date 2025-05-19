@@ -36,7 +36,7 @@ app.register_blueprint(foro)
 app.register_blueprint(perfil)
 app.register_blueprint(mensajes)
 
-#configuramos el socketio
+# configuramos el socketio
 socketio.init_app(app, cors_allowed_origins="*")
 
 # Datos de la app de Spotify
@@ -93,10 +93,8 @@ def index():
 def index2():
     perfiles_list = get_users_by_preferences(User.get(current_user.email))
     foros_lista = basemanager._get_forums()
-    
 
-
-    foros = [] 
+    foros = []
     for foro in foros_lista if len(perfiles_list) >= 1 else []:
         foros.append(
             {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'foro': foro})
@@ -124,6 +122,7 @@ def index2():
     ]
 
     return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros)
+
 
 @app.route('/index/endpoint', methods=['POST'])
 @login_required
@@ -157,17 +156,33 @@ def register():
 # Ruta de credenciales incorrectas
 
 
+# @app.route("/buscar", methods=["GET"])
+# @login_required
+# def buscar():
+#     valor = unquote(request.args.get("valor", ""))
+#     if not valor:
+#         return jsonify({"usuarios": [], "posts": []})
+
+#     resultados = basemanager.get_data_by_field(valor)
+#     print(f"Resultados obtenidos: {resultados}")
+
+#     return jsonify(resultados)
+
 @app.route("/buscar", methods=["GET"])
 @login_required
 def buscar():
     valor = unquote(request.args.get("valor", ""))
     if not valor:
-        return jsonify({"usuarios": [], "posts": []})
+        return jsonify({"usuarios": [], "foros": []})
 
     resultados = basemanager.get_data_by_field(valor)
-    print(f"Resultados obtenidos: {resultados}")
 
-    return jsonify(resultados)
+    # Convertir los objetos en diccionarios antes de enviarlos como JSON
+    usuarios_data = [user.__dict__ for user in resultados["usuarios"]]
+    foros_data = [foro.__dict__ for foro in resultados["foros"]]
+
+    return jsonify({"usuarios": usuarios_data, "foros": foros_data})
+
 
 @app.route('/incorrect')
 @login_required

@@ -107,12 +107,12 @@ class BaseManager:
             print(f"Error al obtener el usuario por email: {e}")
             return None
 
-    #Esrte método es para obtener el md de de un usuario , basado en 2 emails , para encontrar el md de un usuario en concreto con el otro
+    # Esrte método es para obtener el md de de un usuario , basado en 2 emails , para encontrar el md de un usuario en concreto con el otro
     def _get_private_md(self, lista_users: list[str]) -> MD:
         try:
             user_ref = self.db.collection('md')
             user_ref_query = user_ref.where(
-            filter=FieldFilter("users", 'array_contains_any', lista_users)).stream()
+                filter=FieldFilter("users", 'array_contains_any', lista_users)).stream()
             for doc in user_ref_query:
                 user_data = doc.to_dict()
                 return MD(
@@ -164,23 +164,21 @@ class BaseManager:
             print(f"Error al obtener los usuarios por algoritmo: {e}")
             return []
 
-
-
     # Foro
 
     def _get_forums(self) -> list[ForoModel]:
         try:
-            
+
             foro_ref = self.db.collection('foro')
             foro_ref_query = foro_ref.stream()
             foros = []
             for doc in foro_ref_query:
                 foro_data = doc.to_dict()
 
-                
                 mensajes_ref = doc.reference.collection('mensajes')
                 mensajes_docs = mensajes_ref.stream()
-                mensajes = [mensaje_doc.to_dict() for mensaje_doc in mensajes_docs]
+                mensajes = [mensaje_doc.to_dict()
+                            for mensaje_doc in mensajes_docs]
 
                 # Crear una instancia de ForoModel con los datos obtenidos
                 modelo_foro = ForoModel(
@@ -203,10 +201,6 @@ class BaseManager:
             print(f"Error al obtener los foros: {e}")
             return None
 
-
-
-
-
     def _add_forum(self, user: User, foro: ForoModel):
         try:
             # Para JUANAN
@@ -224,7 +218,7 @@ class BaseManager:
             })
             """
 
-            #Ejemplo de comoañadir un foro a la base de datos :
+            # Ejemplo de comoañadir un foro a la base de datos :
             """
             basemanager._add_forum(
                 user=User.get(current_user.email),
@@ -252,15 +246,15 @@ class BaseManager:
                 'dueño_nickname': user.nickname,
                 'likes': foro.likes,
                 'comentarios': foro.comentarios,
-                #'mensajes_foro': mensajes_foro_ref,
+                # 'mensajes_foro': mensajes_foro_ref,
             })
         except Exception as e:
             print(f"Error al añadir el usuario: {e}")
             return False
-        
+
     def _add_message_to_forum(self, id_foro: str, mensaje: str, user: User):
 
-        #Ejemplo añadir un mensaje a un foro:
+        # Ejemplo añadir un mensaje a un foro:
         """
         basemanager._add_message_to_forum(
             mensaje="Hola, soy un mensaje de prueba",
@@ -275,7 +269,8 @@ class BaseManager:
 
             # Verificar si el documento del foro existe
             if not foro_ref.get().exists:
-                raise ValueError(f"No se encontró un foro con el ID: {id_foro}")
+                raise ValueError(
+                    f"No se encontró un foro con el ID: {id_foro}")
 
             # Agregar el mensaje a la subcolección 'mensajes' dentro del documento del foro
             foro_ref.collection('mensajes').add({
@@ -289,18 +284,76 @@ class BaseManager:
             print(f"Error al añadir el mensaje al foro: {e}")
             return False
 
-    def get_data_by_field(self, value) -> dict:
+    # def get_data_by_field(self, value) -> dict:
+    #     try:
+    #         users_query = self.db.collection("usuario").stream()
+    #         posts_query = self.db.collection("foro").stream()
+
+    #         usuarios = [doc.to_dict().get("nickname") for doc in users_query if value.lower(
+    #         ) in doc.to_dict().get("nickname", "").lower()]
+    #         posts = [doc.to_dict().get("Descripcion") for doc in posts_query if value.lower(
+    #         ) in doc.to_dict().get("Descripcion", "").lower()]
+
+    #         return {"usuarios": usuarios, "posts": posts}
+
+    #     except Exception as e:
+    #         print(f"Error en la búsqueda parcial: {e}")
+    #         return {"usuarios": [], "posts": []}
+
+    def get_data_by_field(self, value: str) -> dict:
         try:
             users_query = self.db.collection("usuario").stream()
             posts_query = self.db.collection("foro").stream()
 
-            usuarios = [doc.to_dict().get("nickname") for doc in users_query if value.lower(
-            ) in doc.to_dict().get("nickname", "").lower()]
-            posts = [doc.to_dict().get("titulo") for doc in posts_query if value.lower(
-            ) in doc.to_dict().get("titulo", "").lower()]
+            usuarios = []
+            for doc in users_query:
+                user_data = doc.to_dict()
+                if value.lower() in user_data.get("nickname", "").lower():
+                    usuario = User(
+                        contrasena=self.encripter._decript(
+                            user_data['contrasena']),
+                        email=user_data['email'],
+                        nombre=user_data['nombre'],
+                        preferencias=user_data['preferencias'],
+                        reputacion=user_data['reputacion'],
+                        rol=user_data['rol'],
+                        foto_perfil=user_data['foto_perfil'],
+                        nickname=user_data['nickname'],
+                        fecha_creacion=user_data['fecha_creacion'],
+                        suscripcion=user_data['suscripcion'],
+                        fecha_expiracion_premium=user_data['fecha_expiracion_premium']
+                    )
+                    usuarios.append(usuario)
+                    print(usuario)
 
-            return {"usuarios": usuarios, "posts": posts}
+            foros = []
+            for doc in posts_query:
+                foro_data = doc.to_dict()
+                if value.lower() in foro_data.get("dueño_nickname", "").lower():
+                    mensajes_ref = doc.reference.collection("mensajes")
+                    mensajes_docs = mensajes_ref.stream()
+                    mensajes = [mensaje_doc.to_dict()
+                                for mensaje_doc in mensajes_docs]
+
+                    modelo_foro = ForoModel(
+                        mensajes=mensajes,
+                        descripcion=foro_data['Descripcion'],
+                        dueño=foro_data['Dueño'],
+                        titulo=foro_data['Tútulo'],
+                        categorias=foro_data['categorias'],
+                        fecha_creacion=foro_data['fecha_creacion'],
+                        fecha_finalizacion=foro_data['fecha_finalizacion'],
+                        fecha_modificado=foro_data['fecha_modificado'],
+                        dueño_nickname=foro_data['dueño_nickname'],
+                        dueñonombre=foro_data['dueñonombre'],
+                        likes=foro_data['likes'],
+                        comentarios=foro_data['comentarios'],
+                    )
+                    foros.append(modelo_foro)
+                    print(f" foro:{modelo_foro}")
+
+            return {"usuarios": usuarios, "foros": foros}
 
         except Exception as e:
             print(f"Error en la búsqueda parcial: {e}")
-            return {"usuarios": [], "posts": []}
+            return {"usuarios": [], "foros": []}
