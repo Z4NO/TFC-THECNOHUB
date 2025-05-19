@@ -7,6 +7,7 @@ import secrets
 import urllib.parse
 from formularios.formularios import foro as foro
 from perfil.perfil import perfil as perfil
+from urllib.parse import quote, unquote
 from mensajes.mensajes import mensajes as mensajes
 import datetime
 from BaseManager import BaseManager
@@ -155,6 +156,18 @@ def register():
 
 # Ruta de credenciales incorrectas
 
+
+@app.route("/buscar", methods=["GET"])
+@login_required
+def buscar():
+    valor = unquote(request.args.get("valor", ""))
+    if not valor:
+        return jsonify({"usuarios": [], "posts": []})
+
+    resultados = basemanager.get_data_by_field(valor)
+    print(f"Resultados obtenidos: {resultados}")
+
+    return jsonify(resultados)
 
 @app.route('/incorrect')
 @login_required

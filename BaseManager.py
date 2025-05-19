@@ -289,3 +289,18 @@ class BaseManager:
             print(f"Error al añadir el mensaje al foro: {e}")
             return False
 
+    def get_data_by_field(self, value) -> dict:
+        try:
+            users_query = self.db.collection("usuario").stream()
+            posts_query = self.db.collection("foro").stream()
+
+            usuarios = [doc.to_dict().get("nickname") for doc in users_query if value.lower(
+            ) in doc.to_dict().get("nickname", "").lower()]
+            posts = [doc.to_dict().get("titulo") for doc in posts_query if value.lower(
+            ) in doc.to_dict().get("titulo", "").lower()]
+
+            return {"usuarios": usuarios, "posts": posts}
+
+        except Exception as e:
+            print(f"Error en la búsqueda parcial: {e}")
+            return {"usuarios": [], "posts": []}
