@@ -208,16 +208,6 @@ class BaseManager:
             # y dentro de la coleccion mensajes_foros vamos a meter los mensajes que se vayan añadiendo al foro
             # por lo que primeor creamos el documento de mensajes_foros y luego lo añadimos al documento de foro
 
-            """
-            mensajes_foro_ref = self.db.collection('mensajes_foros').document(f'{foro.id_colecion_mensajes + random.randint(3, 100000)}')
-
-            mensajes_foro_ref.set({
-                'dueño': user.email,
-                'id_foro': foro.id_colecion_mensajes,
-                'mensaje': ""
-            })
-            """
-
             # Ejemplo de comoañadir un foro a la base de datos :
             """
             basemanager._add_forum(

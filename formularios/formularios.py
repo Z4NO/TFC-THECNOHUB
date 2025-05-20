@@ -9,6 +9,7 @@ from Encripter import Encripter
 from dotenv import load_dotenv
 from User import User
 import os
+from urllib.parse import quote, unquote
 from typing import List, Optional
 
 
@@ -53,8 +54,14 @@ class ForoModel:
 @foro.route('/main', methods=['POST', 'GET'])
 @login_required
 def cargar_foro():
-    
-    return render_template('foro.jinja')
+    forodescripcion = unquote(request.args.get('forodescripcion'))
+    forodueño = unquote(request.args.get('forodueño'))
+    forotitulo = unquote(request.args.get('forotitulo'))
+    return render_template('foro.jinja', 
+                           forodescripcion=forodescripcion,
+                           forodueño=forodueño,
+                           forotitulo=forotitulo,
+                           current_user=current_user)
 
 
 # @foro.route('/')

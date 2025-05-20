@@ -62,9 +62,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     foroElement.textContent = `Foro creado por: ${foro.dueño_nickname}`;
                     resultadoContainer.appendChild(foroElement);
                 });
-            } else {
-                resultadoContainer.innerHTML += "<p>No se encontraron foros.</p>";
-            }
+                } else {
+                    resultadoContainer.innerHTML += "<p>No se encontraron foros.</p>";
+                }
+            
         })
         .catch(error => console.error("Error en la búsqueda:", error));
     }
