@@ -126,6 +126,8 @@ def index2():
     return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros)
 
 
+
+
 @app.route('/index/endpoint', methods=['POST'])
 @login_required
 def index_endpoint():

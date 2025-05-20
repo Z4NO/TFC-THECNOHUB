@@ -34,7 +34,7 @@
             data-foro-descripcion ="{{ foro.Descripcion }}"
             data-foro-dueño ="{{ foro.dueño_nickname }}"
             data-foro-titulo ="{{ foro.titulo }}"
-            onclick="cargarPostBloqueMedio('/foro/main')">
+            onclick="cargarPostBloqueMedio(this, '/foro/main')">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-chat-fill" viewBox="0 0 16 16">
                 <path
@@ -45,23 +45,23 @@
     </div>
 </div>
 <script>
-    const div = document.getElementById("post");
-    const btnLike = document.getElementById("boton-like");
-
-    div.addEventListener("click", function() {
-        cargarPostBloqueMedio('/foro/main');
+    // Asigna eventos a todos los posts
+    document.querySelectorAll('.posts').forEach(div => {
+        div.addEventListener("click", function(e) {
+            if (!e.target.closest('button')) {
+                const commentBtn = div.querySelector('#boton-comentario');
+                if (commentBtn) {
+                    cargarPostBloqueMedio(commentBtn, '/foro/main');
+                }
+            }
+        });
     });
 
-    btnLike.addEventListener("click", function(event) {
-        event.stopPropagation(); // Evita que el evento se propague al div padre
-    });
-
-    function cargarPostBloqueMedio(ruta) {
-        const btnInfo = document.getElementById("boton-comentario");
-        const foroid = btnInfo.getAttribute("data-foro-id");
-        const forodescripcion = btnInfo.getAttribute("data-foro-descripcion");
-        const forodueño = btnInfo.getAttribute("data-foro-dueño");
-        const forotitulo = btnInfo.getAttribute("data-foro-titulo");
+    function cargarPostBloqueMedio(btn,ruta) {
+        const foroid = btn.getAttribute("data-foro-id");
+        const forodescripcion = btn.getAttribute("data-foro-descripcion");
+        const forodueño = btn.getAttribute("data-foro-dueño");
+        const forotitulo = btn.getAttribute("data-foro-titulo");
         fetch(`${ruta}?forodescripcion=${encodeURIComponent(forodescripcion)}&forodueño=${encodeURIComponent(forodueño)}&forotitulo=${encodeURIComponent(forotitulo)}`)
             .then(r => r.text())
             .then(html => {
