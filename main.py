@@ -20,13 +20,18 @@ from typing import Final
 from algoritmos import *
 from formularios.formularios import ForoModel
 
+
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
+
+# Datos de la app de Spotify
+MASTER_KEY: Final[str] = os.getenv('MASTER_KEY')
+
 
 # Crear la app de Flask
 app = Flask(__name__)
 # Generar una clave secreta para la app
-app.secret_key = secrets.token_hex(16)
+app.secret_key = MASTER_KEY
 
 # variables de entorno / configuracion de la app
 login_manager = LoginManager()
@@ -39,8 +44,7 @@ app.register_blueprint(mensajes)
 # configuramos el socketio
 socketio.init_app(app, cors_allowed_origins="*")
 
-# Datos de la app de Spotify
-MASTER_KEY: Final[str] = os.getenv('MASTER_KEY')
+
 
 
 encripter = Encripter(MASTER_KEY.encode())
@@ -185,7 +189,6 @@ def buscar():
 
 
 @app.route('/incorrect')
-@login_required
 def incorrect():
     return render_template("nocredentials.html")
 
