@@ -204,7 +204,8 @@ class BaseManager:
     def get_forums_without_messages(self) -> list[ForoModel]:
         try:
             foro_ref = self.db.collection('foro')
-            foro_ref_query = foro_ref.order_by('fecha_creacion', direction=firestore.Query.DESCENDING).limit(10).stream()
+            foro_ref_query = foro_ref.order_by(
+                'fecha_creacion', direction=firestore.Query.DESCENDING).limit(10).stream()
             foros = []
             for doc in foro_ref_query:
                 foro_data = doc.to_dict()
@@ -229,8 +230,7 @@ class BaseManager:
         except Exception as e:
             print(f"Error al obtener los foros: {e}")
             return None
-        
-    
+
     def _add_forum(self, user: User, foro: ForoModel):
         try:
             # Para JUANAN
@@ -254,7 +254,7 @@ class BaseManager:
             )
             """
             # Crear un nuevo documento en la colección 'foro'
-            self.db.collection('foro').add({
+            result = self.db.collection('foro').add({
                 'Descripcion': foro.descripcion,
                 'Dueño': user.email,
                 'Tútulo': foro.titulo,
@@ -268,6 +268,9 @@ class BaseManager:
                 'comentarios': foro.comentarios,
                 # 'mensajes_foro': mensajes_foro_ref,
             })
+            foro_id = result[1].id
+            print(f"Foro creado con ID: {foro_id}")
+            return foro_id
         except Exception as e:
             print(f"Error al añadir el usuario: {e}")
             return False

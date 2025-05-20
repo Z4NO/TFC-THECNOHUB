@@ -1,9 +1,10 @@
+from datetime import datetime, timezone, timedelta
 from flask import Flask, redirect, request, jsonify,  render_template, url_for
 from flask import session
 from flask_login import LoginManager, login_user, login_required, current_user
 from formularios.formularios import foro as foro
 from perfil.perfil import perfil as perfil
-from urllib.parse import  unquote
+from urllib.parse import unquote
 from mensajes.mensajes import mensajes as mensajes
 from BaseManager import BaseManager
 from Encripter import Encripter
@@ -15,7 +16,6 @@ from typing import Final
 from algoritmos import *
 from formularios.formularios import ForoModel
 from flask_caching import Cache
-
 
 
 # Cargar variables de entorno desde el archivo .env
@@ -42,12 +42,12 @@ app.register_blueprint(mensajes)
 socketio.init_app(app, cors_allowed_origins="*")
 
 
-
-
 encripter = Encripter(MASTER_KEY.encode())
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 # Rutas del login_namager
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
@@ -99,7 +99,7 @@ def index2():
     foros = []
     for foro in foros_lista if len(perfiles_list) >= 1 else []:
         foros.append(
-            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios,'titulo': foro.titulo, 'foro': foro})
+            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'titulo': foro.titulo, 'foro': foro})
 
     perfiles = [
     ]
@@ -124,8 +124,6 @@ def index2():
     ]
 
     return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros)
-
-
 
 
 @app.route('/index/endpoint', methods=['POST'])
@@ -186,6 +184,42 @@ def buscar():
     foros_data = [foro.__dict__ for foro in resultados["foros"]]
 
     return jsonify({"usuarios": usuarios_data, "foros": foros_data})
+
+
+# @app.route('/popup')
+# def popup():
+#     return render_template('components/popuppost.html')
+
+@app.route('/popup')
+def popup():
+    return render_template('popupcrearforo.html')
+
+
+@app.route('/postear', methods=['POST'])
+def postear():
+    try:
+        titulo = request.form.get('titulo')
+        descripcion = request.form.get('descripcion')
+        categorias = request.form.getlist('categorias')
+        user = User.get(current_user.email)
+
+        foro = ForoModel(
+            titulo=titulo,
+            descripcion=descripcion,
+            dueño=user.email,
+            categorias=categorias,
+        )
+        resultado = basemanager._add_forum(user, foro)
+        print(f"Resultado de _add_forum(): {resultado}")
+
+        if not resultado or resultado is False:
+            return jsonify({"message": "Error al crear el foro, pero sí se guardó en Firebase"}), 500
+
+        return jsonify({"message": "Foro creado exitosamente"}), 200
+
+    except Exception as e:
+        print(f"Error en postear(): {str(e)}")
+        return jsonify({"message": f"Error: {str(e)}"}), 500
 
 
 @app.route('/incorrect')

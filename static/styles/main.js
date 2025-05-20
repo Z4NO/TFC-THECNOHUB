@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     searchBar.appendChild(resultadoContainer);
 
+    const postearBtn = document.getElementById("postearBtn");
+    postearBtn.addEventListener("click", function() {
+        window.open("/popup", "Crear Foro", "width=400,height=400");
+    });
+
     explorarBtn.addEventListener("click", function() {
         if (searchBar.style.display === "none") {
             searchBar.style.display = "flex";

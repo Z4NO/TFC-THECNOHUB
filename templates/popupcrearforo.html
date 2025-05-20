@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Foro</title>
+</head>
+<body>
+      <!-- Este es el popup -->
+        <h3>Crear un Nuevo Foro</h3>
+
+        <form id="foroForm" action="/postear" method="POST"> 
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Título del foro" required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" placeholder="Describe tu foro..." required></textarea>
+
+            <label>Preferencias:</label><br>
+
+            <input type="checkbox" id="deporte" name="categorias" value="deporte">
+            <label for="deporte">Deporte</label><br>
+
+            <input type="checkbox" id="estudios" name="categorias" value="estudios">
+            <label for="estudios">Estudios</label><br>
+
+            <input type="checkbox" id="arte" name="categorias" value="arte">
+            <label for="arte">Arte</label><br>
+
+            <input type="checkbox" id="musica" name="categorias" value="musica">
+            <label for="musica">Música</label><br>
+
+            <input type="checkbox" id="viajes" name="categorias" value="viajes">
+            <label for="viajes">Viajes</label><br>
+
+            <input type="checkbox" id="cine" name="categorias" value="cine">
+            <label for="cine">Cine</label><br>
+
+            <input type="checkbox" id="lectura" name="categorias" value="lectura">
+            <label for="lectura">Lectura</label><br>
+
+            <input type="checkbox" id="videojuegos" name="categorias" value="videojuegos">
+            <label for="videojuegos">Videojuegos</label><br>
+
+            <input type="checkbox" id="fotografia" name="categorias" value="fotografia">
+            <label for="fotografia">Fotografía</label><br>
+
+            <input type="checkbox" id="naturaleza" name="categorias" value="naturaleza">
+            <label for="naturaleza">Naturaleza</label><br>
+
+            <button type="submit">Crear Foro</button>
+            
+        </form>
+        <script>
+            document.getElementById("foroForm").addEventListener("submit", function(event) {
+                setTimeout(function() {
+                    if(window.opener) {
+                        window.opener.location.reload();
+                    }
+                    // esta mierda es como un Sleep de 0.5 segs
+                    window.close();
+                }, 500); 
+            });
+        </script>
+    </div>
+</body>
+</html>
