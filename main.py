@@ -1,15 +1,10 @@
-import re
 from flask import Flask, redirect, request, jsonify,  render_template, url_for
 from flask import session
-from flask_login import LoginManager, login_user, login_required, logout_user, current_user
-import requests
-import secrets
-import urllib.parse
+from flask_login import LoginManager, login_user, login_required, current_user
 from formularios.formularios import foro as foro
 from perfil.perfil import perfil as perfil
-from urllib.parse import quote, unquote
+from urllib.parse import  unquote
 from mensajes.mensajes import mensajes as mensajes
-import datetime
 from BaseManager import BaseManager
 from Encripter import Encripter
 from dotenv import load_dotenv
@@ -19,6 +14,8 @@ from extension import socketio
 from typing import Final
 from algoritmos import *
 from formularios.formularios import ForoModel
+from flask_caching import Cache
+
 
 
 # Cargar variables de entorno desde el archivo .env
@@ -48,7 +45,7 @@ socketio.init_app(app, cors_allowed_origins="*")
 
 
 encripter = Encripter(MASTER_KEY.encode())
-
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 # Rutas del login_namager
 @login_manager.user_loader
@@ -95,8 +92,9 @@ def index():
 @app.route('/index', methods=['POST', 'GET'])
 @login_required
 def index2():
+
     perfiles_list = get_users_by_preferences(User.get(current_user.email))
-    foros_lista = basemanager._get_forums()
+    foros_lista = basemanager.get_forums_without_messages()
 
     foros = []
     for foro in foros_lista if len(perfiles_list) >= 1 else []:

@@ -201,6 +201,36 @@ class BaseManager:
             print(f"Error al obtener los foros: {e}")
             return None
 
+    def get_forums_without_messages(self) -> list[ForoModel]:
+        try:
+            foro_ref = self.db.collection('foro')
+            foro_ref_query = foro_ref.order_by('fecha_creacion', direction=firestore.Query.DESCENDING).limit(10).stream()
+            foros = []
+            for doc in foro_ref_query:
+                foro_data = doc.to_dict()
+
+                # Crear una instancia de ForoModel con los datos obtenidos
+                modelo_foro = ForoModel(
+                    mensajes=[],
+                    descripcion=foro_data['Descripcion'],
+                    dueño=foro_data['Dueño'],
+                    titulo=foro_data['Tútulo'],
+                    categorias=foro_data['categorias'],
+                    fecha_creacion=foro_data['fecha_creacion'],
+                    fecha_finalizacion=foro_data['fecha_finalizacion'],
+                    fecha_modificado=foro_data['fecha_modificado'],
+                    dueño_nickname=foro_data['dueño_nickname'],
+                    dueñonombre=foro_data['dueñonombre'],
+                    likes=foro_data['likes'],
+                    comentarios=foro_data['comentarios'],
+                )
+                foros.append(modelo_foro)
+            return foros
+        except Exception as e:
+            print(f"Error al obtener los foros: {e}")
+            return None
+        
+    
     def _add_forum(self, user: User, foro: ForoModel):
         try:
             # Para JUANAN

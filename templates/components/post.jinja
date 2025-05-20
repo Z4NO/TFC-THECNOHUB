@@ -1,7 +1,7 @@
 
-<div class="posts">
+<div class="posts" id="post">
 
-    <div class="post-bloque-usuario" onclick="funcionClick()">
+    <div class="post-bloque-usuario" >
 
         <div class="post-imgPerfil">
             <img src="{{ url_for('static', filename='imgs/pa.webp') }}" />
@@ -45,6 +45,17 @@
     </div>
 </div>
 <script>
+    const div = document.getElementById("post");
+    const btnLike = document.getElementById("boton-like");
+
+    div.addEventListener("click", function() {
+        cargarPostBloqueMedio('/foro/main');
+    });
+
+    btnLike.addEventListener("click", function(event) {
+        event.stopPropagation(); // Evita que el evento se propague al div padre
+    });
+
     function cargarPostBloqueMedio(ruta) {
         const btnInfo = document.getElementById("boton-comentario");
         const foroid = btnInfo.getAttribute("data-foro-id");
