@@ -1,17 +1,10 @@
-/* =====================================
-   BASE GLOBAL & ESTRUCTURA
-===================================== */
-
 html, body {
-  height: 60%;
+  height: 100%;
   margin: 0;
   font-family: sans-serif;
   background-color: black;
   color: white;
   overflow: hidden;
-}
-.mensajes{
-border: 1px solid rgb(118, 226, 151);
 }
 
 .contenedor-mensajes {
@@ -20,56 +13,55 @@ border: 1px solid rgb(118, 226, 151);
   height: 100%;
   padding: 0 1.5rem;
   box-sizing: border-box;
-  
+  background: radial-gradient(circle at top left, #0a0a0a, #000000);
+  box-shadow: 0 0 20px rgba(118, 226, 151, 0.1);
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-in;
 }
 
-/* =====================================
-   TITULO CABECERA
-===================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .mensajes-titulo {
   color: rgb(118, 226, 151);
-  font-size: 2rem;
-  padding: 1rem 0;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
   letter-spacing: 2px;
-  transition: all 0.3s ease;
+  padding: 1rem 0 0.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-bottom: 1px solid rgb(118, 226, 151);
+  animation: slideDown 0.5s ease-out;
 }
 
-.mensajes-titulo:hover {
-  letter-spacing: 4px;
-  transform: scale(1.05);
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-
-/* =====================================
-   LAYOUT PRINCIPAL (Sidebar + Chat)
-===================================== */
 
 .usuario-chat-container {
   display: flex;
   flex: 1;
   gap: 1rem;
-  overflow-x: hidden; 
-  
-
+  overflow-x: hidden;
 }
-
-/* =====================================
-   SIDEBAR USUARIOS
-===================================== */
 
 .container-usuarios {
   width: 250px;
   min-width: 200px;
-  background: black;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
   overflow-y: auto;
   overflow-x: hidden;
-  border-right: 1px solid rgb(118, 226, 151);
+  border-right: 1px solid rgba(118, 226, 151, 0.6);
   padding: 1rem 0.5rem;
   box-sizing: border-box;
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-in;
 }
 
-/* Barra de búsqueda */
 .barra-busqueda {
   display: flex;
   flex-direction: column;
@@ -80,7 +72,7 @@ border: 1px solid rgb(118, 226, 151);
 }
 
 .barra-busqueda input {
-  flex: 1;
+  width: 100%;
   padding: 0.5rem 1rem;
   border: 1px solid rgb(118, 226, 151);
   border-radius: 20px;
@@ -88,6 +80,12 @@ border: 1px solid rgb(118, 226, 151);
   color: white;
   font-size: 0.9rem;
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.barra-busqueda input:focus {
+  border-color: #1cff92;
+  outline: none;
 }
 
 .btn-funcionalidad {
@@ -109,29 +107,27 @@ border: 1px solid rgb(118, 226, 151);
   transform: scale(1.05);
 }
 
-.btn-funcionalidad i {
-  font-size: 1.2rem;
-}
-
-/* Botones de usuario */
 .mensajes {
   display: flex;
   align-items: center;
   width: 100%;
   padding: 0.5rem;
   border-radius: 10px;
-  background-color: black;
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(4px);
   color: rgb(118, 226, 151);
   margin-bottom: 0.5rem;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(118, 226, 151, 0.4);
 }
 
 .mensajes:hover {
-  background-color: #1a1a1a;
+  transform: scale(1.03);
+  background-color: rgba(26, 26, 26, 0.85);
 }
 
-.mensajes-imgPerfil {
+.mensajes-imgPerfil, .mensaje-imgPerfil {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -140,7 +136,7 @@ border: 1px solid rgb(118, 226, 151);
   flex-shrink: 0;
 }
 
-.mensajes-imgPerfil img {
+.mensajes-imgPerfil img, .mensaje-imgPerfil img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -150,7 +146,6 @@ border: 1px solid rgb(118, 226, 151);
   margin-left: 1rem;
   flex: 1;
   overflow: hidden;
-  
 }
 
 .mensaje-usuario {
@@ -168,17 +163,28 @@ border: 1px solid rgb(118, 226, 151);
   text-overflow: ellipsis;
 }
 
-/* =====================================
-   CHAT MENSAJES
-===================================== */
-
 .chat {
   flex: 1;
   display: flex;
   flex-direction: column;
   border: 1px solid rgb(118, 226, 151);
-  padding: 0.5rem;
+  padding: 0;
   box-sizing: border-box;
+  border-radius: 12px;
+}
+
+.chat-header {
+  background: rgba(0,0,0,0.6);
+  color: rgb(118, 226, 151);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(118, 226, 151, 0.4);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.chat-sala {
+  font-weight: bold;
 }
 
 .chat-mensajes {
@@ -195,6 +201,12 @@ border: 1px solid rgb(118, 226, 151);
   align-items: flex-end;
   gap: 0.5rem;
   max-width: 70%;
+  opacity: 0;
+  animation: messageFadeIn 0.4s forwards;
+}
+
+@keyframes messageFadeIn {
+  to { opacity: 1; }
 }
 
 .mensaje-contenedor.enviado {
@@ -203,48 +215,38 @@ border: 1px solid rgb(118, 226, 151);
 }
 
 .mensaje-burbuja {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 15px;
   border: 1px solid rgb(118, 226, 151);
-  background-color: #1e1e1e;
+  background-color: #1f1f1f;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  box-shadow: 0 0 5px rgba(118, 226, 151, 0.1);
+  position: relative;
 }
 
 .mensaje-contenedor.enviado .mensaje-burbuja {
   background-color: rgb(118, 226, 151);
   color: black;
+  font-weight: 500;
+  border-radius: 20px 20px 5px 20px;
+  box-shadow: 0 0 8px rgba(118, 226, 151, 0.4);
 }
 
 .mensaje-fecha {
-  font-size: 0.7rem;
-  color: rgb(170, 170, 170);
-  align-self: flex-end;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.6);
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
 }
-
-.mensaje-imgPerfil {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid rgb(118, 226, 151);
-}
-
-.mensaje-imgPerfil img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* =====================================
-   CHAT INPUT & FOOTER
-===================================== */
 
 .chat-input {
   display: flex;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border-top: 1px solid rgb(118, 226, 151);
-  background: black;
-  overflow-y: hidden;
+  border-top: 1px solid rgba(118, 226, 151, 0.4);
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
 }
 
 .chat-input textarea {
@@ -254,31 +256,35 @@ border: 1px solid rgb(118, 226, 151);
   border: 1px solid rgb(118, 226, 151);
   color: white;
   resize: none;
-  height: auto;
   min-height: 30px;
   max-height: 80px;
   overflow-y: auto;
-  padding-left: 10px;
-  padding-top: 10px;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  transition: border-color 0.3s ease;
 }
 
-.chat-input textarea::placeholder {
-  text-align: left;
-  padding: 5px;
+.chat-input textarea:focus {
+  border-color: #1cff92;
+  outline: none;
 }
 
 .chat-input button {
-  width: 40px;          
+  width: 40px;
   height: 40px;
-  padding: 0;              
-  border-radius: 50%;      
+  border-radius: 50%;
   background-color: rgb(118, 226, 151);
   color: black;
   border: none;
   cursor: pointer;
-  display: flex;          
+  display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.chat-input button:hover {
+  transform: scale(1.1);
 }
 
 .chat-fecha {
@@ -288,10 +294,6 @@ border: 1px solid rgb(118, 226, 151);
   border-top: 1px solid rgb(118, 226, 151);
   text-align: center;
 }
-
-/* =====================================
-   CUSTOM SCROLLBARS (Global)
-===================================== */
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -307,34 +309,20 @@ border: 1px solid rgb(118, 226, 151);
   border: 1px solid black;
 }
 
-/* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: rgb(118, 226, 151) black;
 }
 
-/* =====================================
-   RESPONSIVE DESIGN
-===================================== */
-
 @media (max-width: 768px) {
   .usuario-chat-container {
     flex-direction: column;
   }
-
   .container-usuarios {
     width: 100%;
     height: 200px;
     border-right: none;
     border-bottom: 1px solid rgb(118, 226, 151);
-  }
-
-  .chat {
-    flex: 1;
-  }
-
-  .chat-mensajes {
-    padding: 0.5rem;
   }
 }
 
@@ -342,7 +330,6 @@ border: 1px solid rgb(118, 226, 151);
   .contenedor-mensajes {
     padding: 0 0.5rem;
   }
-
   .mensajes-titulo {
     font-size: 1.5rem;
     padding: 0.5rem 0;

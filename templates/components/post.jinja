@@ -9,7 +9,7 @@
         <div class="post-nombre">
             <span> {{foro.dueñonombre}}</span>
         </div>
-        <div class="post-usuario">
+         <div class="post-usuario">
             <span> {{foro.dueño_nickname}}</span>
         </div>
 
@@ -22,7 +22,7 @@
 
     <div class="post-funcionalidades" > 
         <!-- Agregar un icono para cada funcionalidad -->
-        <button id="boton-like" onclick="funcionLike()">
+        <button id="boton-like" onclick="funcionLike(this)">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-heart-fill" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -57,6 +57,7 @@
         });
     });
 
+
     function cargarPostBloqueMedio(btn,ruta) {
         const foroid = btn.getAttribute("data-foro-id");
         const forodescripcion = btn.getAttribute("data-foro-descripcion");
@@ -76,9 +77,8 @@
             })
             .catch(console.error);
     }
-    function funcionLike() {
-        const btn = document.getElementById("boton-like")
-        const numLikes = document.getElementById("likes")
+    function funcionLike(btn) {
+        const numLikes = btn.nextElementSibling;
         if(btn.style.color == "red"){
             btn.style.color = "white"
             numLikes.innerHTML = parseInt(numLikes.innerHTML) - 1
