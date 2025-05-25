@@ -92,9 +92,26 @@ def index():
 @app.route('/index', methods=['POST', 'GET'])
 @login_required
 def index2():
-
+    valor = unquote(request.args.get("valor", ""))
     perfiles_list = get_users_by_preferences(User.get(current_user.email))
     foros_lista = basemanager.get_forums_without_messages()
+    perfiles_busqueda = []
+    foros_busqueda = []
+    usuario_buscado = None
+    print(f"resultado valor: {valor}")
+    if valor:
+        resultados = basemanager.get_data_by_field(valor)
+        print("Resultados obtenidos:", resultados)
+        perfiles_busqueda = resultados["usuarios"]
+        foros_busqueda = resultados["foros"]
+        if perfiles_busqueda:
+            usuario_buscado = basemanager.get_user_by_nickname(
+                perfiles_busqueda[0].nickname)
+
+    foros_encontrados = [{'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion,
+                          'Likes': foro.likes, 'Comentarios': foro.comentarios, 'titulo': foro.titulo, 'foro': foro} for foro in foros_busqueda]
+    perfiles_encontrados = [
+        {'nombre': perfil.nombre, 'nickname': perfil.nickname, 'foto_perfil': perfil.foto_perfil, 'fecha_creacion': perfil.fecha_creacion} for perfil in perfiles_busqueda]
 
     foros = []
     for foro in foros_lista if len(perfiles_list) >= 1 else []:
@@ -122,8 +139,12 @@ def index2():
         {'Usuario': 'Wanan', 'Nickname': '@LilWanan',
             'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.\n#FrikingPagaMas #PonedAireEnFriking '}
     ]
+    print("Usuario encontrado:", usuario_buscado)
+    print("Perfiles encontrados:", perfiles_encontrados)
+    print("Foros encontrados:", foros_encontrados)
+    print(f"Valor recibido en la búsqueda: {valor}")
 
-    return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros)
+    return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros, foros_encontrados=foros_encontrados, perfiles_encontrados=perfiles_encontrados, usuario_buscado=usuario_buscado)
 
 
 @app.route('/index/endpoint', methods=['POST'])

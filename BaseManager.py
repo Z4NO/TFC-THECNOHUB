@@ -380,3 +380,30 @@ class BaseManager:
         except Exception as e:
             print(f"Error en la búsqueda parcial: {e}")
             return {"usuarios": [], "foros": []}
+
+    def get_user_by_nickname(self, nickname: str) -> User:
+        try:
+            user_ref = self.db.collection('usuario')
+            user_ref_query = user_ref.where(
+                'nickname', '==', nickname).stream()
+
+            for doc in user_ref_query:
+                user_data = doc.to_dict()
+                return User(
+                    contrasena=self.encripter._decript(
+                        user_data['contrasena']),
+                    email=user_data['email'],
+                    nombre=user_data['nombre'],
+                    preferencias=user_data['preferencias'],
+                    reputacion=user_data['reputacion'],
+                    rol=user_data['rol'],
+                    foto_perfil=user_data['foto_perfil'],
+                    nickname=user_data['nickname'],
+                    fecha_creacion=user_data['fecha_creacion'],
+                    suscripcion=user_data['suscripcion'],
+                    fecha_expiracion_premium=user_data['fecha_expiracion_premium']
+                )
+            return None
+        except Exception as e:
+            print(f"Error al obtener el usuario por nickname: {e}")
+            return None

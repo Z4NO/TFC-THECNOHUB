@@ -28,6 +28,16 @@ def cargar_profile():
     return render_template('profile.html', user=user, dias_creacion=dias_creacion)
 
 
+@perfil.route('/main/<usuario>', methods=['GET'])
+@login_required
+def cargar_profile_by_search(usuario):
+
+    perfil = User.get_by_nickname(usuario)
+
+    dias_creacion = perfil.antiguedad_cuenta() if perfil.fecha_creacion else 0
+    return render_template('profile.html', user=perfil, dias_creacion=dias_creacion)
+
+
 @perfil.route('/actualizar-foto', methods=['GET'])
 @login_required
 def actualizar_foto():

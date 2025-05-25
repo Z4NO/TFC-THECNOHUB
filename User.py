@@ -57,6 +57,15 @@ class User:
         else:
             return None
 
+    def get_by_nickname(nickname):
+        from BaseManager import BaseManager
+        basemanager = BaseManager()
+        usuario = basemanager.get_user_by_nickname(nickname)
+        if usuario:
+            return usuario
+        else:
+            return None
+
     def antiguedad_cuenta(self):
         hoy = datetime.now(timezone.utc)
         diferencia = hoy - self.fecha_creacion

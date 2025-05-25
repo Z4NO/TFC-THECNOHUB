@@ -20,7 +20,9 @@
 </head>
 
 <body class="container">
-  <div id="search-bar" class="search-bar-container" style="display: none;">
+
+  {% include 'components/searchbar.jinja' %}
+  {# <div id="search-bar" class="search-bar-container" style="display: none;">
     <input type="text" id="search-input" class="search-box" placeholder="Buscar...">
     <button id="search-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +32,7 @@
       </svg>
     </button>
 
-  </div>
+  </div> #}
 
   <div class="margenIzq"></div>
   <div class="bloqueIzquierda">
@@ -116,17 +118,37 @@
 
   <div class="bloqueMedio" id="bloqueMedio">
 
-    <!-- Agregar cantidad de likes y comentarios  -->
+    {% if perfiles_encontrados and perfiles_encontrados | length > 0 %}
+    <h4>Usuarios encontrados:</h4>
+    <div class="usuario-card-container">
+      {% for perfil in perfiles_encontrados %}
+      {% include 'components/usuario_busqueda.jinja' %}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if foros_encontrados and foros_encontrados | length > 0 %}
+    <h3>Foros encontrados:</h3>
+    {% for foro in foros_encontrados %}
+    <p><strong>{{ foro.titulo }}</strong> - {{ foro.Descripcion }}</p>
+    {% include 'components/post.jinja' %}
+    {% endfor %}
+    {% endif %}
+
+    {% if not valor %}
+    <hr>
+    <h3>Foros recientes</h3>
     {% for foro in foros %}
     {% set dueñonombre = foro.dueñonombre %}
     {% set dueño_nickname = foro.dueño_nickname %}
     {% set Descripcion = foro.Descripcion %}
     {% include 'components/post.jinja' %}
     {% endfor %}
-
-
-
+    {% endif %}
   </div>
+
+
+
 
   <div class="bloqueDerecha" id="bloqueDerecha">
     <div class="recomendaciones">

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const searchInput = document.getElementById("search-input"); 
     const resultadoContainer = document.createElement("div");
 
+    searchBar.style.display = "none";
     searchBar.appendChild(resultadoContainer);
 
     const postearBtn = document.getElementById("postearBtn");
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
-
+/*
     function realizarBusqueda() {
         let searchText = encodeURIComponent(searchInput.value);
 
@@ -75,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .catch(error => console.error("Error en la búsqueda:", error));
     }
 
-  
+  */
     searchInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") { 
             event.preventDefault(); 
