@@ -57,6 +57,8 @@ function cargarComponente(ruta, email = null, roomId = null) {
       document.getElementById('bloqueDerecha').hidden = true;
       medio.style.width = '100%';
 
+      document.getElementById('chat-sala').innerText = roomId;
+
       medio.querySelectorAll('.mensajes').forEach(btn => {
       btn.addEventListener('click', () => {
         console.log('🔄 Cambiando de sala');
@@ -74,6 +76,7 @@ function cargarComponente(ruta, email = null, roomId = null) {
 
         // cargar UI + habilitar envío
         cargarComponente('/mensajes/main/mensajes', otherEmail, roomId);
+
       });
       });
 
