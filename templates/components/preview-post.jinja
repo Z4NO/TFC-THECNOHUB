@@ -1,0 +1,9 @@
+<div class="comment-preview">
+  <div class="cp-header">
+    <span class="cp-author">{{ comment.autor }}</span>
+    <span class="cp-date">{{ comment.fecha.strftime('%d/%m/%Y') }}</span>
+  </div>
+  <div class="cp-body">
+    {{ comment.contenido }}
+  </div>
+</div>

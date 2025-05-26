@@ -17,7 +17,16 @@
       <p>{{forodescripcion}}</p>
     </div>
     <div class="publicaciones">
-      
+      {% for mensaje in mensajes %}
+      {% set autor = mensaje.autor %}
+      {% set fecha = mensaje.fecha %}
+      {% set contenido = contenido.contenido %}
+      {% include 'components/preview-post.jinja' %}
+      {% endfor %}
+      {% endif %}
     </div>
   </div>
+  <script>
+
+  </script>
 </body>

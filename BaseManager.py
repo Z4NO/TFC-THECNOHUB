@@ -201,6 +201,7 @@ class BaseManager:
             print(f"Error al obtener los foros: {e}")
             return None
 
+
     def get_forums_without_messages(self) -> list[ForoModel]:
         try:
             foro_ref = self.db.collection('foro')
@@ -212,6 +213,7 @@ class BaseManager:
 
                 # Crear una instancia de ForoModel con los datos obtenidos
                 modelo_foro = ForoModel(
+                    id=doc.id,
                     mensajes=[],
                     descripcion=foro_data['Descripcion'],
                     dueño=foro_data['Dueño'],
@@ -230,6 +232,26 @@ class BaseManager:
         except Exception as e:
             print(f"Error al obtener los foros: {e}")
             return None
+        
+    def get_messages_by_forum_id(self, foro_id: str) -> list[dict]:
+        try:
+            # Referencia al documento del foro
+            foro_ref = self.db.collection('foro').document(foro_id)
+
+            # Verificar si el documento del foro existe
+            if not foro_ref.get().exists:
+                raise ValueError(f"No se encontró un foro con el ID: {foro_id}")
+
+            # Obtener los mensajes de la subcolección 'mensajes'
+            mensajes_ref = foro_ref.collection('mensajes')
+            mensajes_docs = mensajes_ref.stream()
+
+            # Convertir los documentos a un diccionario
+            mensajes = [mensaje_doc.to_dict() for mensaje_doc in mensajes_docs]
+            return mensajes
+        except Exception as e:
+            print(f"Error al obtener los mensajes del foro: {e}")
+            return []
 
     def _add_forum(self, user: User, foro: ForoModel):
         try:

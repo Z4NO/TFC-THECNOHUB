@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const postearBtn = document.getElementById("postearBtn");
     postearBtn.addEventListener("click", function() {
-        window.open("/popup", "Crear Foro", "width=400,height=400");
+        window.open("/popup", "Crear Foro", "width=400,height=400, resizable=no");
     });
 
     explorarBtn.addEventListener("click", function() {

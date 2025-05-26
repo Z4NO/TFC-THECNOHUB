@@ -1,0 +1,114 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Contenedor del popup (formulario) */
+form#foroForm {
+  width: 360px;
+  height: 360px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #000000;
+}
+
+/* Título del formulario */
+form#foroForm h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: rgb(118, 226, 151);
+  text-align: center;
+}
+
+/* Etiquetas */
+form#foroForm label {
+  font-size: 13px;
+  margin-top: 8px;
+  color: #333333;
+  display: block;
+}
+
+/* Campos de texto y textarea */
+form#foroForm input[type="text"],
+form#foroForm textarea {
+  width: 100%;
+  padding: 6px 8px;
+  margin-top: 4px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: border-color 0.3s ease;
+}
+
+form#foroForm input[type="text"]:focus,
+form#foroForm textarea:focus {
+  border-color: rgb(118, 226, 151);
+  outline: none;
+}
+
+/* Contenedor de preferencias con scroll */
+form#foroForm .preferencias {
+  flex: 1;
+  margin-top: 8px;
+  overflow-y: auto;
+  border: 1px solid #eeeeee;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+/* Etiquetas de checkbox */
+form#foroForm .preferencias label {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 4px;
+  font-weight: normal;
+  color: #333;
+}
+
+/* Checkboxes */
+form#foroForm input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: rgb(118, 226, 151);
+  cursor: pointer;
+}
+
+/* Botón de envío */
+form#foroForm button[type="submit"] {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: rgb(118, 226, 151);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form#foroForm button[type="submit"]:hover {
+  background-color: rgb(98, 206, 131);
+}
+
+/* Scrollbar personalizado (opcional) */
+form#foroForm .preferencias::-webkit-scrollbar {
+  width: 5px;
+}
+form#foroForm .preferencias::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}

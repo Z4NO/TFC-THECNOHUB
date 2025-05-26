@@ -1,17 +1,12 @@
 from flask import Flask, redirect, request, jsonify,  render_template, url_for, Blueprint
 from flask import session
 from flask_login import *
-import requests
-import secrets
-import urllib.parse
 from datetime import datetime, timezone
 from Encripter import Encripter
 from dotenv import load_dotenv
-from User import User
-import os
 from urllib.parse import quote, unquote
 from typing import List, Optional
-
+from extension import get_messages
 
 foro = Blueprint('foro', __name__, url_prefix='/foro')
 
@@ -30,7 +25,8 @@ class ForoModel:
         fecha_modificado: Optional[datetime] = None,
         dueñonombre: Optional[str] = None,
         dueño_nickname: Optional[str] = None,
-        mensajes: Optional[List[dict]] = None
+        mensajes: Optional[List[dict]] = None,
+        id: str = None,
     ):
         self.likes = likes
         self.comentarios = comentarios
@@ -44,6 +40,7 @@ class ForoModel:
         self.dueñonombre = dueñonombre
         self.dueño_nickname = dueño_nickname
         self.mensajes = mensajes if mensajes is not None else []
+        self.id = id
 
 
 
@@ -57,11 +54,23 @@ def cargar_foro():
     forodescripcion = unquote(request.args.get('forodescripcion'))
     forodueño = unquote(request.args.get('forodueño'))
     forotitulo = unquote(request.args.get('forotitulo'))
+    foroid = unquote(request.args.get('foroid'))
+    #vamos a cargar los mensajes del foro
+    mensajes = get_messages(foroid)
+    mensajes_list = []
+    for mensaje in mensajes:
+        mensajes_list.append({
+            'contenido': mensaje.contenido,
+            'autor': mensaje.autor,
+            'fecha': mensaje.fecha,
+        })
+
     return render_template('foro.jinja', 
                            forodescripcion=forodescripcion,
                            forodueño=forodueño,
                            forotitulo=forotitulo,
-                           current_user=current_user)
+                           current_user=current_user,
+                           mensajes=mensajes_list,)
 
 
 # @foro.route('/')

@@ -1,66 +1,136 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Crear Foro</title>
+  <meta charset="UTF-8">
+  <title>Crear Foro</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    form#foroForm {
+      width: 360px;
+      height: 360px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 14px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+
+    form#foroForm h3 {
+      font-size: 18px;
+      color: rgb(118, 226, 151);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    form#foroForm label {
+      font-size: 13px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      color: #333;
+    }
+
+    form#foroForm input[type="text"],
+    form#foroForm textarea {
+      width: calc(100% - 16px); /* deja margen interior para evitar que se desborde */
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+
+    form#foroForm textarea {
+      resize: none;
+      height: 48px;
+    }
+
+    .preferencias {
+      flex: 1;
+      margin-top: 6px;
+      overflow-y: auto;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      padding: 6px;
+    }
+
+    .preferencias label {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      margin-bottom: 4px;
+      font-weight: normal;
+      color: #333;
+    }
+
+    .preferencias input[type="checkbox"] {
+      margin-right: 6px;
+      accent-color: rgb(118, 226, 151);
+    }
+
+    button[type="submit"] {
+      margin-top: 6px;
+      padding: 8px;
+      background-color: rgb(118, 226, 151);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: rgb(98, 206, 131);
+    }
+  </style>
 </head>
 <body>
-      <!-- Este es el popup -->
-        <h3>Crear un Nuevo Foro</h3>
+  <form id="foroForm" action="/postear" method="POST">
+    <h3>Crear un Nuevo Foro</h3>
 
-        <form id="foroForm" action="/postear" method="POST"> 
-            <label for="titulo">Título:</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Título del foro" required>
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" placeholder="Título del foro" required>
 
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" name="descripcion" placeholder="Describe tu foro..." required></textarea>
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" placeholder="Describe tu foro..." required></textarea>
 
-            <label>Preferencias:</label><br>
-
-            <input type="checkbox" id="deporte" name="categorias" value="deporte">
-            <label for="deporte">Deporte</label><br>
-
-            <input type="checkbox" id="estudios" name="categorias" value="estudios">
-            <label for="estudios">Estudios</label><br>
-
-            <input type="checkbox" id="arte" name="categorias" value="arte">
-            <label for="arte">Arte</label><br>
-
-            <input type="checkbox" id="musica" name="categorias" value="musica">
-            <label for="musica">Música</label><br>
-
-            <input type="checkbox" id="viajes" name="categorias" value="viajes">
-            <label for="viajes">Viajes</label><br>
-
-            <input type="checkbox" id="cine" name="categorias" value="cine">
-            <label for="cine">Cine</label><br>
-
-            <input type="checkbox" id="lectura" name="categorias" value="lectura">
-            <label for="lectura">Lectura</label><br>
-
-            <input type="checkbox" id="videojuegos" name="categorias" value="videojuegos">
-            <label for="videojuegos">Videojuegos</label><br>
-
-            <input type="checkbox" id="fotografia" name="categorias" value="fotografia">
-            <label for="fotografia">Fotografía</label><br>
-
-            <input type="checkbox" id="naturaleza" name="categorias" value="naturaleza">
-            <label for="naturaleza">Naturaleza</label><br>
-
-            <button type="submit">Crear Foro</button>
-            
-        </form>
-        <script>
-            document.getElementById("foroForm").addEventListener("submit", function(event) {
-                setTimeout(function() {
-                    if(window.opener) {
-                        window.opener.location.reload();
-                    }
-                    // esta mierda es como un Sleep de 0.5 segs
-                    window.close();
-                }, 500); 
-            });
-        </script>
+    <label>Preferencias:</label>
+    <div class="preferencias">
+      <label><input type="checkbox" name="categorias" value="deporte">Deporte</label>
+      <label><input type="checkbox" name="categorias" value="estudios">Estudios</label>
+      <label><input type="checkbox" name="categorias" value="arte">Arte</label>
+      <label><input type="checkbox" name="categorias" value="musica">Música</label>
+      <label><input type="checkbox" name="categorias" value="viajes">Viajes</label>
+      <label><input type="checkbox" name="categorias" value="cine">Cine</label>
+      <label><input type="checkbox" name="categorias" value="lectura">Lectura</label>
+      <label><input type="checkbox" name="categorias" value="videojuegos">Videojuegos</label>
+      <label><input type="checkbox" name="categorias" value="fotografia">Fotografía</label>
+      <label><input type="checkbox" name="categorias" value="naturaleza">Naturaleza</label>
     </div>
+
+    <button type="submit">Crear Foro</button>
+  </form>
+
+  <script>
+    document.getElementById("foroForm").addEventListener("submit", function(event) {
+      setTimeout(function () {
+        if (window.opener) {
+          window.opener.location.reload();
+        }
+        window.close();
+      }, 500);
+    });
+  </script>
 </body>
 </html>

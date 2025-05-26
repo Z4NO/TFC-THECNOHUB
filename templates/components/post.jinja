@@ -33,6 +33,7 @@
         <button id="boton-comentario" 
             data-foro-descripcion ="{{ foro.Descripcion }}"
             data-foro-dueño ="{{ foro.dueño_nickname }}"
+            data-foro-id= "{{ foro.id }}"
             data-foro-titulo ="{{ foro.titulo }}"
             onclick="cargarPostBloqueMedio(this, '/foro/main')">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -63,7 +64,7 @@
         const forodescripcion = btn.getAttribute("data-foro-descripcion");
         const forodueño = btn.getAttribute("data-foro-dueño");
         const forotitulo = btn.getAttribute("data-foro-titulo");
-        fetch(`${ruta}?forodescripcion=${encodeURIComponent(forodescripcion)}&forodueño=${encodeURIComponent(forodueño)}&forotitulo=${encodeURIComponent(forotitulo)}`)
+        fetch(`${ruta}?forodescripcion=${encodeURIComponent(forodescripcion)}&forodueño=${encodeURIComponent(forodueño)}&forotitulo=${encodeURIComponent(forotitulo)}&foroid=${foroid}`)
             .then(r => r.text())
             .then(html => {
             const medio = document.getElementById('bloqueMedio');
