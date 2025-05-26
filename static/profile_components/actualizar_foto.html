@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Actualizar Foto de Perfil</title>
-
+  <link rel="stylesheet" href="/static/profile.css">
 </head>
 <body>
 
-    <div class="container2">
-      <h2>Actualizar Foto de Perfil</h2>
-      <form action="/profile/upload_foto_perfil" method="post" enctype="multipart/form-data">
-          <input type="file" name="foto_perfil" accept="image/*">
-          <button type="submit" class="btn">Actualizar Foto</button>
-      </form>
-    </div>
-
+  <div class="actualizar-foto-container">
+    <h2>Actualizar Foto de Perfil</h2>
+    <form action="/profile/upload_foto_perfil" method="post" enctype="multipart/form-data">
+      <input type="file" name="foto_perfil" accept="image/*" required>
+      <button type="submit" class="btn">Actualizar Foto</button>
+    </form>
+  </div>
 
 </body>
 </html>

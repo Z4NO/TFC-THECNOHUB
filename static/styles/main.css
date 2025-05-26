@@ -204,6 +204,11 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+.bloqueMedio h3 {
+  text-align: center; 
+  font-weight: 900;  
+  color: rgb(126, 213, 126); 
+}
 
 .bloqueMedio::-webkit-scrollbar,
 .bloqueDerecha::-webkit-scrollbar {
