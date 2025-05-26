@@ -12,7 +12,6 @@ from firebase_admin import credentials, firestore
 import random
 
 
-
 class BaseManager:
     def __init__(self):
         try:
@@ -201,7 +200,6 @@ class BaseManager:
             print(f"Error al obtener los foros: {e}")
             return None
 
-
     def get_forums_without_messages(self):
         from formularios.formularios import ForoModel
         try:
@@ -233,7 +231,7 @@ class BaseManager:
         except Exception as e:
             print(f"Error al obtener los foros: {e}")
             return None
-        
+
     def get_messages_by_forum_id(self, foro_id: str) -> list[dict]:
         try:
             # Referencia al documento del foro
@@ -241,7 +239,8 @@ class BaseManager:
 
             # Verificar si el documento del foro existe
             if not foro_ref.get().exists:
-                raise ValueError(f"No se encontró un foro con el ID: {foro_id}")
+                raise ValueError(
+                    f"No se encontró un foro con el ID: {foro_id}")
 
             # Obtener los mensajes de la subcolección 'mensajes'
             mensajes_ref = foro_ref.collection('mensajes')
@@ -433,3 +432,40 @@ class BaseManager:
         except Exception as e:
             print(f"Error al obtener el usuario por nickname: {e}")
             return None
+
+    def get_foros_by_user(self, nickname: str) -> list:
+        from formularios.formularios import ForoModel
+        try:
+            posts_query = self.db.collection("foro").stream()
+
+            foros = []
+            for doc in posts_query:
+                foro_data = doc.to_dict()
+                if nickname.lower() in foro_data.get("dueño_nickname", "").lower():
+                    mensajes_ref = doc.reference.collection("mensajes")
+                    mensajes_docs = mensajes_ref.stream()
+                    mensajes = [mensaje_doc.to_dict()
+                                for mensaje_doc in mensajes_docs]
+
+                    modelo_foro = ForoModel(
+                        mensajes=mensajes,
+                        descripcion=foro_data.get('Descripcion'),
+                        dueño=foro_data.get('Dueño'),
+                        titulo=foro_data.get('Tútulo'),
+                        categorias=foro_data.get('categorias'),
+                        fecha_creacion=foro_data.get('fecha_creacion'),
+                        fecha_finalizacion=foro_data.get('fecha_finalizacion'),
+                        fecha_modificado=foro_data.get('fecha_modificado'),
+                        dueño_nickname=foro_data.get('dueño_nickname'),
+                        dueñonombre=foro_data.get('dueñonombre'),
+                        likes=foro_data.get('likes'),
+                        comentarios=foro_data.get('comentarios'),
+                        id=doc.id
+                    )
+                    foros.append(modelo_foro)
+
+            return foros
+
+        except Exception as e:
+            print(f"Error al obtener los foros: {e}")
+            return []

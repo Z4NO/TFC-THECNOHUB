@@ -1,0 +1,31 @@
+<body>
+    <div class="contenedor-mensajes">
+        <div class="mensajes-titulo">
+            <span>Foros</span>
+        </div>
+
+        <div class="usuario-foro-container">
+            <div class="container-foros">
+                <div class="usuario_pfp">
+                    <img src="{{ url_for('static', filename='imgs/jbaaa@gmail.com.png') }}" />
+                </div>
+
+                {% if foros_usuarios %}
+                <h3>Foros del usuario:</h3>
+                {% for foro in foros_usuarios %}
+                {% include 'components/misForos.jinja' %}
+                {% endfor %}
+                {% endif %}
+
+            </div>
+
+            <div id="foros" class="foros">
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

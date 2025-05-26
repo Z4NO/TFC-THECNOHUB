@@ -1,0 +1,74 @@
+<div class="posts" id="post">
+
+    <div class="post-bloque-usuario">
+
+        <div class="post-imgPerfil">
+            <img src="{{ url_for('static', filename='imgs/pa.webp') }}" />
+        </div>
+        <div class="post-nombre">
+            <span> {{foro.dueñonombre}}</span>
+        </div>
+        <div class="post-usuario">
+            <span> {{foro.dueño_nickname}}</span>
+        </div>
+
+
+    </div>
+    <div class="post-texto">
+        <span> {{foro.Descripcion}}
+        </span>
+    </div>
+
+    <div class="post-funcionalidades">
+        <!-- Agregar un icono para cada funcionalidad -->
+        <button id="boton-like" onclick="funcionLike(this)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+            </svg>
+        </button>
+        <span id="likes">{{foro.Likes}}</span>
+        <button id="boton-comentario2" data-foro-descripcion="{{ foro.Descripcion }}"
+            data-foro-dueño="{{ foro.dueño_nickname }}" data-foro-id="{{ foro.id }}"
+            data-foro-titulo="{{ foro.titulo }}" onclick="cargarPostForosNuevo(this, '/foro/main')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill"
+                viewBox="0 0 16 16">
+                <path
+                    d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
+            </svg>
+        </button>
+        <span>{{foro.Comentarios}}</span>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.posts').forEach(div => {
+            div.addEventListener("click", function (e) {
+                if (!e.target.closest('button')) {
+                    const commentBtn = div.querySelector('#boton-comentario');
+                    if (commentBtn) {
+                        cargarPostForosNuevo(commentBtn, '/foro/main');
+                    }
+                }
+            });
+        });
+
+        function cargarPostForosNuevo(btn, ruta) {
+            const foroid = btn.getAttribute("data-foro-id");
+            const forodescripcion = btn.getAttribute("data-foro-descripcion");
+            const forodueño = btn.getAttribute("data-foro-dueño");
+            const forotitulo = btn.getAttribute("data-foro-titulo");
+            fetch(`${ruta}?forodescripcion=${encodeURIComponent(forodescripcion)}&forodueño=${encodeURIComponent(forodueño)}&forotitulo=${encodeURIComponent(forotitulo)}&foroid=${foroid}`)
+                .then(r => r.text())
+                .then(html => {
+                    const foroDiv = document.getElementById('foros');
+                    foroDiv.innerHTML = html;
+                    setTimeout(() => {
+                        foroDiv.style.height = '100%';
+                        foroDiv.style.overflowY = 'auto';
+                    }, 100);
+                })
+                .catch(console.error);
+        }
+    });
+</script>

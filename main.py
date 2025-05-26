@@ -95,6 +95,8 @@ def index2():
     valor = unquote(request.args.get("valor", ""))
     perfiles_list = get_users_by_preferences(User.get(current_user.email))
     foros_lista = basemanager.get_forums_without_messages()
+    foros_usuario = basemanager.get_foros_by_user(
+        User.get(current_user.nickname))
     perfiles_busqueda = []
     foros_busqueda = []
     usuario_buscado = None
@@ -116,7 +118,12 @@ def index2():
     foros = []
     for foro in foros_lista if len(perfiles_list) >= 1 else []:
         foros.append(
-            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'titulo': foro.titulo,'id': foro.id, 'foro': foro})
+            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'titulo': foro.titulo, 'id': foro.id, 'foro': foro})
+
+    foros_usuarios = []
+    for foro in foros_usuario if len(perfiles_list) >= 1 else []:
+        foros_usuarios.append(
+            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'titulo': foro.titulo, 'foro': foro})
 
     perfiles = [
     ]
@@ -139,7 +146,9 @@ def index2():
         {'Usuario': 'Wanan', 'Nickname': '@LilWanan',
             'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.\n#FrikingPagaMas #PonedAireEnFriking '}
     ]
-    return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros, foros_encontrados=foros_encontrados, perfiles_encontrados=perfiles_encontrados, usuario_buscado=usuario_buscado)
+    print(f"foro de cada usuario: {foros_usuarios}")
+
+    return render_template('main.jinja', perfiles=perfiles, tendencias=tendencias, post_recomendados=post_recomendados, foros=foros, foros_encontrados=foros_encontrados, perfiles_encontrados=perfiles_encontrados, usuario_buscado=usuario_buscado, foros_usuarios=foros_usuarios)
 
 
 @app.route('/index/endpoint', methods=['POST'])

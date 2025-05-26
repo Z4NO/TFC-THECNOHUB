@@ -44,8 +44,6 @@ class ForoModel:
         self.id = id
 
 
-
-
 # carga foro con el html que todavia no esta creado y le pasa el current_user.preferencias
 
 
@@ -56,7 +54,12 @@ def cargar_foro():
     forodueño = unquote(request.args.get('forodueño'))
     forotitulo = unquote(request.args.get('forotitulo'))
     foroid = unquote(request.args.get('foroid'))
-    #vamos a cargar los mensajes del foro
+    print(f"1: {forodescripcion}")
+    print(f"2: {forodueño}")
+    print(f"3: {forotitulo}")
+    print(f"4: {foroid}")
+
+    # vamos a cargar los mensajes del foro
     mensajes = get_messages(foroid)
     print(f"Mensajes obtenidos: {mensajes}")
     mensajes_list = []
@@ -67,7 +70,7 @@ def cargar_foro():
             'autor': mensaje['autor']
         })
 
-    return render_template('foro.jinja', 
+    return render_template('foro.jinja',
                            forodescripcion=forodescripcion,
                            forodueño=forodueño,
                            forotitulo=forotitulo,
@@ -78,3 +81,30 @@ def cargar_foro():
 # @foro.route('/')
 # def index():
 #     return render_template('index.html')
+
+@foro.route('/main/foros', methods=['POST', 'GET'])
+@login_required
+def cargar_foros():
+    from BaseManager import BaseManager
+    base_manager = BaseManager()
+    nickname = current_user.nickname
+
+    foros_usuario = base_manager.get_foros_by_user(nickname)
+
+    print(f"Usuario actual: {nickname}")
+    print(f"Foros obtenidos: {foros_usuario}")
+
+    foros_usuarios = [
+        {
+            'dueñonombre': foro.dueñonombre,
+            'dueño_nickname': f"@{foro.dueño_nickname}",
+            'Descripcion': foro.descripcion,
+            'Likes': foro.likes,
+            'Comentarios': foro.comentarios,
+            'titulo': foro.titulo,
+            'id': foro.id if hasattr(foro, "id") else None
+        }
+        for foro in foros_usuario
+    ]
+
+    return render_template('main_foros.jinja', foros_usuarios=foros_usuarios, current_user=current_user)
