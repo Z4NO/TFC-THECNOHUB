@@ -18,12 +18,10 @@
     </div>
     <div class="publicaciones">
       {% for mensaje in mensajes %}
-      {% set autor = mensaje.autor %}
-      {% set fecha = mensaje.fecha %}
-      {% set contenido = contenido.contenido %}
-      {% include 'components/preview-post.jinja' %}
+        {% with autor=mensaje.autor, fecha=mensaje.fecha, contenido=mensaje.contenido %}
+          {% include 'components/preview-post.jinja' %}
+        {% endwith %}
       {% endfor %}
-      {% endif %}
     </div>
   </div>
   <script>

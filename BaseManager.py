@@ -11,7 +11,6 @@ from md import md as MD
 from firebase_admin import credentials, firestore
 import random
 
-from formularios.formularios import ForoModel
 
 
 class BaseManager:
@@ -166,7 +165,8 @@ class BaseManager:
 
     # Foro
 
-    def _get_forums(self) -> list[ForoModel]:
+    def _get_forums(self):
+        from formularios.formularios import ForoModel
         try:
 
             foro_ref = self.db.collection('foro')
@@ -202,7 +202,8 @@ class BaseManager:
             return None
 
 
-    def get_forums_without_messages(self) -> list[ForoModel]:
+    def get_forums_without_messages(self):
+        from formularios.formularios import ForoModel
         try:
             foro_ref = self.db.collection('foro')
             foro_ref_query = foro_ref.order_by(
@@ -253,7 +254,8 @@ class BaseManager:
             print(f"Error al obtener los mensajes del foro: {e}")
             return []
 
-    def _add_forum(self, user: User, foro: ForoModel):
+    def _add_forum(self, user: User, foro):
+        from formularios.formularios import ForoModel
         try:
             # Para JUANAN
             # mensajes_foros es una  coleccion , la cuál vamos a meter dentro de un documeno de la coleccion foro
@@ -298,6 +300,7 @@ class BaseManager:
             return False
 
     def _add_message_to_forum(self, id_foro: str, mensaje: str, user: User):
+        from formularios.formularios import ForoModel
 
         # Ejemplo añadir un mensaje a un foro:
         """
@@ -319,7 +322,7 @@ class BaseManager:
 
             # Agregar el mensaje a la subcolección 'mensajes' dentro del documento del foro
             foro_ref.collection('mensajes').add({
-                'autor': user.email,
+                'autor': user.nickname,
                 'contenido': mensaje,
                 'fecha': firestore.SERVER_TIMESTAMP
             })
@@ -346,6 +349,7 @@ class BaseManager:
     #         return {"usuarios": [], "posts": []}
 
     def get_data_by_field(self, value: str) -> dict:
+        from formularios.formularios import ForoModel
         try:
             users_query = self.db.collection("usuario").stream()
             posts_query = self.db.collection("foro").stream()

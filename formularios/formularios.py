@@ -8,6 +8,7 @@ from urllib.parse import quote, unquote
 from typing import List, Optional
 from extension import get_messages
 
+
 foro = Blueprint('foro', __name__, url_prefix='/foro')
 
 
@@ -57,12 +58,13 @@ def cargar_foro():
     foroid = unquote(request.args.get('foroid'))
     #vamos a cargar los mensajes del foro
     mensajes = get_messages(foroid)
+    print(f"Mensajes obtenidos: {mensajes}")
     mensajes_list = []
     for mensaje in mensajes:
         mensajes_list.append({
-            'contenido': mensaje.contenido,
-            'autor': mensaje.autor,
-            'fecha': mensaje.fecha,
+            'fecha': mensaje['fecha'],
+            'contenido': mensaje['contenido'],
+            'autor': mensaje['autor']
         })
 
     return render_template('foro.jinja', 
