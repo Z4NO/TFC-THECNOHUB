@@ -2,19 +2,26 @@
   <h5 class="modal-title" id="modalPerfilLabel">{{ user.nickname }}</h5>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
 </div>
-<div class="modal-body text-center">
-  <h6>{{ user.nombre }}</h6>
-  <p class="text-muted">{{ user.email }}</p>
-  <p><strong>Rol:</strong> {{ user.rol }}</p>
-  <p><strong>Reputación:</strong> {{ user.reputacion }}</p>
-  <p><strong>Suscripción:</strong> {{ user.suscripcion }}</p>
-  {% if user.suscripcion == 'premium' and user.fecha_expiracion_premium %}
-    <p><strong>Expira en:</strong> {{ user.fecha_expiracion_premium.strftime('%d/%m/%Y') }}</p>
-  {% endif %}
-  <p><strong>Antigüedad:</strong> {{ dias_creacion }} días</p>
-  <p><strong>Preferencias:</strong> {{ user.preferencias | join(', ') }}</p>
+
+<div class="modal-body">
+  <img src="{{ url_for('static', filename='imgs/pa.webp') }}" alt="Foto de perfil">
+  <div class="user-data">
+    <h6>{{ user.nickname }}</h6>
+    <p class="email">{{ user.email }}</p>
+
+    <div class="info-block">
+      <p><strong>Rol:</strong> {{ user.rol }}</p>
+      <p><strong>Reputación:</strong> {{ user.reputacion }}</p>
+      <p><strong>Suscripción:</strong> {{ user.suscripcion }}</p>
+      {% if user.suscripcion == 'premium' and user.fecha_expiracion_premium %}
+        <p><strong>Expira en:</strong> {{ user.fecha_expiracion_premium.strftime('%d/%m/%Y') }}</p>
+      {% endif %}
+      <p><strong>Antigüedad:</strong> {{ dias_creacion }} días</p>
+      <p><strong>Preferencias:</strong> {{ user.preferencias | join(', ') }}</p>
+    </div>
+  </div>
 </div>
+
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 </div>
-
