@@ -1,4 +1,4 @@
-function cargarComponente(ruta) {
+function cargarComponenteForo(ruta) {
   fetch(ruta)
     .then(response => {
       if (!response.ok) {
