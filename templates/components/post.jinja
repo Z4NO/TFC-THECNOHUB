@@ -8,13 +8,15 @@
         </div>
         <div class="post-nombre">
             <span> {{foro.dueñonombre}}</span>
-        </div>
-         <div class="post-usuario">
+        </div> 
+        <button class="boton-usuario"  class="btn-ver-perfil" data-toggle="modal" data-target="#modalPerfil"
+            data-foro-dueño="{{ foro.dueño }}" onclick="cargarPerfilUsuario(this)">
             <span> {{foro.dueño_nickname}}</span>
-        </div>
+        </button>
 
         
     </div>
+
     <div class="post-texto">
         <span> {{foro.Descripcion}}
         </span>
@@ -57,6 +59,21 @@
             }
         });
     });
+
+    function cargarPerfilUsuario(btn) {
+        const forodueño = btn.getAttribute("data-foro-dueño");
+        const encodedDueño = encodeURIComponent(forodueño);
+
+        cargarBootstrapCSS();
+
+        $.get('/profile/cargarPerfil/popup?dueño=' + encodedDueño, function(data) {
+            $('#modalContent').html(data);
+            const modal = new bootstrap.Modal(document.getElementById('modalPerfil'));
+            modal.show();
+        }).fail(function() {
+            console.error("Error al cargar el perfil del usuario.");
+        });
+    }
 
 
     function cargarPostBloqueMedio(btn,ruta) {

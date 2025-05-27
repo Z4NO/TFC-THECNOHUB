@@ -1,10 +1,6 @@
 from flask import Flask, redirect, request, jsonify,  render_template, url_for, Blueprint, send_from_directory
 from flask import session
 from flask_login import login_user, login_required, logout_user, current_user
-import requests
-import secrets
-import urllib.parse
-import datetime
 from BaseManager import BaseManager
 from Encripter import Encripter
 from dotenv import load_dotenv
@@ -129,3 +125,15 @@ def actualizar_suscripcion():
 @login_required
 def opciones_ajustes():
     return render_template("opciones-ajustes.html")
+
+@perfil.route('/cargarPerfil/popup', methods=['GET', 'POST'])
+@login_required
+def cargar_perfil():
+    usuario = request.args.get('dueño')
+    perfil = User.get(usuario)
+    if perfil:
+        dias_creacion = perfil.antiguedad_cuenta() if perfil.fecha_creacion else 0
+        print(f"Perfil encontrado: {perfil.nickname}, Antigüedad: {dias_creacion} días")
+        return render_template('pouppperfil.html', user=perfil, dias_creacion=dias_creacion)
+    else:
+        return "Perfil no encontrado", 404

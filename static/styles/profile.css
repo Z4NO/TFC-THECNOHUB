@@ -77,6 +77,7 @@ a {
 }
 
 .btn,
+.btn-cerrarSesion,
 .suscripcion-btn {
   background: linear-gradient(135deg, #6ee793 0%, #48c774 100%);
   color: black;
@@ -87,6 +88,9 @@ a {
   font-weight: bold;
 }
 
+.btn-cerrarSesion{
+  margin-right: 10px;
+}
 
 .suscripcion-btn:hover {
   background: #83f7a2;

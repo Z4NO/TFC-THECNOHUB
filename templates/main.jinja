@@ -18,6 +18,8 @@
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main_mensajes.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/main_foros.css') }}">
   <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -111,7 +113,7 @@
             </svg>
           </div>
         </div>
-        <span>Postear</span>
+        <span>Crear Foro</span>
       </button>
     </div>
 
@@ -192,10 +194,47 @@
   </div>
   <div class="margenDerecha">
 
+  <div class="only-bootstrap">
+    <div class="modal fade" id="modalPerfil" tabindex="-1" aria-labelledby="modalPerfilLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content" id="modalContent">
+          <!-- Aquí se inyecta dinámicamente el contenido desde pouppperfil.html -->
+        </div>
+      </div>
+    </div>
   </div>
+
 </body>
 
 
 </html>
 <script type="text/javascript" src="{{ url_for('static', filename='styles/mensajes.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='styles/foro.js') }}"></script>
+<script>
+  let bootstrapCSSLink = null;
+
+  function cargarBootstrapCSS() {
+    if (!bootstrapCSSLink) {
+      bootstrapCSSLink = document.createElement('link');
+      bootstrapCSSLink.rel = 'stylesheet';
+      bootstrapCSSLink.href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css";
+      document.head.appendChild(bootstrapCSSLink);
+    }
+  }
+
+  function eliminarBootstrapCSS() {
+    if (bootstrapCSSLink) {
+      bootstrapCSSLink.remove();
+      bootstrapCSSLink = null;
+    }
+  }
+
+  document.addEventListener('hidden.bs.modal', function (event) {
+    if (event.target.id === 'modalPerfil') {
+      eliminarBootstrapCSS();
+    }
+  });
+
+</script>
+
+

@@ -118,7 +118,7 @@ def index2():
     foros = []
     for foro in foros_lista if len(perfiles_list) >= 1 else []:
         foros.append(
-            {'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'titulo': foro.titulo, 'id': foro.id, 'foro': foro})
+            {'Nombre':foro.titulo,'dueñonombre': foro.dueñonombre, 'dueño_nickname': f"@{foro.dueño_nickname}", 'Descripcion': foro.descripcion, 'Likes': foro.likes, 'Comentarios': foro.comentarios, 'titulo': foro.titulo, 'id': foro.id,'dueño': foro.dueño ,'foro': foro})
 
     foros_usuarios = []
     for foro in foros_usuario if len(perfiles_list) >= 1 else []:
@@ -140,11 +140,11 @@ def index2():
 
     post_recomendados = [
         {'Usuario': 'Bando002', 'Nickname': '@usuario1',
-            'Contenido': 'Contenido del post 1'},
+            'Contenido': 'HTML5 y CSS es el futuro de la maquetacion de web'},
         {'Usuario': 'Dani', 'Nickname': '@usuario2',
-            'Contenido': 'Contenido del post 2'},
+            'Contenido': 'La informatica es el futuro, la programacion es el destino'},
         {'Usuario': 'Wanan', 'Nickname': '@LilWanan',
-            'Contenido': 'Lo de trabajar para gastarlo todo en 1 semana es loco, no puedo hacer mas de 12 viajes al mes, estoy cansado.\n#FrikingPagaMas #PonedAireEnFriking '}
+            'Contenido': 'SQL no es tan complicado si te pones todos los dias'}
     ]
     print(f"foro de cada usuario: {foros_usuarios}")
 

@@ -461,3 +461,82 @@
   justify-content: flex-start; 
   gap: 40px; 
 }
+
+
+.boton-usuario {
+  background: none;
+  border: none;
+  color: rgb(114, 112, 112);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.boton-usuario:hover {
+  text-decoration: underline; /* opcional, como sugerencia visual */
+}
+
+.only-bootstrap .modal-content {
+  background-color: #2f3136;
+  color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  padding: 1rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.only-bootstrap .modal-header,
+.only-bootstrap .modal-footer {
+  border-color: #444;
+}
+
+.only-bootstrap .modal-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.only-bootstrap .btn-close {
+  filter: invert(1);
+}
+
+.only-bootstrap .modal-body {
+  text-align: center;
+}
+
+.only-bootstrap .modal-body img {
+  border-radius: 50%;
+  border: 2px solid #5865F2;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.only-bootstrap .modal-body h6 {
+  margin: 0.5rem 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.only-bootstrap .modal-body p {
+  margin: 0.3rem 0;
+  color: #bbb;
+  font-size: 0.95rem;
+}
+
+.only-bootstrap .modal-footer .btn {
+  background-color: #5865F2;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 0.4rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.only-bootstrap .modal-footer .btn:hover {
+  background-color: #4752C4;
+}
+

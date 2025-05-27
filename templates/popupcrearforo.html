@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <title>Crear Foro</title>
@@ -13,6 +14,7 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      color: white;
     }
 
     form#foroForm {
@@ -20,6 +22,8 @@
       height: 360px;
       background-color: #000000;
       border-radius: 12px;
+      border: 2px solid rgb(118, 226, 151);
+      /* Borde verde */
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       padding: 14px;
       box-sizing: border-box;
@@ -38,23 +42,31 @@
       font-size: 13px;
       margin-top: 6px;
       margin-bottom: 2px;
-      color: #333;
+      color: #ffffff;
     }
 
     form#foroForm input[type="text"],
     form#foroForm textarea {
-      width: calc(100% - 16px); /* deja margen interior para evitar que se desborde */
+      width: calc(100% - 16px);
       padding: 6px 8px;
-      border: 1px solid #ccc;
+      border: 1px solid rgb(118, 226, 151);
+      /* Borde verde */
       border-radius: 6px;
       font-size: 13px;
       background-color: transparent;
+      color: white;
+      /* Texto blanco */
+    }
+
+    form#foroForm input[type="text"]::placeholder,
+    form#foroForm textarea::placeholder {
+      color: #cccccc;
+      /* Placeholder gris claro */
     }
 
     form#foroForm textarea {
       resize: none;
       height: 48px;
-      background-color: transparent;
     }
 
     .preferencias {
@@ -97,6 +109,7 @@
     }
   </style>
 </head>
+
 <body>
   <form id="foroForm" action="/postear" method="POST">
     <h3>Crear un Nuevo Foro</h3>
@@ -125,7 +138,7 @@
   </form>
 
   <script>
-    document.getElementById("foroForm").addEventListener("submit", function(event) {
+    document.getElementById("foroForm").addEventListener("submit", function (event) {
       setTimeout(function () {
         if (window.opener) {
           window.opener.location.reload();
@@ -135,4 +148,5 @@
     });
   </script>
 </body>
+
 </html>
