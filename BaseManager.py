@@ -10,7 +10,7 @@ import traceback
 from md import md as MD
 from firebase_admin import credentials, firestore
 import random
-
+from collections import defaultdict
 
 class BaseManager:
     def __init__(self):
@@ -124,7 +124,7 @@ class BaseManager:
             return None
 
     # Vamos a hacer una función la cual toma un número n de usuarios que quiere devolver y una QUERY por la cual filtrar los usuarios, además de un campo por el que filtrar, para facilitar los algoritmos de búsqueda.
-    def _get_users_by_algorithm(self, query,  field: str, current_user_email: str, limit: int = 3) -> list[User]:
+    def _get_users_by_algorithm(self, query,  field: str, current_user_email: str, limit: int = 10) -> list[User]:
         try:
             user_ref = self.db.collection('usuario')
 
@@ -156,7 +156,21 @@ class BaseManager:
                     suscripcion=user_data['suscripcion'],
                     fecha_expiracion_premium=user_data['fecha_expiracion_premium']
                 ))
-            return users
+                # Vamos a ver cuáles son los usuarios con más coincidencias en el campo preferencias
+            coincidencias = defaultdict(int)
+            for user in users:
+                interseccion = set(query).intersection(set(user.preferencias))
+                coincidencias[user] += len(interseccion)
+
+            # Ordenamos por número de coincidencias y nos quedamos con los top 3
+            usuarios_recomendados = sorted(coincidencias.items(),
+                                            key=lambda x: x[1], reverse=True)
+            
+            usuarios_aleatorios = random.sample(usuarios_recomendados, k=3)
+            print(f"Usuarios recomendados: {usuarios_recomendados}")
+
+            # Devolvemos solo la lista de usuarios (sin el número de coincidencias)
+            return [user for user, _ in usuarios_aleatorios]
         except Exception as e:
             traceback.print_exc()
             print(f"Error al obtener los usuarios por algoritmo: {e}")

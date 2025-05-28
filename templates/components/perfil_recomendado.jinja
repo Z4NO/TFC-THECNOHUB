@@ -3,3 +3,19 @@
     <div class="nombre">{{ perfil.nombre }}</div>
     <div class="usuario">{{ perfil.usuario }}</div>
 </div>
+<script>
+    function cargarPerfilUsuario(btn) {
+        const forodueño = btn.getAttribute("data-foro-dueño");
+        const encodedDueño = encodeURIComponent(forodueño);
+
+        cargarBootstrapCSS();
+
+        $.get('/profile/cargarPerfil/popup?dueño=' + encodedDueño, function(data) {
+            $('#modalContent').html(data);
+            const modal = new bootstrap.Modal(document.getElementById('modalPerfil'));
+            modal.show();
+        }).fail(function() {
+            console.error("Error al cargar el perfil del usuario.");
+        });
+    }
+</script>

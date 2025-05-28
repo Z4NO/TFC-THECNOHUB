@@ -26,7 +26,7 @@
         </div>
     </div>
     <h1 class="Tittle">MentorHUB</h1>
-    <form class="form" method="POST" autocomplete="off">
+    <form class="form" method="POST" autocomplete="off" id="login-form">
         <div class="form-title"><span>Inicia sesión en</span></div>
         <div class="title-2"><span>MentorHUB</span></div>
         <div class="input-container">
@@ -53,7 +53,23 @@
             
 
     </form>
+    <!-- Loader -->
+    <div id="loader" style="display: none;">
+        <div class="spinner"></div>
+    </div>
 
 </body>
 
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('login-form');
+        const loader = document.getElementById('loader');
+        form.addEventListener('submit', function() {
+            loader.style.display = 'flex';
+        });
+        form.addEventListener('onreset', function() {
+            loader.style.display = 'none';
+        });
+    });
+</script>

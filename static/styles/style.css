@@ -11,9 +11,11 @@ body {
   0% {
     transform: translateX(0) translateZ(0) scaleY(1)
   }
+
   50% {
     transform: translateX(-25%) translateZ(0) scaleY(0.55)
   }
+
   100% {
     transform: translateX(-50%) translateZ(0) scaleY(1)
   }
@@ -35,7 +37,7 @@ body {
   overflow: hidden;
   height: 101%;
   bottom: -1px;
-  background-image: linear-gradient(to top, #000 20% ,#123623 80%);
+  background-image: linear-gradient(to top, #000 20%, #123623 80%);
 }
 
 .bgTop {
@@ -93,13 +95,13 @@ body {
   color: #6ee793;
   text-shadow:
     -1px -1px 0 black,
-     1px -1px 0 black,
-    -1px  1px 0 black,
-     1px  1px 0 black,
-    -2px  0px 0 black,
-     2px  0px 0 black,
-     0px -2px 0 black,
-     0px  2px 0 black;
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black,
+    -2px 0px 0 black,
+    2px 0px 0 black,
+    0px -2px 0 black,
+    0px 2px 0 black;
   text-align: center;
   margin-top: 10%;
 }
@@ -197,9 +199,11 @@ body {
     opacity: 0;
     left: 0%;
   }
+
   50% {
     opacity: 1;
   }
+
   to {
     opacity: 0;
     left: 100%;
@@ -256,9 +260,21 @@ body {
 }
 
 @keyframes flickering {
-  0%, 100% { opacity: 1; }
-  42%, 48% { opacity: 0; }
-  43.01%, 49.01% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  42%,
+  48% {
+    opacity: 0;
+  }
+
+  43.01%,
+  49.01% {
+    opacity: 1;
+  }
 }
 
 .bg-stars {
@@ -273,9 +289,12 @@ body {
 }
 
 @keyframes animateBg {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.2);
   }
@@ -311,16 +330,71 @@ body {
     transform: rotate(315deg) translateX(0);
     opacity: 1;
   }
+
   70% {
     opacity: 1;
   }
+
   100% {
     transform: rotate(315deg) translateX(-1000px);
     opacity: 0;
   }
 }
 
-.star:nth-child(1) { right: 0; animation-delay: 0s; animation-duration: 1s; }
-.star:nth-child(2) { right: 100px; animation-delay: 0.2s; animation-duration: 3s; }
-.star:nth-child(3) { right: 220px; animation-delay: 2.75s; animation-duration: 2.75s; }
-.star:nth-child(4) { right: -220px; animation-delay: 1.6s; animation-duration: 1.6s; }
+.star:nth-child(1) {
+  right: 0;
+  animation-delay: 0s;
+  animation-duration: 1s;
+}
+
+.star:nth-child(2) {
+  right: 100px;
+  animation-delay: 0.2s;
+  animation-duration: 3s;
+}
+
+.star:nth-child(3) {
+  right: 220px;
+  animation-delay: 2.75s;
+  animation-duration: 2.75s;
+}
+
+.star:nth-child(4) {
+  right: -220px;
+  animation-delay: 1.6s;
+  animation-duration: 1.6s;
+}
+
+/* Estilos para el loader */
+#loader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
