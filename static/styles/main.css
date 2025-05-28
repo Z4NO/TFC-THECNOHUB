@@ -46,6 +46,11 @@
 #search-btn:hover {
   background: rgb(80, 194, 114);
 }
+.searchBtn{
+  background-color: transparent;
+  color: white;
+  border: none;
+}
 
 
 /* Márgenes laterales */
